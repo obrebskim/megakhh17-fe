@@ -7,7 +7,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   :root {
-    --primaryColor: #333;
+    --primaryDark: #222224;
+    --secondaryDark: #292A2B;
+    --buttonColor: #E02735;
+    --fontColor: #
+
   }
 
   html {
@@ -18,7 +22,7 @@ export default createGlobalStyle`
     height: 100vh;
     margin: 0;
     padding: 0;
-    background: var(--primaryColor);
+    background: var(--primaryDark);
     color: white;
   }
 `;
