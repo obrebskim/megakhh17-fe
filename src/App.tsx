@@ -20,8 +20,8 @@ function App() {
         <Route index element={<Login />} />
         <Route path="students" element={<Students />}>
           <Route path="talk-reservation" element={<TalkReservation />} />
-          <Route path=":id" element={<CuriculumVitae />} />
         </Route>
+        <Route path="curiculum-vitae/:id" element={<CuriculumVitae />} />
       </Routes>
     </Container>
   );
