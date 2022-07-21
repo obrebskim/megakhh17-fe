@@ -9,8 +9,9 @@ export default createGlobalStyle`
   :root {
     --primaryDark: #222224;
     --secondaryDark: #292A2B;
+    --headerBackground: #1E1E1F;
     --buttonColor: #E02735;
-    --fontColor: #
+    --fontColor: #F7F7F7;
 
   }
 
@@ -23,6 +24,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     background: var(--primaryDark);
+    font-size: 1.2rem;
     color: white;
   }
 `;

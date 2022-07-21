@@ -8,6 +8,8 @@ interface PropsTypes {
 }
 
 const Container = styled.div`
+  display: grid;
+  place-items: center;
   & img {
     width: 100%;
   }
