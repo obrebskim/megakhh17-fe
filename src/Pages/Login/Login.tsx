@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../../Components/Common/Button/Button";
+import Logo from "../../Components/Common/Logo/Logo";
 
 const Container = styled.main`
   width: 400px;
@@ -13,6 +14,7 @@ const Container = styled.main`
 export default function Login() {
   return (
     <Container>
+      <Logo width="25%" />
       <Button />
     </Container>
   );
