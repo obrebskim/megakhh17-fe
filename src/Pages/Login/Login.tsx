@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../Components/Common/Button/Button";
+import Button from "../../Components/Common/Button/Button";
 
 const Container = styled.main`
   width: 400px;
