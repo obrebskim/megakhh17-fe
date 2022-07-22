@@ -12,11 +12,11 @@ export default createGlobalStyle`
     --headerBackground: #1E1E1F;
     --buttonColor: #E02735;
     --fontColor: #F7F7F7;
-
+    --secondaryFontColor: #cfcfcf;
   }
 
   html {
-    font-family: sans-serif;
+    font-family: Catamaran, sans-serif;
     font-size: 62.5%;
   }
   body {

@@ -4,7 +4,8 @@ import styled from "styled-components";
 import CuriculumVitae from "./Pages/CuriculumVitae/CuriculumVitae";
 import Login from "./Pages/Login/Login";
 import Students from "./Pages/Students/Students";
-import TalkReservation from "./Pages/TalkReservation/TalkReservation";
+import TalkReservation from "./Components/TalkReservation/TalkReservation";
+import StudentsList from "./Components/StudentsList/StudentsList";
 
 const Container = styled.main`
   width: 100%;
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route index element={<Login />} />
         <Route path="students" element={<Students />}>
+          <Route path="list" element={<StudentsList />} />
           <Route path="talk-reservation" element={<TalkReservation />} />
         </Route>
         <Route path="curiculum-vitae/:id" element={<CuriculumVitae />} />
