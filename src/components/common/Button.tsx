@@ -3,20 +3,18 @@ import styled from "styled-components";
 
 interface PropsTypes {
   text: string;
-  fn: () => void;
-  backgroundColor: string;
+  onClick: () => void;
 }
 
 const Container = styled.button`
-  height: 27px;
+  background-color: ${props => props.color};
   border: none;
-  color: #f7f7f7;
-  font: normal 16px/27px Catamaran;
+  color: var(--fontColor);
 `;
 
-export default function Button({ text, fn, backgroundColor }: PropsTypes) {
+export default function Button({ text, onClick }: PropsTypes) {
   return (
-    <Container type="button" onClick={fn} style={{ backgroundColor }}>
+    <Container type="button" onClick={onClick}>
       {text}
     </Container>
   );
