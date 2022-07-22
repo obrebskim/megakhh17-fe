@@ -29,6 +29,9 @@ const Container = styled.label`
     &::placeholder {
       color: var(--placeholderColor);
     }
+    &:focus {
+      outline: none;
+    }
   }
 `;
 
