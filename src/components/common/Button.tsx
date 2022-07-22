@@ -4,18 +4,19 @@ import styled from "styled-components";
 interface PropsTypes {
   text: string;
   onClick: () => void;
+  color: string;
 }
 
 const Container = styled.button`
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   border: none;
   color: var(--fontColor);
 `;
 
-export default function Button({ text, onClick }: PropsTypes) {
+export default function Button({ text, onClick, color }: PropsTypes) {
   return (
-    <Container type="button" onClick={onClick}>
-      {text}
-    </Container>
+      <Container color={color} type="button" onClick={onClick}>
+        {text}
+      </Container>
   );
 }
