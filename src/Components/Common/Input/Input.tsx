@@ -18,8 +18,7 @@ interface Props {
     handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = (props: Props) => {
-    const {type, placeholder, width = '150px', height = '30px', required = false, handleInputChange} = props;
+export const Input = ({type, placeholder, width = '150px', height = '30px', required = false, handleInputChange}: Props) => {
 
     return (
         <StyledInput
