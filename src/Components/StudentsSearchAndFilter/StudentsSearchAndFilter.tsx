@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import FilterButton from "./FilterButton";
+import SearchInput from "./SearchInput";
 
 const Container = styled.section`
   height: 72px;
@@ -25,11 +26,13 @@ const Container = styled.section`
 `;
 
 function StudentsSearchAndFilter() {
+  const [searchString, setSearchString] = useState<string>("");
+  const handleSearchInputChange = (e: string) => {
+    setSearchString(e);
+  };
   return (
     <Container>
-      <label htmlFor="search">
-        <input type="text" name="search" />
-      </label>
+      <SearchInput value={searchString} onchange={handleSearchInputChange} />
       <FilterButton onclick={() => {}} />
     </Container>
   );

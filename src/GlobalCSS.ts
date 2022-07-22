@@ -13,6 +13,7 @@ export default createGlobalStyle`
     --buttonColor: #E02735;
     --fontColor: #F7F7F7;
     --secondaryFontColor: #cfcfcf;
+    --placeholderColor: #666666;
   }
 
   html {
@@ -24,7 +25,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     background: var(--primaryDark);
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: white;
   }
 `;
