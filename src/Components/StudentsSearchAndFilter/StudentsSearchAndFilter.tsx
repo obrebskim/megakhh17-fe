@@ -27,12 +27,9 @@ const Container = styled.section`
 
 function StudentsSearchAndFilter() {
   const [searchString, setSearchString] = useState<string>("");
-  const handleSearchInputChange = (e: string) => {
-    setSearchString(e);
-  };
   return (
     <Container>
-      <SearchInput value={searchString} onchange={handleSearchInputChange} />
+      <SearchInput value={searchString} onchange={setSearchString} />
       <FilterButton onclick={() => {}} />
     </Container>
   );

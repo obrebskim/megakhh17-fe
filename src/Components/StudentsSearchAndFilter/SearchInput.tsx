@@ -4,7 +4,7 @@ import magnifyerImg from "../../Assets/img/magnifying-glass.svg";
 
 interface PropsTypes {
   value: string;
-  onchange: (e: string) => void;
+  onchange: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Container = styled.label`
