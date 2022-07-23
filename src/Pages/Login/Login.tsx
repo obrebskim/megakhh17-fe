@@ -15,7 +15,6 @@ export default function Login() {
   return (
     <Container>
       <Logo width="25%" />
-      <Button />
     </Container>
   );
 }
