@@ -1,20 +1,36 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../Components/Header/Header";
+import StudentsNav from "../../Components/StudentsNav/StudentsNav";
+import StudentsSearchAndFilter from "../../Components/StudentsSearchAndFilter/StudentsSearchAndFilter";
 
 const Container = styled.section`
   width: 100%;
   height: 100%;
 `;
 
+const Wrapper = styled.div`
+  width: 1430px;
+  margin: 30px auto;
+`;
+
+const ListWrapper = styled.div`
+  width: 100%;
+  background-color: var(--secondaryDark);
+`;
+
 export default function Students() {
   return (
     <Container>
       <Header />
-      <Link to="/students/talk-reservation">do Rozmowy</Link>
-      <Link to="/students">Studenci</Link>
-      <Outlet />
+      <Wrapper>
+        <StudentsNav />
+        <ListWrapper>
+          <StudentsSearchAndFilter />
+          <Outlet />
+        </ListWrapper>
+      </Wrapper>
     </Container>
   );
 }
