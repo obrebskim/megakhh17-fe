@@ -4,13 +4,13 @@ import styled from "styled-components";
 const StyledInput = styled.input`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding-left: 10px;
   color: var(--fontColor);
   background-color: var(--secondaryDark);
   border: none;
   border-radius: 2px;
-  font-size: 10px;
+  font-size: 16px;
 `;
 
 interface Props {

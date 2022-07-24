@@ -8,14 +8,21 @@ const Container = styled.form`
   display: grid;
   place-items: end;
   & Button {
-    padding: 7px;
-    font-size: 10px;
+    width: 91px;
+    height: 39px;
+    font-size: 16px;
+    font-family: Catamaran;
+    line-height: 100%;
   }
   & .link-to-pwd-recovery {
-    margin-bottom: 10px;
+    width: 130px;
+    height: 23px;
+    margin-bottom: 28px;
     text-decoration: none;
     color: var(--fontColor);
-    font-size: 10px;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    text-align: end;
   }
 `;
 
@@ -49,8 +56,8 @@ export default function LoginForm() {
         value={loginData.email}
         name="email"
         placeholder="E-mail"
-        width="200px"
-        height="25px"
+        width="350px"
+        height="40px"
         required
         handleInputChange={handleInputChange}
       />
@@ -59,8 +66,8 @@ export default function LoginForm() {
         value={loginData.password}
         name="password"
         placeholder="Hasło"
-        width="200px"
-        height="25px"
+        width="350px"
+        height="40px"
         required
         handleInputChange={handleInputChange}
       />

@@ -4,17 +4,21 @@ import Logo from "../../Components/Common/Logo/Logo";
 import LoginForm from "../../Components/LoginForm/LoginForm";
 
 const Container = styled.main`
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   display: grid;
   place-items: center;
   background-color: var(--primaryDark);
+  & div img {
+    width: 124px;
+    height: 76px;
+  }
 `;
 
 export default function Login() {
   return (
     <Container>
-      <Logo width="25%" />
+      <Logo width="124px" height="76px" />
       <LoginForm />
     </Container>
   );
