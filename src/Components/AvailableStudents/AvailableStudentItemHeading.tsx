@@ -15,8 +15,12 @@ const Container = styled.div<StyledProps>`
   padding: 0 20px;
   border: none;
   background-color: transparent;
-  & img {
-    transform: rotate(${(props) => (!props.open ? "180deg" : "0")});
+  & .reservation {
+    width: 160px;
+    height: 40px;
+    background-color: var(--buttonColor);
+    border: none;
+    color: var(--fontColor);
   }
 `;
 
@@ -28,8 +32,10 @@ interface PropsTypes {
 function AvailableStudentItemHeading({ open, onclick }: PropsTypes) {
   return (
     <Container open={open}>
-      <p>Name .S</p>
-      <button type="button">button</button>
+      <p>Name S.</p>
+      <button className="reservation" type="button">
+        Zarezerwuj rozmowę
+      </button>
       <ArrowButton open={open} onclick={onclick} />
     </Container>
   );
