@@ -7,6 +7,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 12px 0;
   & .title {
     font-size: 1.2rem;
   }

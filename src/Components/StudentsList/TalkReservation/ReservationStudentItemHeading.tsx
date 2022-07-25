@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ArrowButton from "../../Common/ArrowButton/ArrowButton";
 import Avatar from "../../Common/Avatar/Avatar";
 import PlaceholderDiv from "../../Common/PlaceholderDiv/PlaceholderDiv";
+import ReservationDate from "./ReservationDate";
 
 type StyledProps = {
   open: boolean;
@@ -36,14 +37,14 @@ interface PropsTypes {
 function AvailableStudentItemHeading({ open, onclick }: PropsTypes) {
   return (
     <Container open={open}>
-      <div>data</div>
+      <ReservationDate />
       <Avatar name="Name Surname" />
       <PlaceholderDiv />
       <button type="button" className="button">
         Pokaż CV
       </button>
       <button type="button" className="button">
-        Brak Zainteresowania
+        Brak zainteresowania
       </button>
       <button type="button" className="button">
         Zatrudniony
