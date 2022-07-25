@@ -9,14 +9,13 @@ const Container = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
   &::after {
     content: "";
     height: 4px;
     position: absolute;
     bottom: 0;
-    left: 20px;
-    right: 20px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;

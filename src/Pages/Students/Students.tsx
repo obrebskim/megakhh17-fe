@@ -17,7 +17,9 @@ const Wrapper = styled.div`
 
 const ListWrapper = styled.div`
   width: 100%;
+  padding: 0 20px;
   background-color: var(--secondaryDark);
+  padding-bottom: 20px;
 `;
 
 export default function Students() {

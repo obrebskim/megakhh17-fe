@@ -8,7 +8,7 @@ interface PropsTypes {
 }
 
 const Container = styled.div`
-  width: 300px;
+  width: 200px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
