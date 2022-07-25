@@ -1,11 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
+interface PropsTypes {
+  text: string;
+  onClick?: () => void;
+  color: string;
+}
+
 const Container = styled.button`
-  height: 27px;
-  background-color: var(--buttonColor);
+  background-color: ${(props) => props.color};
   border: none;
+  color: var(--fontColor);
 `;
-export default function Button() {
-  return <Container>Button</Container>;
+
+export default function Button({ text, onClick, color }: PropsTypes) {
+  return (
+    <Container color={color} type="submit" onClick={onClick}>
+      {text}
+    </Container>
+  );
 }
