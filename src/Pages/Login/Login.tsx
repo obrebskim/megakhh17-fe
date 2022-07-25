@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../../Components/Common/Button/Button";
 import Logo from "../../Components/Common/Logo/Logo";
 
 const Container = styled.main`
