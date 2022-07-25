@@ -10,7 +10,7 @@ const Container = styled.div`
   background-color: var(--secondaryDark);
 `;
 
-function AvailableStudentItemDetail() {
+function StudentItemDetail() {
   return (
     <Container>
       <DetailItem title="Ocena przejścia kursu" content="5/5" />
@@ -42,4 +42,4 @@ function AvailableStudentItemDetail() {
   );
 }
 
-export default AvailableStudentItemDetail;
+export default StudentItemDetail;

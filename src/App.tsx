@@ -4,8 +4,8 @@ import styled from "styled-components";
 import CuriculumVitae from "./Pages/CuriculumVitae/CuriculumVitae";
 import Login from "./Pages/Login/Login";
 import Students from "./Pages/Students/Students";
-import TalkReservation from "./Components/TalkReservation/TalkReservation";
-import AvailableStudents from "./Components/AvailableStudents/AvailableStudents";
+import TalkReservation from "./Components/StudentsList/TalkReservation/TalkReservation";
+import AvailableStudents from "./Components/StudentsList/AvailableStudents/AvailableStudents";
 
 const Container = styled.main`
   width: 100%;

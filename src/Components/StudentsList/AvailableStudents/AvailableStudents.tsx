@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import StudentsList from "../StudentsList/StudentsList";
+import StudentsList from "../StudentsList";
 import AvailableStudentItem from "./AvailableStudentItem";
 
 const Container = styled.section``;

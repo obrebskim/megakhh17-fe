@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   height: 100%;
   margin: auto;
   display: grid;
-  grid-template-columns: 90px auto 300px 40px;
+  grid-template-columns: 90px auto 200px 40px;
   gap: 20px;
   align-items: center;
 `;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import AvailableStudentItemHeading from "./AvailableStudentItemHeading";
-import AvailableStudentItemDetail from "./AvailableStudentItemDetail";
+import StudentItemDetail from "../StudentItemDetail";
 
 const Container = styled.li`
   background-color: var(--secondaryDark);
@@ -15,7 +15,7 @@ function AvailableStudentItem() {
   return (
     <Container>
       <AvailableStudentItemHeading open={isOpen} onclick={handleIsOpenchange} />
-      {isOpen && <AvailableStudentItemDetail />}
+      {isOpen && <StudentItemDetail />}
     </Container>
   );
 }

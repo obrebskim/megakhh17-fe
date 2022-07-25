@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-  *,*::before,*::after {
+  *,*::before,*::after, button {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -18,7 +18,7 @@ export default createGlobalStyle`
   }
 
   html {
-    font-family: "Catamaran", sans-serif;
+    font-family: 'Catamaran', sans-serif;
     font-size: 62.5%;
   }
   body {
