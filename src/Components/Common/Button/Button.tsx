@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface PropsTypes {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   color: string;
 }
 
@@ -15,7 +15,7 @@ const Container = styled.button`
 
 export default function Button({ text, onClick, color }: PropsTypes) {
   return (
-    <Container color={color} type="button" onClick={onClick}>
+    <Container color={color} type="submit" onClick={onClick}>
       {text}
     </Container>
   );
