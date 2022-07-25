@@ -5,6 +5,7 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Catamaran', sans-serif;
   }
   :root {
     --primaryDark: #222224;
@@ -18,7 +19,6 @@ export default createGlobalStyle`
   }
 
   html {
-    font-family: 'Catamaran', sans-serif;
     font-size: 62.5%;
   }
   body {
