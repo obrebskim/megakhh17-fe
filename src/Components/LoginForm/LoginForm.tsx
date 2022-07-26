@@ -39,7 +39,7 @@ export default function LoginForm() {
 
   const handleSubmitLoginForm = (e: FormEvent) => {
     e.preventDefault();
-    console.log("Logic for login to be defined");
+    // console.log("Logic for login to be defined");
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
