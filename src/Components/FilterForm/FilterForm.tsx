@@ -3,6 +3,7 @@ import styled from "styled-components";
 /* import Button from "../Common/Button/Button"; */
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
 import WorkplacePreference from "../Common/Preference/WorkplacePreference";
+import ContactPreference from "../Common/Preference/ContactPreference";
 
 const Container = styled.div`
   position: absolute;
@@ -56,6 +57,7 @@ export default function FilterForm() {
         <EvaluationBlock text="Ocena kodu w projekcie własnym" />
         <EvaluationBlock text="Ocena pracy w zespole Scrum" />
         <WorkplacePreference text="Preferowane miejsce pracy" />
+        <ContactPreference text="Oczekiwany typ kontaktu" />
       </Form>
     </Container>
   );

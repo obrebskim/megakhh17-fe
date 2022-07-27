@@ -18,12 +18,14 @@ interface Props {
   text: string;
 }
 
-export default function WorkplacePreference({ text }: Props) {
+export default function ContactPreference({ text }: Props) {
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
-      <PreferenceButton text="Praca zdalna" color="#292A2B" />
-      <PreferenceButton text="Praca w biurze" color="#292A2B" />
+      <PreferenceButton text="Umowa o pracę" color="#292A2B" />
+      <PreferenceButton text="B2B" color="#292A2B" />
+      <PreferenceButton text="Umowa zlecenie" color="#292A2B" />
+      <PreferenceButton text="Umowa o dzieło" color="#292A2B" />
     </Container>
   );
 }
