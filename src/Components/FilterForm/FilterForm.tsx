@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../Common/Button/Button";
+/* import Button from "../Common/Button/Button"; */
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
+import WorkplacePreference from "../Common/Preference/WorkplacePreference";
 
 const Container = styled.div`
   position: absolute;
@@ -19,7 +20,7 @@ const Container = styled.div`
     font-size: 22px;
     font-weight: bold;
   }
-  & Button {
+  & .clear-all {
     position: absolute;
     top: 24px;
     right: 22px;
@@ -28,6 +29,9 @@ const Container = styled.div`
     padding: 4px 10px;
     font-size: 14px;
     cursor: pointer;
+    background-color: #172a35;
+    color: #f7f7f7;
+    border: none;
   }
 `;
 
@@ -42,13 +46,16 @@ export default function FilterForm() {
     <Container>
       <Header>
         <span className="title">Filtrowanie</span>
-        <Button text="Wyczyść wszystkie" color="#172A35" />
+        <button className="clear-all" type="button">
+          Wyczyść wszystkie
+        </button>
       </Header>
       <Form>
         <EvaluationBlock text="Ocena przejścia kursu" />
         <EvaluationBlock text="Ocena aktywności i zaangażowania na kursie" />
         <EvaluationBlock text="Ocena kodu w projekcie własnym" />
         <EvaluationBlock text="Ocena pracy w zespole Scrum" />
+        <WorkplacePreference text="Preferowane miejsce pracy" />
       </Form>
     </Container>
   );
