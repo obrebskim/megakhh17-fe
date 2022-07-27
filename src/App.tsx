@@ -6,6 +6,7 @@ import Login from "./Pages/Login/Login";
 import Students from "./Pages/Students/Students";
 import TalkReservation from "./Components/StudentsList/TalkReservation/TalkReservation";
 import AvailableStudents from "./Components/StudentsList/AvailableStudents/AvailableStudents";
+import FilterForm from "./Components/FilterForm/FilterForm";
 
 const Container = styled.main`
   width: 100%;
@@ -22,6 +23,7 @@ function App() {
         <Route path="students" element={<Students />}>
           <Route path="list" element={<AvailableStudents />} />
           <Route path="talk-reservation" element={<TalkReservation />} />
+          <Route path="filter" element={<FilterForm />} />
         </Route>
         <Route path="curiculum-vitae/:id" element={<CuriculumVitae />} />
       </Routes>
