@@ -5,7 +5,7 @@ import LoginForm from "../../Components/LoginForm/LoginForm";
 
 const Container = styled.main`
   width: 400px;
-  height: 400px;
+  height: 250px;
   display: grid;
   place-items: center;
   background-color: var(--primaryDark);
