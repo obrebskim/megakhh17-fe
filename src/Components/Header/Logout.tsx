@@ -32,7 +32,7 @@ function Logout() {
 
   return (
     <Container>
-      <button type="button" onClick={() => handleRedirect("account")}>
+      <button type="button" onClick={() => handleRedirect("/account")}>
         Konto
       </button>
       <button type="button" onClick={handleLogout}>

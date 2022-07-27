@@ -6,6 +6,7 @@ import Login from "./Pages/Login/Login";
 import Students from "./Pages/Students/Students";
 import TalkReservation from "./Components/StudentsList/TalkReservation/TalkReservation";
 import AvailableStudents from "./Components/StudentsList/AvailableStudents/AvailableStudents";
+import Account from "./Pages/Account/Account";
 
 const Container = styled.main`
   width: 100%;
@@ -24,6 +25,7 @@ function App() {
           <Route path="talk-reservation" element={<TalkReservation />} />
         </Route>
         <Route path="curiculum-vitae/:id" element={<CuriculumVitae />} />
+        <Route path="account" element={<Account />} />
       </Routes>
     </Container>
   );
