@@ -15,6 +15,7 @@ export default createGlobalStyle`
     --buttonColor: #E02735;
     --fontColor: #F7F7F7;
     --secondaryFontColor: #cfcfcf;
+    --tirnaryFontColor: #4D4D4D;
     --placeholderColor: #666666;
   }
 

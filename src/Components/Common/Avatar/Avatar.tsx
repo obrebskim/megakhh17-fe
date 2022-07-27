@@ -47,7 +47,7 @@ export default function Avatar({ name, imgUrl, vertical = false }: PropsTypes) {
       <p>{name}</p>
       {vertical && (
         <a href="https://github.com">
-          <img src={githubIco} alt="" /> kowalsim
+          <img src={githubIco} alt="" /> kowalskim
         </a>
       )}
     </Container>
