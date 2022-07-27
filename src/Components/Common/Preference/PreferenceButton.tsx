@@ -5,6 +5,7 @@ interface PropsTypes {
   text: string;
   onClick?: () => void;
   color: string;
+  className?: string;
 }
 
 const Container = styled.button`
@@ -14,11 +15,22 @@ const Container = styled.button`
   padding: 4px 10px;
   color: var(--fontColor);
   font-size: 12px;
+  cursor: pointer;
 `;
 
-export default function PreferenceButton({ text, onClick, color }: PropsTypes) {
+export default function PreferenceButton({
+  text,
+  onClick,
+  color,
+  className,
+}: PropsTypes) {
   return (
-    <Container color={color} type="button" onClick={onClick}>
+    <Container
+      color={color}
+      type="button"
+      onClick={onClick}
+      className={className}
+    >
       {text}
     </Container>
   );

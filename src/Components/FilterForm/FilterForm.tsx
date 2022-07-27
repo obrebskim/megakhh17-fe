@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-/* import Button from "../Common/Button/Button"; */
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
 import WorkplacePreference from "../Common/Preference/WorkplacePreference";
 import ContactPreference from "../Common/Preference/ContactPreference";
+import FinancialPreference from "../Common/Preference/FinancialPreference";
+import InternshipPreference from "../Common/Preference/InternshipPreference";
+import Experience from "../Common/Preference/Experience";
+import PreferenceButton from "../Common/Preference/PreferenceButton";
 
 const Container = styled.div`
   position: absolute;
@@ -34,6 +37,21 @@ const Container = styled.div`
     color: #f7f7f7;
     border: none;
   }
+  & .cancel-btn {
+    position: absolute;
+    bottom: 19px;
+    left: 312px;
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+  & .submit-btn {
+    position: absolute;
+    bottom: 19px;
+    right: 22px;
+    font-size: 16px;
+    padding: 6px 10px;
+    margin-left: 20px;
+  }
 `;
 
 const Header = styled.header``;
@@ -42,6 +60,8 @@ const Form = styled.form``;
 
 export default function FilterForm() {
   //  const [courseCompletionEvaluation, setCourseCompletionEvaluation] = useState<number>(0);
+
+  const handleInputChange = () => {};
 
   return (
     <Container>
@@ -58,6 +78,28 @@ export default function FilterForm() {
         <EvaluationBlock text="Ocena pracy w zespole Scrum" />
         <WorkplacePreference text="Preferowane miejsce pracy" />
         <ContactPreference text="Oczekiwany typ kontaktu" />
+        <FinancialPreference
+          text="Oczekiwane wynagrodzenie miesięczne netto"
+          onChange={handleInputChange}
+        />
+        <InternshipPreference
+          text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek"
+          onChange={handleInputChange}
+        />
+        <Experience
+          text="Ilość miesięcy doświadczenia komercyjnego w programowaniu"
+          onChange={handleInputChange}
+        />
+        <PreferenceButton
+          text="Anuluj"
+          color="#0a0a0a"
+          className="cancel-btn"
+        />
+        <PreferenceButton
+          text="Pokaż wyniki"
+          color="#E02735"
+          className="submit-btn"
+        />
       </Form>
     </Container>
   );
