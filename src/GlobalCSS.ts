@@ -17,6 +17,7 @@ export default createGlobalStyle`
     --secondaryFontColor: #cfcfcf;
     --tirnaryFontColor: #4D4D4D;
     --placeholderColor: #666666;
+    --anchorColor: #0B8BD4;
   }
 
   html {

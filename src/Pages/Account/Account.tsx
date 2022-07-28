@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 250px auto;
   gap: 5px;
+  padding: 30px 0;
 `;
 
 function Account() {
