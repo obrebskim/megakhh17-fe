@@ -4,21 +4,23 @@ import paperclip from "../../Assets/img/paperclip.svg";
 
 const Container = styled.div`
   height: 110px;
-  width: available;
-  display: table-row;
-  gap: 4px;
+  display: grid;
+  & h3 {
+    height: 60px;
+    text-align: left;
+    padding: 15px;
+  }
   & img {
     width: 30px;
     height: 20px;
   }
   & p {
-    width: border-box;
     background-color: var(--primaryDark);
     padding: 20px;
-    word-wrap: break-word;
   }
   & a {
     color: #0b8bd4;
+    text-decoration: none;
   }
 `;
 

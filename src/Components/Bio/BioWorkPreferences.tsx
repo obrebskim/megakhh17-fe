@@ -5,16 +5,22 @@ import DetailItem from "../StudentsList/DetailItem";
 const Container = styled.div`
   height: 110px;
   display: flex;
-  text-align: left;
   grid-template-columns: repeat(10, auto);
   gap: 2px;
+  background-color: var(--secondaryDark);
+`;
+
+const Title = styled.h3`
+  height: 60px;
+  text-align: left;
+  padding: 15px;
   background-color: var(--secondaryDark);
 `;
 
 export default function BioWorkPreferences() {
   return (
     <>
-      <h3>Oczekiwanie w stosunku do zatrudnienia</h3>
+      <Title>Oczekiwanie w stosunku do zatrudnienia</Title>
       <Container>
         <DetailItem title="Preferowane miejsce pracy" content="Biuro" />
         <DetailItem

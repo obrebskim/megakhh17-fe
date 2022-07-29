@@ -6,20 +6,19 @@ import BioEducationAndExperience from "./BioEducationAndExperience";
 import BioPersonalInfo from "./BioPersonalInfo";
 
 const Container = styled.div`
-  box-sizing: border-box;
-  height: 110px;
-  display: table-row-group;
+  width: 1430px;
+  height: auto;
+  display: flex;
   background-color: var(--secondaryDark);
 `;
 
 const BioInfo = styled.div`
   width: 15%;
-  float: left;
+  margin: 25px;
 `;
 
 const Preferences = styled.div`
   width: 85%;
-  float: right;
 `;
 
 export default function Bio() {
@@ -28,7 +27,7 @@ export default function Bio() {
       <BioInfo>
         <BioPersonalInfo
           name="Jan Kowalski"
-          githubUsername="jkowalski"
+          githubUsername="jankowalski"
           email="jankowalski@gmail.com"
           tel="555222333"
           bio="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo"
@@ -38,9 +37,9 @@ export default function Bio() {
         <BioGrades />
         <BioWorkPreferences />
         <BioEducationAndExperience
-          education="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sr invidunt ut laborertet clita katakimaem ipsum dolor sit amet."
-          courses="megak"
-          workExperience="2 lata"
+          education="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+          courses="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+          workExperience="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
           githubUsername="https://github/portfolio"
           projectUrls="https://github/scrum"
           portfolioUrls="https://github/courseFinal"

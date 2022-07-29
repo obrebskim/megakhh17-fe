@@ -7,49 +7,62 @@ import github from "../../Assets/img/github.svg";
 import mail from "../../Assets/img/mail.svg";
 
 const Container = styled.div`
-  width: 200px;
   display: grid;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  padding: 10px;
-  & .avatar {
-    margin: 20px;
-    width: 120px;
-    height: 120px;
-  }
-  & p {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    padding: 3px;
-  }
-  & .about {
-    display: grid;
-    text-align: left;
+  width: 200px;
+  & Button {
     padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
-  & .icon {
+`;
+
+const Header = styled.div`
+  display: grid;
+  justify-items: center;
+  & .avatar {
+    width: 150px;
+    height: 150px;
+  }
+  & .git-icon {
     margin: 5px;
-    width: 15px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
+  }
+  & .git {
+    display: flex;
+    align-items: center;
   }
   & h3 {
     font-weight: lighter;
     font-size: 24px;
   }
+  & a {
+    color: #0b8bd4;
+    text-decoration: none;
+  }
+`;
+
+const Contact = styled.div`
+  & p {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+  }
+  & .icon {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+const About = styled.div`
+  & p {
+    margin: 5px;
+  }
   & h4 {
     font-size: 16px;
     color: #4d4d4d;
     text-align: left;
-  }
-  & a {
-    color: #0b8bd4;
-  }
-  & Button {
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
   }
 `;
 
@@ -75,24 +88,30 @@ export default function BioPersonalInfo({
 
   return (
     <Container>
-      <img className="avatar" src={url} alt="avatar" />
-      <h3>{name}</h3>
-      <p>
-        <img className="icon" src={github} alt="" />
-        <a href={githubUsername}>{githubUsername}</a>
-      </p>
-      <p>
-        <img className="icon" src={phone} alt="" />
-        {`+ 48 ${phoneFormated}`}
-      </p>
-      <p>
-        <img className="icon" src={mail} alt="" />
-        {email}
-      </p>
-      <p className="about">
-        <h4>O mnie</h4>
-        {bio}
-      </p>
+      <Header>
+        <img className="avatar" src={url} alt="avatar" />
+        <h3>{name}</h3>
+        <p className="git">
+          <img className="git-icon" src={github} alt="" />
+          <a href={githubUsername}>{githubUsername}</a>
+        </p>
+      </Header>
+      <Contact>
+        <p>
+          <img className="icon" src={phone} alt="" />
+          {`+ 48 ${phoneFormated}`}
+        </p>
+        <p>
+          <img className="icon" src={mail} alt="" />
+          {email}
+        </p>
+      </Contact>
+      <About>
+        <p>
+          <h4>O mnie</h4>
+          {bio}
+        </p>
+      </About>
       <Button text="Brak zainteresowania" color="#e02735" />
       <Button text="Zatrudniony" color="#e02735" />
     </Container>

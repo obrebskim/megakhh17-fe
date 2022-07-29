@@ -6,7 +6,6 @@ const Wrapper = styled.div`
   display: grid;
   height: 110px;
   grid-template-columns: repeat(10, auto);
-  justify-content: flex-start;
   background-color: var(--primaryDark);
 `;
 
@@ -16,10 +15,17 @@ const Container = styled.div`
   background-color: var(--primaryDark);
 `;
 
+const Title = styled.h3`
+  height: 60px;
+  text-align: left;
+  padding: 15px;
+  background-color: var(--secondaryDark);
+`;
+
 export default function BioGrades() {
   return (
     <>
-      <h3>Oceny</h3>
+      <Title>Oceny</Title>
       <Wrapper>
         <Container>
           <p>Ocena przejścia kursu</p>
