@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import ExpectationsTile from "./ExpectationsTile";
+import { UserAccountContext } from "../../Context/UserAccountContext";
 
 const Container = styled.div`
   height: 100px;
@@ -10,51 +11,52 @@ const Container = styled.div`
 `;
 
 function Expectations() {
-  const [workType, setWorkType] = useState<string>("Biuro");
-  const [city, setCity] = useState<string>("Gdańsk");
-  const [contractType, setContractType] = useState<string>("Umowa o pracę");
-  const [salary, setSalary] = useState<string>("8000");
-  const [internAcceptation, setInterAcceptation] = useState<string>("NIE");
-  const [exirienceInMonth, setExirienceInMonth] = useState<string>("6");
+  const { state, dispatch } = useContext(UserAccountContext);
   return (
     <Container>
       <ExpectationsTile
-        value={workType}
+        value={state.expectedTypeWork}
         type="select"
-        onchange={setWorkType}
+        onchange={dispatch}
         title="Preferowane miejsce pracy"
+        actionName="SET_EXPECTED_TYPE_WORK"
       />
       <ExpectationsTile
-        value={city}
+        value={state.targetWorkCity}
         type="text"
-        onchange={setCity}
+        onchange={dispatch}
         title="Docelowe miasto, gdzie chce pracować kandydat"
+        actionName="SET_TARGET_WORK_CITY"
       />
       <ExpectationsTile
-        value={contractType}
+        value={state.expectedContractType}
         type="select"
-        onchange={setContractType}
+        onchange={dispatch}
         title="Oczekiwany typ kontraktu"
+        actionName="SET_EXPECTED_CONTRACT_TYPE"
       />
       <ExpectationsTile
-        value={salary}
+        value={state.expectedSalary}
         type="text"
-        onchange={setSalary}
+        onchange={dispatch}
         title="Oczekiwane wynagrodzenie miesięczne netto"
         postfix="zł"
+        actionName="SET_EXPECTED_SALARY"
       />
       <ExpectationsTile
-        value={internAcceptation}
+        value={String(state.canTakeApprenticeship)}
         type="select"
-        onchange={setInterAcceptation}
+        onchange={dispatch}
         title="Zgoda na bezpłatne praktyki/staż"
+        actionName="SET_CAN_TAKE_APPRENTICESHIP"
       />
       <ExpectationsTile
-        value={exirienceInMonth}
+        value={state.experience}
         type="text"
-        onchange={setExirienceInMonth}
+        onchange={dispatch}
         title="Komercyjne doświadczenie w programowaniu"
         postfix="miesięcy"
+        actionName="SET_EXPERIENCE"
       />
     </Container>
   );

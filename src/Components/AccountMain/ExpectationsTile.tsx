@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import EditButton from "../Common/EditButton";
+import { ContextActionInterface } from "../../Context/UserAccountContext";
 
 const Container = styled.div`
   height: 100%;
@@ -37,9 +38,10 @@ type InputType = "select" | "number" | "text";
 interface PropsTypes {
   value: string;
   type: InputType;
-  onchange: React.Dispatch<React.SetStateAction<string>>;
+  onchange: React.Dispatch<ContextActionInterface>;
   postfix?: string;
   title: string;
+  actionName: string;
 }
 
 function ExpectationsTile({
@@ -48,6 +50,7 @@ function ExpectationsTile({
   postfix = "",
   onchange,
   title,
+  actionName,
 }: PropsTypes) {
   const [editable, setEditable] = useState<boolean>(false);
   return (
@@ -57,7 +60,7 @@ function ExpectationsTile({
         <label htmlFor="select">
           <select
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-              onchange(e.target.value)
+              onchange({ type: actionName, payload: e.target.value })
             }
             name="select"
             id="select"
@@ -79,7 +82,7 @@ function ExpectationsTile({
             disabled={!editable}
             value={value}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              onchange(e.target.value)
+              onchange({ type: actionName, payload: e.target.value })
             }
           />
           {postfix !== "" && <span>{postfix}</span>}

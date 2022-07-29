@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as StarIco } from "../../Assets/img/star.svg";
 
 const Container = styled.div`
   height: 100%;
@@ -14,11 +15,21 @@ const Container = styled.div`
   & .grade {
     display: flex;
     gap: 10px;
+    align-items: center;
     & p {
       font-size: 18px;
       & span {
         font-weight: bold;
       }
+    }
+  }
+  & .stars {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    & svg {
+      width: 20px;
+      height: 20px;
     }
   }
 `;
@@ -29,6 +40,7 @@ interface PropsTypes {
 }
 
 function GradeTile({ title, grade }: PropsTypes) {
+  const stars = [1, 2, 3, 4, 5];
   return (
     <Container>
       <p className="title">{title}</p>
@@ -36,7 +48,19 @@ function GradeTile({ title, grade }: PropsTypes) {
         <p>
           <span>{grade}</span>/5
         </p>
-        <div className="stars">stars</div>
+        <div className="stars">
+          {stars.map((s) => (
+            <StarIco
+              style={{
+                fill: `${
+                  s <= Number(grade)
+                    ? "var(--buttonColor)"
+                    : "var(--ternaryFontColor)"
+                }`,
+              }}
+            />
+          ))}
+        </div>
       </div>
     </Container>
   );

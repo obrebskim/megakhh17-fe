@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import EditButton from "../Common/EditButton";
+import { ContextActionInterface } from "../../Context/UserAccountContext";
 
 const Container = styled.div`
   display: flex;
@@ -21,17 +22,18 @@ const Container = styled.div`
 
 interface PropsTypes {
   text: string;
-  onchange: React.Dispatch<React.SetStateAction<string>>;
+  onchange: React.Dispatch<ContextActionInterface>;
+  actionName: string;
 }
 
-function TextTile({ text, onchange }: PropsTypes) {
+function TextTile({ text, onchange, actionName }: PropsTypes) {
   const [editable, setEditable] = useState<boolean>(false);
   return (
     <Container>
       <textarea
         value={text}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-          onchange(e.target.value)
+          onchange({ type: actionName, payload: e.target.value })
         }
         disabled={!editable}
       />

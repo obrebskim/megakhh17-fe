@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import TileHeading from "./TileHeading";
 import Grades from "./Grades";
 import Expectations from "./Expectations";
 import TextTile from "./TextTile";
 import LinksTile from "./LinksTile";
+import { UserAccountContext } from "../../Context/UserAccountContext";
 
 const Container = styled.main``;
 
 const InfoSection = styled.section``;
 
 function AccountMain() {
-  const [education, setEducation] = useState<string>("Jakiś tekst o edukacji");
-  const [expirienceDescription, setExpirienceDescription] = useState<string>(
-    "Jakiś tekst o doświadczeniu zawodowym",
-  );
-  const [courses, setCourses] = useState<string>("Jakiś tekst o kursach");
-  const portfolioLinks: string[] = ["http://github.com", "http://github.com"];
+  const portfolioLinks: string[] = [
+    "http://github.com/1",
+    "http://github.com/2",
+  ];
+  const { state, dispatch } = useContext(UserAccountContext);
 
   return (
     <Container>
@@ -30,17 +30,26 @@ function AccountMain() {
       </InfoSection>
       <InfoSection>
         <TileHeading title="Edukacja" />
-        <TextTile text={education} onchange={setEducation} />
+        <TextTile
+          text={state.education}
+          onchange={dispatch}
+          actionName="SET_EDUCATION"
+        />
       </InfoSection>
       <InfoSection>
         <TileHeading title="Kursy" />
-        <TextTile text={courses} onchange={setCourses} />
+        <TextTile
+          text={state.courses}
+          onchange={dispatch}
+          actionName="SET_COURSES"
+        />
       </InfoSection>
       <InfoSection>
         <TileHeading title="Doświadczenia zawodowe" />
         <TextTile
-          text={expirienceDescription}
-          onchange={setExpirienceDescription}
+          text={state.experience}
+          onchange={dispatch}
+          actionName="SET_EXPERIENCE"
         />
       </InfoSection>
       <InfoSection>

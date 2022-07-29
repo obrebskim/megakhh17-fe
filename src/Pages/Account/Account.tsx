@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AccountAside from "../../Components/AccountAside/AccountAside";
 import AccountMain from "../../Components/AccountMain/AccountMain";
 import Header from "../../Components/Header/Header";
+import UserAccountProvider from "../../Context/UserAccountContext";
 
 const Container = styled.div`
   width: 100%;
@@ -22,10 +23,12 @@ function Account() {
   return (
     <Container>
       <Header />
-      <Wrapper>
-        <AccountAside />
-        <AccountMain />
-      </Wrapper>
+      <UserAccountProvider>
+        <Wrapper>
+          <AccountAside />
+          <AccountMain />
+        </Wrapper>
+      </UserAccountProvider>
     </Container>
   );
 }
