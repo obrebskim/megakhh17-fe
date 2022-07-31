@@ -7,6 +7,7 @@ import Input from "../../Components/Common/Input/Input";
 const Container = styled.form`
   display: grid;
   place-items: end;
+
   & Button {
     width: 91px;
     height: 39px;
@@ -14,6 +15,7 @@ const Container = styled.form`
     font-family: Catamaran;
     line-height: 100%;
   }
+
   & .link-to-pwd-recovery {
     width: 130px;
     height: 23px;
@@ -32,18 +34,20 @@ interface LoginDataType {
 }
 
 export default function ResetForm() {
+  const params = useParams();
   const [password, setPassword] = useState<LoginDataType>({
     password1: "",
     password2: "",
   });
-  const params = useParams();
+  const [resp, setResp] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmitLoginForm = async (e: FormEvent) => {
     e.preventDefault();
     const { password1, password2 } = password;
     const { id, token } = params;
     if (password1 === password2) {
-      const response = await fetch(`http://localhost:3000/password/reset`, {
+      const data = await fetch(`http://localhost:3000/password/reset`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -53,10 +57,12 @@ export default function ResetForm() {
           token,
         }),
       });
-      console.log(await response.json());
+      const response = await data.json();
+      setResp(response.msg);
     } else {
-      console.error("hasła nie są takie same");
-      //@TODO zrobić jakiś modal lub inne info że password nie jest taki sam
+      // @TODO można to jakoś ostylować czy coś, pozostawiam wam :)
+      setError("podane hasła nie są takie same");
+      setTimeout(() => setError(""), 3000);
     }
   };
 
@@ -66,7 +72,9 @@ export default function ResetForm() {
       [e.target.name]: e.target.value,
     }));
   };
-
+  if (resp) {
+    return <div> {resp}</div>;
+  }
   return (
     <Container onSubmit={handleSubmitLoginForm}>
       <Input
@@ -90,6 +98,7 @@ export default function ResetForm() {
         handleInputChange={handlePasswordReset}
       />
       <Button text="Zmień hasło" color="#E02735" />
+      {error && <div>{error}</div>}
     </Container>
   );
 }
