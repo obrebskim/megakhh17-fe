@@ -6,6 +6,8 @@ import Login from "./Pages/Login/Login";
 import Students from "./Pages/Students/Students";
 import TalkReservation from "./Components/StudentsList/TalkReservation/TalkReservation";
 import AvailableStudents from "./Components/StudentsList/AvailableStudents/AvailableStudents";
+import ResetForm from "./Pages/PwdRecovery/ResetForm";
+import RecoveryForm from "./Pages/PwdRecovery/RecoveryForm";
 
 const Container = styled.main`
   width: 100%;
@@ -24,6 +26,8 @@ function App() {
           <Route path="talk-reservation" element={<TalkReservation />} />
         </Route>
         <Route path="curiculum-vitae/:id" element={<CuriculumVitae />} />
+        <Route path="pwd-recovery" element={<RecoveryForm />} />
+        <Route path="pwd-recovery/:id/:token" element={<ResetForm />} />
       </Routes>
     </Container>
   );
