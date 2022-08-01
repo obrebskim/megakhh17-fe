@@ -8,18 +8,33 @@ const Container = styled.div`
   width: 42px;
   height: 27px;
   margin-bottom: 20px;
-  background-color: var(--secondaryDark);
+  background-color: ${(props) => props.color};
   cursor: pointer;
   & .evaluation-value {
     color: var(--fontColor);
     margin-right: 4px;
   }
   & .star {
-    display: block;
     width: 12px;
     height: 12px;
-    color: var(--buttonColor);
     background-color: var(--buttonColor);
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      98% 35%,
+      68% 57%,
+      79% 91%,
+      50% 70%,
+      21% 91%,
+      32% 57%,
+      2% 35%,
+      39% 35%
+    );
+  }
+  & .star-active {
+    width: 12px;
+    height: 12px;
+    background-color: var(--fontColor);
     clip-path: polygon(
       50% 0%,
       61% 35%,
@@ -36,18 +51,22 @@ const Container = styled.div`
 `;
 
 interface Props {
-  number: number;
+  level: number;
+  squareColor: string;
+  className: string;
+  handleClick: (level: number) => void;
 }
 
-export default function EvaluationUnit({ number }: Props) {
-  const handleSelectEvaluation = (e: any) => {
-    console.log(e.target.innerText);
-  };
-
+export default function EvaluationUnit({
+  level,
+  squareColor,
+  className,
+  handleClick,
+}: Props) {
   return (
-    <Container onClick={handleSelectEvaluation}>
-      <span className="evaluation-value">{number}</span>
-      <span className="star">{number}</span>
+    <Container color={squareColor} onClick={() => handleClick(level)}>
+      <span className="evaluation-value">{level}</span>
+      <span className={className} />
     </Container>
   );
 }

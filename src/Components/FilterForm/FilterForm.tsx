@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
 import WorkplacePreference from "../Common/Preference/WorkplacePreference";
@@ -16,6 +16,7 @@ const Container = styled.div`
   width: 520px;
   height: 806px;
   background-color: var(--filterBackground);
+
   & .title {
     display: block;
     width: 107px;
@@ -24,6 +25,7 @@ const Container = styled.div`
     font-size: 22px;
     font-weight: bold;
   }
+
   & .clear-all {
     position: absolute;
     top: 24px;
@@ -37,6 +39,7 @@ const Container = styled.div`
     color: #f7f7f7;
     border: none;
   }
+
   & .cancel-btn {
     position: absolute;
     bottom: 19px;
@@ -44,6 +47,7 @@ const Container = styled.div`
     font-size: 16px;
     padding: 6px 10px;
   }
+
   & .submit-btn {
     position: absolute;
     bottom: 19px;
@@ -59,9 +63,30 @@ const Header = styled.header``;
 const Form = styled.form``;
 
 export default function FilterForm() {
-  //  const [courseCompletionEvaluation, setCourseCompletionEvaluation] = useState<number>(0);
-
+  const [courseEvaluation, setCourseEvaluation] = useState<number>(0);
+  const [activityEvaluation, setActivityEvaluation] = useState<number>(0);
+  const [codeEvaluation, setCodeEvaluation] = useState<number>(0);
+  const [teamEvaluation, setTeamEvaluation] = useState<number>(0);
+  const handleSetCourseEvaluation = (value: number) => {
+    setCourseEvaluation(value);
+  };
+  const handleSetActivityEvaluation = (value: number) => {
+    setActivityEvaluation(value);
+  };
+  const handleSetCodeEvaluation = (value: number) => {
+    setCodeEvaluation(value);
+  };
+  const handleSetTeamEvaluation = (value: number) => {
+    setTeamEvaluation(value);
+  };
   const handleInputChange = () => {};
+
+  console.log(
+    courseEvaluation,
+    activityEvaluation,
+    codeEvaluation,
+    teamEvaluation,
+  );
 
   return (
     <Container>
@@ -72,10 +97,42 @@ export default function FilterForm() {
         </button>
       </Header>
       <Form>
-        <EvaluationBlock text="Ocena przejścia kursu" />
-        <EvaluationBlock text="Ocena aktywności i zaangażowania na kursie" />
-        <EvaluationBlock text="Ocena kodu w projekcie własnym" />
-        <EvaluationBlock text="Ocena pracy w zespole Scrum" />
+        <EvaluationBlock
+          text="Ocena przejścia kursu"
+          row={1}
+          course={courseEvaluation}
+          activity={activityEvaluation}
+          code={codeEvaluation}
+          team={teamEvaluation}
+          handleClick={handleSetCourseEvaluation}
+        />
+        <EvaluationBlock
+          text="Ocena aktywności i zaangażowania na kursie"
+          row={2}
+          course={courseEvaluation}
+          activity={activityEvaluation}
+          code={codeEvaluation}
+          team={teamEvaluation}
+          handleClick={handleSetActivityEvaluation}
+        />
+        <EvaluationBlock
+          text="Ocena kodu w projekcie własnym"
+          row={3}
+          course={courseEvaluation}
+          activity={activityEvaluation}
+          code={codeEvaluation}
+          team={teamEvaluation}
+          handleClick={handleSetCodeEvaluation}
+        />
+        <EvaluationBlock
+          text="Ocena pracy w zespole Scrum"
+          row={4}
+          course={courseEvaluation}
+          activity={activityEvaluation}
+          code={codeEvaluation}
+          team={teamEvaluation}
+          handleClick={handleSetTeamEvaluation}
+        />
         <WorkplacePreference text="Preferowane miejsce pracy" />
         <ContactPreference text="Oczekiwany typ kontaktu" />
         <FinancialPreference

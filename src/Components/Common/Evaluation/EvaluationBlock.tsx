@@ -19,18 +19,52 @@ const Title = styled.span`
 
 interface Props {
   text: string;
+  row: number;
+  course: number;
+  activity: number;
+  code: number;
+  team: number;
+  handleClick: (level: number) => void;
 }
 
-export default function EvaluationBlock({ text }: Props) {
+export default function EvaluationBlock({
+  text,
+  row,
+  course,
+  activity,
+  code,
+  team,
+  handleClick,
+}: Props) {
+  const levels = [5, 4, 3, 2, 1];
+
   return (
     <>
       <Title>{text}</Title>
       <Container>
-        <EvaluationUnit number={5} />
-        <EvaluationUnit number={4} />
-        <EvaluationUnit number={3} />
-        <EvaluationUnit number={2} />
-        <EvaluationUnit number={1} />
+        {levels.map((count) => (
+          <EvaluationUnit
+            key={count}
+            level={count}
+            squareColor={
+              (row === 1 && course === count) ||
+              (row === 2 && activity === count) ||
+              (row === 3 && code === count) ||
+              (row === 4 && team === count)
+                ? "#E02735"
+                : "#292A2B"
+            }
+            className={
+              (row === 1 && course === count) ||
+              (row === 2 && activity === count) ||
+              (row === 3 && code === count) ||
+              (row === 4 && team === count)
+                ? "star-active"
+                : "star"
+            }
+            handleClick={handleClick}
+          />
+        ))}
       </Container>
     </>
   );
