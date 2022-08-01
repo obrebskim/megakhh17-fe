@@ -17,6 +17,9 @@ const initialState: UserAccountContextStateInterface = {
   education: "",
   courses: "",
   experience: "",
+  tel: "+48 123 456 789",
+  email: "",
+  bio: "",
 };
 
 export interface ContextPropsInterface {

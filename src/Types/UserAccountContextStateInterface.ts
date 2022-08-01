@@ -12,4 +12,7 @@ export interface UserAccountContextStateInterface {
   education: string;
   courses: string;
   experience: string;
+  tel: string;
+  email: string;
+  bio: string;
 }

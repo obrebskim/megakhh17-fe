@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
-import EditButton from "../Common/EditButton";
-import { ContextActionInterface } from "../../Context/UserAccountContext";
+import EditButton from "../Common/EditButton/EditButton";
+import { UserAccountContextActionInterface } from "../../Types/UserAccountContextActionInterface";
 
 const Container = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ const Container = styled.div`
 
 interface PropsTypes {
   text: string;
-  onchange: React.Dispatch<ContextActionInterface>;
+  onchange: React.Dispatch<UserAccountContextActionInterface>;
   actionName: string;
 }
 

@@ -22,6 +22,12 @@ export default function userAccountReducer(
       return { ...state, courses: action.payload };
     case "SET_EXPERIENCE":
       return { ...state, experience: action.payload };
+    case "SET_PHONE":
+      return { ...state, tel: action.payload };
+    case "SET_EMAIL":
+      return { ...state, email: action.payload };
+    case "SET_BIO":
+      return { ...state, bio: action.payload };
     default:
       return state;
   }

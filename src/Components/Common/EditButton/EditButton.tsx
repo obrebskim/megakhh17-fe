@@ -1,15 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import pencilIco from "../../Assets/img/pencil.svg";
-import okIco from "../../Assets/img/ok.svg";
+import { ReactComponent as PencilIco } from "../../../Assets/img/pencil.svg";
+import { ReactComponent as OkIco } from "../../../Assets/img/ok.svg";
 
 const Container = styled.button`
-  padding: 10px;
-  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  & img {
+  & svg {
     width: 15px;
+    height: 15px;
   }
 `;
 
@@ -21,7 +25,7 @@ interface PropsType {
 function EditButton({ value, onclick }: PropsType) {
   return (
     <Container type="button" onClick={onclick}>
-      {value ? <img src={okIco} alt="" /> : <img src={pencilIco} alt="" />}
+      {value ? <OkIco /> : <PencilIco />}
     </Container>
   );
 }

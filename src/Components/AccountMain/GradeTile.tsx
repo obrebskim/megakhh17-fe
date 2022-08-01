@@ -51,6 +51,7 @@ function GradeTile({ title, grade }: PropsTypes) {
         <div className="stars">
           {stars.map((s) => (
             <StarIco
+              key={s}
               style={{
                 fill: `${
                   s <= Number(grade)

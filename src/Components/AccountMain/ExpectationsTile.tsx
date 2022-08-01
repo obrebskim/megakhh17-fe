@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
-import EditButton from "../Common/EditButton";
-import { ContextActionInterface } from "../../Context/UserAccountContext";
+import EditButton from "../Common/EditButton/EditButton";
+import { UserAccountContextActionInterface } from "../../Types/UserAccountContextActionInterface";
 
 const Container = styled.div`
   height: 100%;
@@ -38,7 +38,7 @@ type InputType = "select" | "number" | "text";
 interface PropsTypes {
   value: string;
   type: InputType;
-  onchange: React.Dispatch<ContextActionInterface>;
+  onchange: React.Dispatch<UserAccountContextActionInterface>;
   postfix?: string;
   title: string;
   actionName: string;

@@ -11,11 +11,12 @@ const Container = styled.aside`
   gap: 20px;
   padding: 20px;
   background-color: var(--secondaryDark);
-  & button {
+  & .button {
     height: 40px;
     width: 100%;
     background-color: var(--buttonColor);
     color: var(--fontColor);
+    cursor: pointer;
   }
 `;
 
@@ -25,7 +26,12 @@ function AccountAside() {
       <Avatar name="Marian Kowalski" vertical />
       <ContactTile />
       <AboutTile />
-      <button type="button">wyloguj</button>
+      <button className="button" type="button">
+        zapisz zmiany
+      </button>
+      <button className="button" type="button">
+        wyloguj
+      </button>
     </Container>
   );
 }
