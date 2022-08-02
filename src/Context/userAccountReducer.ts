@@ -33,6 +33,6 @@ export default function userAccountReducer(
     case "SET_BIO":
       return { ...state, bio: action.payload };
     default:
-      return state;
+      throw new Error();
   }
 }

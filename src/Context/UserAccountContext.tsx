@@ -38,8 +38,10 @@ interface PropsTypes {
 }
 
 function UserAccountProvider({ children }: PropsTypes) {
-  // @ts-ignore
-  const [state, dispatch] = useReducer(userAccountReducer, initialState);
+  const [state, dispatch] = useReducer<React.Reducer<any, any>>(
+    userAccountReducer,
+    initialState,
+  );
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <UserAccountContext.Provider value={{ state, dispatch }}>
