@@ -17,7 +17,7 @@ export default createGlobalStyle`
     --secondaryFontColor: #cfcfcf;
     --placeholderColor: #666666;
   }
-
+ 
   html {
     font-size: 62.5%;
   }
