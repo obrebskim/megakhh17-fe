@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../Components/Common/Button/Button";
 import Input from "../../Components/Common/Input/Input";
 
@@ -34,6 +34,7 @@ interface LoginDataType {
 }
 
 export default function ResetForm() {
+  const navigate = useNavigate();
   const params = useParams();
   const [password, setPassword] = useState<LoginDataType>({
     password1: "",
@@ -58,7 +59,8 @@ export default function ResetForm() {
         }),
       });
       const response = await data.json();
-      setResp(response.msg);
+      setResp(response.message);
+      setTimeout(() => navigate("/"), 3000);
     } else {
       // @TODO można to jakoś ostylować czy coś, pozostawiam wam :)
       setError("podane hasła nie są takie same");

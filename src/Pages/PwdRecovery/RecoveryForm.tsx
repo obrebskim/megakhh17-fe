@@ -29,9 +29,11 @@ const Container = styled.form`
 
 export default function RecoveryForm() {
   const [email, setEmail] = useState<string>("");
+  const [resp, setResp] = useState("");
 
   const handleSubmitLoginForm = async (e: FormEvent) => {
     e.preventDefault();
+
     const response = await fetch(`http://localhost:3000/password/recovery`, {
       method: "POST",
       body: JSON.stringify({
@@ -39,25 +41,27 @@ export default function RecoveryForm() {
       }),
     });
 
-    const userInfo = await response.json();
-    console.log(userInfo);
+    const respData = await response.json();
+    console.log("czy to undefined?", respData);
+    setResp(respData.message);
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
+  if (resp) {
+    return <div> {resp}</div>;
+  }
   return (
     <Container onSubmit={handleSubmitLoginForm}>
       <Input
         type="text"
         value={email}
         name="password"
-        placeholder="Hasło"
+        placeholder="Wpisz email"
         width="350px"
         height="40px"
         required
-        handleInputChange={handleInputChange}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setEmail(e.target.value)
+        }
       />
 
       <Button text="Wyślij" color="#E02735" />
