@@ -51,12 +51,12 @@ function Expectations() {
         actionName="SET_CAN_TAKE_APPRENTICESHIP"
       />
       <ExpectationsTile
-        value={state.experience}
+        value={String(state.experienceMonths)}
         type="text"
         onchange={dispatch}
         title="Komercyjne doświadczenie w programowaniu"
         postfix="miesięcy"
-        actionName="SET_EXPERIENCE"
+        actionName="SET_EXPERIENCE_MONTHS"
       />
     </Container>
   );

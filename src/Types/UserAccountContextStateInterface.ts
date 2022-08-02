@@ -9,6 +9,7 @@ export interface UserAccountContextStateInterface {
   expectedContractType: string;
   expectedSalary: string;
   canTakeApprenticeship: number;
+  experienceMonths: number;
   education: string;
   courses: string;
   experience: string;

@@ -51,7 +51,6 @@ function AboutTile() {
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
           setAbout(e.target.value)
         }
-        onBlur={() => setAbout(state.bio)}
         disabled={!isEditable}
       />
     </Container>

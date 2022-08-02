@@ -17,7 +17,11 @@ export default function userAccountReducer(
     case "SET_EXPECTED_SALARY":
       return { ...state, expectedSalary: action.payload };
     case "SET_CAN_TAKE_APPRENTICESHIP":
-      return { ...state, canTakeApprenticeship: action.payload };
+      return { ...state, expectedSalary: action.payload };
+    case "SET_EXPERIENCE_MONTHS":
+      return { ...state, experienceMonths: action.payload };
+    case "SET_EDUCATION":
+      return { ...state, education: action.payload };
     case "SET_COURSES":
       return { ...state, courses: action.payload };
     case "SET_EXPERIENCE":

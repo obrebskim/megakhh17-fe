@@ -1,23 +1,24 @@
-import { createContext, Dispatch, useReducer } from "react";
+import React, { createContext, Dispatch, useReducer } from "react";
 import { UserAccountContextStateInterface } from "../Types/UserAccountContextStateInterface";
 import { UserAccountContextActionInterface } from "../Types/UserAccountContextActionInterface";
 import userAccountReducer from "./userAccountReducer";
 
 const initialState: UserAccountContextStateInterface = {
   loading: true,
-  courseCompletion: 5,
-  courseEngagement: 3,
-  projectDegree: 4,
-  teamProjectDegree: 5,
+  courseCompletion: 0,
+  courseEngagement: 0,
+  projectDegree: 0,
+  teamProjectDegree: 0,
   expectedTypeWork: "",
   targetWorkCity: "",
   expectedContractType: "",
   expectedSalary: "",
+  experienceMonths: 0,
   canTakeApprenticeship: 0,
   education: "",
   courses: "",
   experience: "",
-  tel: "+48 123 456 789",
+  tel: "",
   email: "",
   bio: "",
 };
