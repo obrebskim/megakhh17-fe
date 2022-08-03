@@ -33,16 +33,15 @@ export default function RecoveryForm() {
 
   const handleSubmitLoginForm = async (e: FormEvent) => {
     e.preventDefault();
-
     const response = await fetch(`http://localhost:3000/password/recovery`, {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email,
       }),
     });
 
     const respData = await response.json();
-    console.log("czy to undefined?", respData);
     setResp(respData.message);
   };
 
