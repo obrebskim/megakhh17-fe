@@ -37,12 +37,14 @@ export default function WorkplacePreference({
         color="#292A2B"
         value={remote}
         handleClick={handleClickRemote}
+        disabled={office}
       />
       <PreferenceButton
         text="Praca w biurze"
         color="#292A2B"
         value={office}
         handleClick={handleClickOffice}
+        disabled={remote}
       />
     </Container>
   );

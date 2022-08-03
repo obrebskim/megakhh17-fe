@@ -34,6 +34,14 @@ export default function FinancialPreference({
   handleMin,
   handleMax,
 }: Props) {
+  // const minSalaryRef = useRef(null);
+  // const maxSalaryRef = useRef(null);
+
+  /* useEffect(() => {
+    if (minSalaryRef.current) {
+      console.log(minSalaryRef.current);
+    }
+  }, [minSalaryRef]); */
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
@@ -46,6 +54,7 @@ export default function FinancialPreference({
         handleInputChange={handleMin}
         width="95px"
         height="28px"
+        // ref={minSalaryRef}
       />
       do
       <Input
@@ -56,7 +65,9 @@ export default function FinancialPreference({
         handleInputChange={handleMax}
         width="105px"
         height="28px"
+        // ref={maxSalaryRef}
       />
+      {/* <input type="number" ref={minSalaryRef} /> */}
     </Container>
   );
 }

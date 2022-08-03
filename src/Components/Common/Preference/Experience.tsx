@@ -35,11 +35,12 @@ export default function Experience({
       <PreferenceTitle>{text}</PreferenceTitle>
       <Input
         type="number"
-        value={experience ? experience.toString() : ""}
+        value={experience ? experience.toString() : "0"}
         placeholder="0 miesięcy"
         handleInputChange={handleExperience}
         width="95px"
         height="28px"
+        min={0}
       />
     </Container>
   );

@@ -9,7 +9,7 @@ import Experience from "../Common/Preference/Experience";
 import PreferenceButton from "../Common/Preference/PreferenceButton";
 // import EvaluationType from "../../types/EvaluationType";
 // import formDefaultData from "../../utils/formDefaultData";
-// import FilterFormContext from "../../utils/FilterFormContext";
+import FilterFormContext from "../../utils/FilterFormContext";
 
 const Container = styled.div`
   position: absolute;
@@ -71,9 +71,9 @@ export default function FilterForm() {
   const [codeEvaluation, setCodeEvaluation] = useState<number>(0);
   const [teamEvaluation, setTeamEvaluation] = useState<number>(0);
   const [workplacePreferenceRemote, setWorkplacePreferenceRemote] =
-    useState<boolean>(false);
+    useState<boolean>(false); // zostawić jeden stan z wartościami liczbowymi np. 1 i 2 // opcja: dodać praca hybrydowa
   const [workplacePreferenceOffice, setWorkplacePreferenceOffice] =
-    useState<boolean>(false);
+    useState<boolean>(false); // usunąć
   const [contractPreferencePermanent, setContractPreferencePermanent] =
     useState<boolean>(false);
   const [contractPreferenceB2B, setContractPreferenceB2B] =
@@ -119,6 +119,7 @@ export default function FilterForm() {
     setExperience(null);
     setInternshipPreference(null);
   };
+
   console.log(
     courseEvaluation,
     activityEvaluation,
@@ -144,7 +145,8 @@ export default function FilterForm() {
           Wyczyść wszystkie
         </button>
       </Header>
-      {/* <FilterFormContext.Provider
+      <FilterFormContext.Provider
+        // eslint-disable-next-line react/jsx-no-constructed-context-values
         value={{
           courseEvaluation,
           activityEvaluation,
@@ -175,93 +177,93 @@ export default function FilterForm() {
           handleSetInternshipPreference,
           handleExperience,
         }}
-      > */}
-      <Form onSubmit={handleSubmitForm}>
-        <EvaluationBlock
-          text="Ocena przejścia kursu"
-          row={1}
-          course={courseEvaluation}
-          activity={activityEvaluation}
-          code={codeEvaluation}
-          team={teamEvaluation}
-          handleClick={setCourseEvaluation}
-        />
-        <EvaluationBlock
-          text="Ocena aktywności i zaangażowania na kursie"
-          row={2}
-          course={courseEvaluation}
-          activity={activityEvaluation}
-          code={codeEvaluation}
-          team={teamEvaluation}
-          handleClick={setActivityEvaluation}
-        />
-        <EvaluationBlock
-          text="Ocena kodu w projekcie własnym"
-          row={3}
-          course={courseEvaluation}
-          activity={activityEvaluation}
-          code={codeEvaluation}
-          team={teamEvaluation}
-          handleClick={setCodeEvaluation}
-        />
-        <EvaluationBlock
-          text="Ocena pracy w zespole Scrum"
-          row={4}
-          course={courseEvaluation}
-          activity={activityEvaluation}
-          code={codeEvaluation}
-          team={teamEvaluation}
-          handleClick={setTeamEvaluation}
-        />
-        <WorkplacePreference
-          text="Preferowane miejsce pracy"
-          remote={workplacePreferenceRemote}
-          office={workplacePreferenceOffice}
-          handleClickRemote={setWorkplacePreferenceRemote}
-          handleClickOffice={setWorkplacePreferenceOffice}
-        />
-        <ContactPreference
-          text="Oczekiwany typ kontaktu"
-          permanent={contractPreferencePermanent}
-          b2b={contractPreferenceB2B}
-          mandate={contractPreferenceMandate}
-          contract={contractPreferenceContract}
-          handleClickPermanent={setContractPreferencePermanent}
-          handleClickB2B={setContractPreferenceB2B}
-          handleClickMandate={setContractPreferenceMandate}
-          handleClickContract={setContractPreferenceContract}
-        />
-        <FinancialPreference
-          text="Oczekiwane wynagrodzenie miesięczne netto"
-          min={salaryMin}
-          max={salaryMax}
-          handleMin={handleSetSalaryMin}
-          handleMax={handleSetSalaryMax}
-        />
-        <InternshipPreference
-          text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek"
-          internship={internshipPreference}
-          handleInternship={handleSetInternshipPreference}
-        />
-        <Experience
-          text="Ilość miesięcy doświadczenia komercyjnego w programowaniu"
-          experience={experience}
-          handleExperience={handleExperience}
-        />
-        <PreferenceButton
-          text="Anuluj"
-          color="#0a0a0a"
-          className="cancel-btn"
-          handleClick={handle}
-        />
-        <PreferenceButton
-          text="Pokaż wyniki"
-          color="#E02735"
-          className="submit-btn"
-          handleClick={handle}
-        />
-      </Form>
-      {/* </FilterFormContext.Provider> */}
+      >
+        <Form onSubmit={handleSubmitForm}>
+          <EvaluationBlock
+            text="Ocena przejścia kursu"
+            row={1}
+            course={courseEvaluation}
+            activity={activityEvaluation}
+            code={codeEvaluation}
+            team={teamEvaluation}
+            handleClick={setCourseEvaluation}
+          />
+          <EvaluationBlock
+            text="Ocena aktywności i zaangażowania na kursie"
+            row={2}
+            course={courseEvaluation}
+            activity={activityEvaluation}
+            code={codeEvaluation}
+            team={teamEvaluation}
+            handleClick={setActivityEvaluation}
+          />
+          <EvaluationBlock
+            text="Ocena kodu w projekcie własnym"
+            row={3}
+            course={courseEvaluation}
+            activity={activityEvaluation}
+            code={codeEvaluation}
+            team={teamEvaluation}
+            handleClick={setCodeEvaluation}
+          />
+          <EvaluationBlock
+            text="Ocena pracy w zespole Scrum"
+            row={4}
+            course={courseEvaluation}
+            activity={activityEvaluation}
+            code={codeEvaluation}
+            team={teamEvaluation}
+            handleClick={setTeamEvaluation}
+          />
+          <WorkplacePreference
+            text="Preferowane miejsce pracy"
+            remote={workplacePreferenceRemote}
+            office={workplacePreferenceOffice}
+            handleClickRemote={setWorkplacePreferenceRemote}
+            handleClickOffice={setWorkplacePreferenceOffice}
+          />
+          <ContactPreference
+            text="Oczekiwany typ kontaktu"
+            permanent={contractPreferencePermanent}
+            b2b={contractPreferenceB2B}
+            mandate={contractPreferenceMandate}
+            contract={contractPreferenceContract}
+            handleClickPermanent={setContractPreferencePermanent}
+            handleClickB2B={setContractPreferenceB2B}
+            handleClickMandate={setContractPreferenceMandate}
+            handleClickContract={setContractPreferenceContract}
+          />
+          <FinancialPreference
+            text="Oczekiwane wynagrodzenie miesięczne netto"
+            min={salaryMin}
+            max={salaryMax}
+            handleMin={handleSetSalaryMin}
+            handleMax={handleSetSalaryMax}
+          />
+          <InternshipPreference
+            text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek"
+            internship={internshipPreference}
+            handleInternship={handleSetInternshipPreference}
+          />
+          <Experience
+            text="Ilość miesięcy doświadczenia komercyjnego w programowaniu"
+            experience={experience}
+            handleExperience={handleExperience}
+          />
+          <PreferenceButton
+            text="Anuluj"
+            color="#0a0a0a"
+            className="cancel-btn"
+            handleClick={handle}
+          />
+          <PreferenceButton
+            text="Pokaż wyniki"
+            color="#E02735"
+            className="submit-btn"
+            handleClick={handle}
+          />
+        </Form>
+      </FilterFormContext.Provider>
     </Container>
   );
 }
