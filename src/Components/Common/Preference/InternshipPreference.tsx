@@ -27,13 +27,13 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  // internship: string | null;
+  internship: string | null;
   handleInternship: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function InternshipPreference({
   text,
-  // internship,
+  internship,
   handleInternship,
 }: Props) {
   return (
@@ -44,12 +44,14 @@ export default function InternshipPreference({
         name="choice"
         value="Yes"
         handleInputChange={handleInternship}
+        internship={internship}
       />
       <RadioInputPreference
         text="Nie"
         name="choice"
         value="No"
         handleInputChange={handleInternship}
+        internship={internship}
       />
     </Container>
   );

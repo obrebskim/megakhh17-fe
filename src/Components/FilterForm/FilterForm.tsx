@@ -240,7 +240,7 @@ export default function FilterForm() {
         />
         <InternshipPreference
           text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek"
-          // internship={internshipPreference}
+          internship={internshipPreference}
           handleInternship={handleSetInternshipPreference}
         />
         <Experience
