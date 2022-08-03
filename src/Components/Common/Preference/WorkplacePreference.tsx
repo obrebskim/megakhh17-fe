@@ -16,14 +16,34 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
+  remote: boolean;
+  office: boolean;
+  handleClickRemote: (status: boolean) => void;
+  handleClickOffice: (status: boolean) => void;
 }
 
-export default function WorkplacePreference({ text }: Props) {
+export default function WorkplacePreference({
+  text,
+  remote,
+  office,
+  handleClickRemote,
+  handleClickOffice,
+}: Props) {
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
-      <PreferenceButton text="Praca zdalna" color="#292A2B" />
-      <PreferenceButton text="Praca w biurze" color="#292A2B" />
+      <PreferenceButton
+        text="Praca zdalna"
+        color="#292A2B"
+        value={remote}
+        handleClick={handleClickRemote}
+      />
+      <PreferenceButton
+        text="Praca w biurze"
+        color="#292A2B"
+        value={office}
+        handleClick={handleClickOffice}
+      />
     </Container>
   );
 }

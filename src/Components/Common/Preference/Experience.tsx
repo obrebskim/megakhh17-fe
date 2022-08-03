@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import Input from "../Input/Input";
 
@@ -21,18 +21,23 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  onChange: () => void;
+  experience: number | null;
+  handleExperience: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Experience({ text, onChange }: Props) {
+export default function Experience({
+  text,
+  experience,
+  handleExperience,
+}: Props) {
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
       <Input
         type="number"
-        value=""
+        value={experience ? experience.toString() : ""}
         placeholder="0 miesięcy"
-        handleInputChange={onChange}
+        handleInputChange={handleExperience}
         width="95px"
         height="28px"
       />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import Input from "../Input/Input";
 
@@ -21,29 +21,40 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  onChange: () => void;
+  min: number | null;
+  max: number | null;
+  handleMin: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleMax: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function FinancialPreference({ text, onChange }: Props) {
+export default function FinancialPreference({
+  text,
+  min,
+  max,
+  handleMin,
+  handleMax,
+}: Props) {
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
       od
       <Input
         type="number"
-        value=""
+        value={min ? min.toString() : ""}
+        name="min"
         placeholder="np. 1000 zł"
-        handleInputChange={onChange}
+        handleInputChange={handleMin}
         width="95px"
         height="28px"
       />
       do
       <Input
         type="number"
-        value=""
+        value={max ? max.toString() : ""}
+        name="max"
         placeholder="np. 10000 zł"
-        handleInputChange={onChange}
-        width="95px"
+        handleInputChange={handleMax}
+        width="105px"
         height="28px"
       />
     </Container>

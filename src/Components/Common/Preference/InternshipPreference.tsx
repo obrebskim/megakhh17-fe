@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import RadioInputPreference from "./RadioInputPreference";
 
@@ -27,24 +27,29 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  onChange: () => void;
+  // internship: string | null;
+  handleInternship: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function InternshipPreference({ text, onChange }: Props) {
+export default function InternshipPreference({
+  text,
+  // internship,
+  handleInternship,
+}: Props) {
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
       <RadioInputPreference
         text="Tak"
-        name="Yes"
-        value=""
-        handleInputChange={() => onChange}
+        name="choice"
+        value="Yes"
+        handleInputChange={handleInternship}
       />
       <RadioInputPreference
         text="Nie"
-        name="No"
-        value=""
-        handleInputChange={() => onChange}
+        name="choice"
+        value="No"
+        handleInputChange={handleInternship}
       />
     </Container>
   );

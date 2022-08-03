@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
 import WorkplacePreference from "../Common/Preference/WorkplacePreference";
@@ -7,6 +7,9 @@ import FinancialPreference from "../Common/Preference/FinancialPreference";
 import InternshipPreference from "../Common/Preference/InternshipPreference";
 import Experience from "../Common/Preference/Experience";
 import PreferenceButton from "../Common/Preference/PreferenceButton";
+// import EvaluationType from "../../types/EvaluationType";
+// import formDefaultData from "../../utils/formDefaultData";
+// import FilterFormContext from "../../utils/FilterFormContext";
 
 const Container = styled.div`
   position: absolute;
@@ -67,36 +70,113 @@ export default function FilterForm() {
   const [activityEvaluation, setActivityEvaluation] = useState<number>(0);
   const [codeEvaluation, setCodeEvaluation] = useState<number>(0);
   const [teamEvaluation, setTeamEvaluation] = useState<number>(0);
-  const handleSetCourseEvaluation = (value: number) => {
-    setCourseEvaluation(value);
+  const [workplacePreferenceRemote, setWorkplacePreferenceRemote] =
+    useState<boolean>(false);
+  const [workplacePreferenceOffice, setWorkplacePreferenceOffice] =
+    useState<boolean>(false);
+  const [contractPreferencePermanent, setContractPreferencePermanent] =
+    useState<boolean>(false);
+  const [contractPreferenceB2B, setContractPreferenceB2B] =
+    useState<boolean>(false);
+  const [contractPreferenceMandate, setContractPreferenceMandate] =
+    useState<boolean>(false);
+  const [contractPreferenceContract, setContractPreferenceContract] =
+    useState<boolean>(false);
+  const [salaryMin, setSalaryMin] = useState<number | null>(null);
+  const [salaryMax, setSalaryMax] = useState<number | null>(null);
+  const [internshipPreference, setInternshipPreference] = useState<
+    string | null
+  >(null);
+  const [experience, setExperience] = useState<number | null>(null);
+  // const [formData, setFormData] = useState<EvaluationType>(formDefaultData);
+  const handleSetSalaryMin = (e: ChangeEvent<HTMLInputElement>) => {
+    setSalaryMin(Number(e.target.value));
   };
-  const handleSetActivityEvaluation = (value: number) => {
-    setActivityEvaluation(value);
+  const handleSetSalaryMax = (e: ChangeEvent<HTMLInputElement>) => {
+    setSalaryMax(Number(e.target.value));
   };
-  const handleSetCodeEvaluation = (value: number) => {
-    setCodeEvaluation(value);
+  const handleSetInternshipPreference = (e: ChangeEvent<HTMLInputElement>) => {
+    setInternshipPreference(e.target.value);
   };
-  const handleSetTeamEvaluation = (value: number) => {
-    setTeamEvaluation(value);
+  const handleExperience = (e: ChangeEvent<HTMLInputElement>) => {
+    setExperience(Number(e.target.value));
   };
-  const handleInputChange = () => {};
-
+  const handle = () => {};
+  const handleSubmitForm = () => {};
+  const clearAll = () => {
+    setCourseEvaluation(0);
+    setActivityEvaluation(0);
+    setCodeEvaluation(0);
+    setTeamEvaluation(0);
+    setWorkplacePreferenceRemote(false);
+    setWorkplacePreferenceOffice(false);
+    setContractPreferencePermanent(false);
+    setContractPreferenceB2B(false);
+    setContractPreferenceMandate(false);
+    setContractPreferenceContract(false);
+    setSalaryMin(null);
+    setSalaryMax(null);
+    setExperience(null);
+    setInternshipPreference(null);
+  };
   console.log(
     courseEvaluation,
     activityEvaluation,
     codeEvaluation,
     teamEvaluation,
+    workplacePreferenceRemote,
+    workplacePreferenceOffice,
+    contractPreferencePermanent,
+    contractPreferenceB2B,
+    contractPreferenceMandate,
+    contractPreferenceContract,
+    salaryMin,
+    salaryMax,
+    experience,
+    internshipPreference,
   );
 
   return (
     <Container>
       <Header>
         <span className="title">Filtrowanie</span>
-        <button className="clear-all" type="button">
+        <button className="clear-all" type="button" onClick={clearAll}>
           Wyczyść wszystkie
         </button>
       </Header>
-      <Form>
+      {/* <FilterFormContext.Provider
+        value={{
+          courseEvaluation,
+          activityEvaluation,
+          codeEvaluation,
+          teamEvaluation,
+          workplacePreferenceRemote,
+          workplacePreferenceOffice,
+          contractPreferencePermanent,
+          contractPreferenceB2B,
+          contractPreferenceMandate,
+          contractPreferenceContract,
+          salaryMin,
+          salaryMax,
+          internshipPreference,
+          experience,
+          setCourseEvaluation,
+          setActivityEvaluation,
+          setCodeEvaluation,
+          setTeamEvaluation,
+          setWorkplacePreferenceRemote,
+          setWorkplacePreferenceOffice,
+          setContractPreferencePermanent,
+          setContractPreferenceB2B,
+          setContractPreferenceMandate,
+          setContractPreferenceContract,
+          handleSetSalaryMin,
+          handleSetSalaryMax,
+          handleSetInternshipPreference,
+          handleExperience,
+        }}
+      > */}
+      <Form onSubmit={handleSubmitForm}>
         <EvaluationBlock
           text="Ocena przejścia kursu"
           row={1}
@@ -104,7 +184,7 @@ export default function FilterForm() {
           activity={activityEvaluation}
           code={codeEvaluation}
           team={teamEvaluation}
-          handleClick={handleSetCourseEvaluation}
+          handleClick={setCourseEvaluation}
         />
         <EvaluationBlock
           text="Ocena aktywności i zaangażowania na kursie"
@@ -113,7 +193,7 @@ export default function FilterForm() {
           activity={activityEvaluation}
           code={codeEvaluation}
           team={teamEvaluation}
-          handleClick={handleSetActivityEvaluation}
+          handleClick={setActivityEvaluation}
         />
         <EvaluationBlock
           text="Ocena kodu w projekcie własnym"
@@ -122,7 +202,7 @@ export default function FilterForm() {
           activity={activityEvaluation}
           code={codeEvaluation}
           team={teamEvaluation}
-          handleClick={handleSetCodeEvaluation}
+          handleClick={setCodeEvaluation}
         />
         <EvaluationBlock
           text="Ocena pracy w zespole Scrum"
@@ -131,33 +211,57 @@ export default function FilterForm() {
           activity={activityEvaluation}
           code={codeEvaluation}
           team={teamEvaluation}
-          handleClick={handleSetTeamEvaluation}
+          handleClick={setTeamEvaluation}
         />
-        <WorkplacePreference text="Preferowane miejsce pracy" />
-        <ContactPreference text="Oczekiwany typ kontaktu" />
+        <WorkplacePreference
+          text="Preferowane miejsce pracy"
+          remote={workplacePreferenceRemote}
+          office={workplacePreferenceOffice}
+          handleClickRemote={setWorkplacePreferenceRemote}
+          handleClickOffice={setWorkplacePreferenceOffice}
+        />
+        <ContactPreference
+          text="Oczekiwany typ kontaktu"
+          permanent={contractPreferencePermanent}
+          b2b={contractPreferenceB2B}
+          mandate={contractPreferenceMandate}
+          contract={contractPreferenceContract}
+          handleClickPermanent={setContractPreferencePermanent}
+          handleClickB2B={setContractPreferenceB2B}
+          handleClickMandate={setContractPreferenceMandate}
+          handleClickContract={setContractPreferenceContract}
+        />
         <FinancialPreference
           text="Oczekiwane wynagrodzenie miesięczne netto"
-          onChange={handleInputChange}
+          min={salaryMin}
+          max={salaryMax}
+          handleMin={handleSetSalaryMin}
+          handleMax={handleSetSalaryMax}
         />
         <InternshipPreference
           text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek"
-          onChange={handleInputChange}
+          // internship={internshipPreference}
+          handleInternship={handleSetInternshipPreference}
         />
         <Experience
           text="Ilość miesięcy doświadczenia komercyjnego w programowaniu"
-          onChange={handleInputChange}
+          experience={experience}
+          handleExperience={handleExperience}
         />
         <PreferenceButton
           text="Anuluj"
           color="#0a0a0a"
           className="cancel-btn"
+          handleClick={handle}
         />
         <PreferenceButton
           text="Pokaż wyniki"
           color="#E02735"
           className="submit-btn"
+          handleClick={handle}
         />
       </Form>
+      {/* </FilterFormContext.Provider> */}
     </Container>
   );
 }
