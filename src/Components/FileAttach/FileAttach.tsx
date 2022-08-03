@@ -1,20 +1,30 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styled from "styled-components";
-import { ReactComponent as FolderIco } from "../Assets/img/folder.svg";
+import { ReactComponent as FolderIco } from "../../Assets/img/folder.svg";
 
-const Container = styled.div`
-  width: 400px;
-  height: 60px;
-  display: flex;
-
+const Container = styled.form`
+  width: 100%;
+  display: grid;
+  grid-template-rows: 40px 40px 40px;
+  justify-content: start;
+  gap: 20px;
+  padding: 20px;
   background-color: var(--secondaryDark);
+
   & label {
-    width: 100%;
-    height: 100%;
+    width: 400px;
+    height: 40px;
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--secondaryF ontColor);
+    color: var(--secondaryFontColor);
+    background-color: var(--primaryDark);
     & input {
       display: none;
     }
@@ -31,6 +41,12 @@ const Container = styled.div`
       width: 100%;
     }
   }
+  & .send {
+    width: 100px;
+    border: none;
+    background-color: var(--buttonColor);
+    color: var(--fontColor);
+  }
 `;
 
 function FileAttach() {
@@ -40,8 +56,16 @@ function FileAttach() {
   useEffect(() => {
     console.log(files);
   }, [files]);
+
+  const handleSendFile = (e: FormEvent) => {
+    e.preventDefault();
+    if (!files) return console.log("Plik nie został wybrany.");
+    return console.log("wysyłam plik");
+  };
+
   return (
-    <Container>
+    <Container onSubmit={(e) => handleSendFile(e)}>
+      <h3>Importuj listę studentów:</h3>
       <label htmlFor="file-csv">
         <input
           type="file"
@@ -58,6 +82,9 @@ function FileAttach() {
         </button>
         <span>{files ? files[0].name : "wybierz plik .csv"}</span>
       </label>
+      <button className="send" type="submit">
+        Wyślij
+      </button>
     </Container>
   );
 }
