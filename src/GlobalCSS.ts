@@ -19,7 +19,7 @@ export default createGlobalStyle`
     --placeholderColor: #666666;
     --anchorColor: #0B8BD4;
   }
-
+ 
   html {
     font-size: 62.5%;
   }
