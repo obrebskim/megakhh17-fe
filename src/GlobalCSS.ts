@@ -10,12 +10,14 @@ export default createGlobalStyle`
   :root {
     --primaryDark: #222224;
     --secondaryDark: #292A2B;
-    --tirnaryDark: #222324;
+    --ternaryDark: #222324;
     --headerBackground: #1E1E1F;
     --buttonColor: #E02735;
     --fontColor: #F7F7F7;
     --secondaryFontColor: #cfcfcf;
+    --ternaryFontColor: #4D4D4D;
     --placeholderColor: #666666;
+    --anchorColor: #0B8BD4;
   }
  
   html {
