@@ -1,6 +1,7 @@
-import React, { ChangeEvent } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Input from "../Input/Input";
+import FilterFormContext from "../../../utils/FilterFormContext";
 
 const Container = styled.div`
   margin: 0 0 20px 18px;
@@ -21,19 +22,15 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  min: number | null;
-  max: number | null;
-  handleMin: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleMax: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function FinancialPreference({
-  text,
-  min,
-  max,
-  handleMin,
-  handleMax,
-}: Props) {
+export default function FinancialPreference({ text }: Props) {
+  const context = useContext(FilterFormContext);
+
+  if (!context) return null;
+
+  const { salaryMin, salaryMax, handleSetSalaryMin, handleSetSalaryMax } =
+    context;
   // const minSalaryRef = useRef(null);
   // const maxSalaryRef = useRef(null);
 
@@ -48,10 +45,10 @@ export default function FinancialPreference({
       od
       <Input
         type="number"
-        value={min ? min.toString() : ""}
+        value={salaryMin ? salaryMin.toString() : ""}
         name="min"
         placeholder="np. 1000 zł"
-        handleInputChange={handleMin}
+        handleInputChange={handleSetSalaryMin}
         width="95px"
         height="28px"
         // ref={minSalaryRef}
@@ -59,10 +56,10 @@ export default function FinancialPreference({
       do
       <Input
         type="number"
-        value={max ? max.toString() : ""}
+        value={salaryMax ? salaryMax.toString() : ""}
         name="max"
         placeholder="np. 10000 zł"
-        handleInputChange={handleMax}
+        handleInputChange={handleSetSalaryMax}
         width="105px"
         height="28px"
         // ref={maxSalaryRef}

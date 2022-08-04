@@ -1,6 +1,7 @@
-import React, { ChangeEvent } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import RadioInputPreference from "./RadioInputPreference";
+import FilterFormContext from "../../../utils/FilterFormContext";
 
 const Container = styled.div`
   display: flex;
@@ -27,15 +28,14 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  internship: string | null;
-  handleInternship: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function InternshipPreference({
-  text,
-  internship,
-  handleInternship,
-}: Props) {
+export default function InternshipPreference({ text }: Props) {
+  const context = useContext(FilterFormContext);
+
+  if (!context) return null;
+
+  const { internshipPreference, handleSetInternshipPreference } = context;
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
@@ -43,15 +43,15 @@ export default function InternshipPreference({
         text="Tak"
         name="choice"
         value="Yes"
-        handleInputChange={handleInternship}
-        internship={internship}
+        handleInputChange={handleSetInternshipPreference}
+        internship={internshipPreference}
       />
       <RadioInputPreference
         text="Nie"
         name="choice"
         value="No"
-        handleInputChange={handleInternship}
-        internship={internship}
+        handleInputChange={handleSetInternshipPreference}
+        internship={internshipPreference}
       />
     </Container>
   );

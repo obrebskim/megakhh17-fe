@@ -7,6 +7,7 @@ interface PropsTypes {
   color?: string;
   className?: string;
   handleClick: (status: boolean) => void;
+  disabled?: boolean;
 }
 
 const Container = styled.button`
@@ -25,6 +26,7 @@ export default function PreferenceButton({
   color,
   className,
   handleClick,
+  disabled,
 }: PropsTypes) {
   const handleButtonClick = () => {
     if (!value) {
@@ -39,6 +41,7 @@ export default function PreferenceButton({
       type="button"
       className={className}
       onClick={handleButtonClick}
+      disabled={disabled}
     >
       {text}
     </Container>

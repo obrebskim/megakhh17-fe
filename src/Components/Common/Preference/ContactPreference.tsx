@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import PreferenceButton from "./PreferenceButton";
+import FilterFormContext from "../../../utils/FilterFormContext";
 
 const Container = styled.div`
   margin: 0 0 20px 18px;
@@ -16,53 +17,49 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  permanent: boolean;
-  b2b: boolean;
-  mandate: boolean;
-  contract: boolean;
-  handleClickPermanent: (status: boolean) => void;
-  handleClickB2B: (status: boolean) => void;
-  handleClickMandate: (status: boolean) => void;
-  handleClickContract: (status: boolean) => void;
 }
 
-export default function ContactPreference({
-  text,
-  permanent,
-  b2b,
-  mandate,
-  contract,
-  handleClickPermanent,
-  handleClickB2B,
-  handleClickMandate,
-  handleClickContract,
-}: Props) {
+export default function ContactPreference({ text }: Props) {
+  const context = useContext(FilterFormContext);
+
+  if (!context) return null;
+
+  const {
+    contractPreferencePermanent,
+    contractPreferenceB2B,
+    contractPreferenceMandate,
+    contractPreferenceContract,
+    setContractPreferencePermanent,
+    setContractPreferenceB2B,
+    setContractPreferenceMandate,
+    setContractPreferenceContract,
+  } = context;
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
       <PreferenceButton
         text="Umowa o pracę"
         color="#292A2B"
-        value={permanent}
-        handleClick={handleClickPermanent}
+        value={contractPreferencePermanent}
+        handleClick={setContractPreferencePermanent}
       />
       <PreferenceButton
         text="B2B"
         color="#292A2B"
-        value={b2b}
-        handleClick={handleClickB2B}
+        value={contractPreferenceB2B}
+        handleClick={setContractPreferenceB2B}
       />
       <PreferenceButton
         text="Umowa zlecenie"
         color="#292A2B"
-        value={mandate}
-        handleClick={handleClickMandate}
+        value={contractPreferenceMandate}
+        handleClick={setContractPreferenceMandate}
       />
       <PreferenceButton
         text="Umowa o dzieło"
         color="#292A2B"
-        value={contract}
-        handleClick={handleClickContract}
+        value={contractPreferenceContract}
+        handleClick={setContractPreferenceContract}
       />
     </Container>
   );

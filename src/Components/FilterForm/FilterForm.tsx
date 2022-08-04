@@ -182,74 +182,28 @@ export default function FilterForm() {
           <EvaluationBlock
             text="Ocena przejścia kursu"
             row={1}
-            course={courseEvaluation}
-            activity={activityEvaluation}
-            code={codeEvaluation}
-            team={teamEvaluation}
             handleClick={setCourseEvaluation}
           />
           <EvaluationBlock
             text="Ocena aktywności i zaangażowania na kursie"
             row={2}
-            course={courseEvaluation}
-            activity={activityEvaluation}
-            code={codeEvaluation}
-            team={teamEvaluation}
             handleClick={setActivityEvaluation}
           />
           <EvaluationBlock
             text="Ocena kodu w projekcie własnym"
             row={3}
-            course={courseEvaluation}
-            activity={activityEvaluation}
-            code={codeEvaluation}
-            team={teamEvaluation}
             handleClick={setCodeEvaluation}
           />
           <EvaluationBlock
             text="Ocena pracy w zespole Scrum"
             row={4}
-            course={courseEvaluation}
-            activity={activityEvaluation}
-            code={codeEvaluation}
-            team={teamEvaluation}
             handleClick={setTeamEvaluation}
           />
-          <WorkplacePreference
-            text="Preferowane miejsce pracy"
-            remote={workplacePreferenceRemote}
-            office={workplacePreferenceOffice}
-            handleClickRemote={setWorkplacePreferenceRemote}
-            handleClickOffice={setWorkplacePreferenceOffice}
-          />
-          <ContactPreference
-            text="Oczekiwany typ kontaktu"
-            permanent={contractPreferencePermanent}
-            b2b={contractPreferenceB2B}
-            mandate={contractPreferenceMandate}
-            contract={contractPreferenceContract}
-            handleClickPermanent={setContractPreferencePermanent}
-            handleClickB2B={setContractPreferenceB2B}
-            handleClickMandate={setContractPreferenceMandate}
-            handleClickContract={setContractPreferenceContract}
-          />
-          <FinancialPreference
-            text="Oczekiwane wynagrodzenie miesięczne netto"
-            min={salaryMin}
-            max={salaryMax}
-            handleMin={handleSetSalaryMin}
-            handleMax={handleSetSalaryMax}
-          />
-          <InternshipPreference
-            text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek"
-            internship={internshipPreference}
-            handleInternship={handleSetInternshipPreference}
-          />
-          <Experience
-            text="Ilość miesięcy doświadczenia komercyjnego w programowaniu"
-            experience={experience}
-            handleExperience={handleExperience}
-          />
+          <WorkplacePreference text="Preferowane miejsce pracy" />
+          <ContactPreference text="Oczekiwany typ kontaktu" />
+          <FinancialPreference text="Oczekiwane wynagrodzenie miesięczne netto" />
+          <InternshipPreference text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek" />
+          <Experience text="Ilość miesięcy doświadczenia komercyjnego w programowaniu" />
           <PreferenceButton
             text="Anuluj"
             color="#0a0a0a"

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import PreferenceButton from "./PreferenceButton";
+import FilterFormContext from "../../../utils/FilterFormContext";
 
 const Container = styled.div`
   margin: 0 0 20px 18px;
@@ -16,35 +17,35 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  remote: boolean;
-  office: boolean;
-  handleClickRemote: (status: boolean) => void;
-  handleClickOffice: (status: boolean) => void;
 }
 
-export default function WorkplacePreference({
-  text,
-  remote,
-  office,
-  handleClickRemote,
-  handleClickOffice,
-}: Props) {
+export default function WorkplacePreference({ text }: Props) {
+  const context = useContext(FilterFormContext);
+
+  if (!context) return null;
+
+  const {
+    workplacePreferenceRemote,
+    workplacePreferenceOffice,
+    setWorkplacePreferenceRemote,
+    setWorkplacePreferenceOffice,
+  } = context;
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
       <PreferenceButton
         text="Praca zdalna"
         color="#292A2B"
-        value={remote}
-        handleClick={handleClickRemote}
-        disabled={office}
+        value={workplacePreferenceRemote}
+        handleClick={setWorkplacePreferenceRemote}
+        disabled={workplacePreferenceOffice}
       />
       <PreferenceButton
         text="Praca w biurze"
         color="#292A2B"
-        value={office}
-        handleClick={handleClickOffice}
-        disabled={remote}
+        value={workplacePreferenceOffice}
+        handleClick={setWorkplacePreferenceOffice}
+        disabled={workplacePreferenceRemote}
       />
     </Container>
   );

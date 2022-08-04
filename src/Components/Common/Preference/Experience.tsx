@@ -1,6 +1,7 @@
-import React, { ChangeEvent } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Input from "../Input/Input";
+import FilterFormContext from "../../../utils/FilterFormContext";
 
 const Container = styled.div`
   margin: 0 0 9px 18px;
@@ -21,15 +22,14 @@ const PreferenceTitle = styled.span`
 
 interface Props {
   text: string;
-  experience: number | null;
-  handleExperience: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Experience({
-  text,
-  experience,
-  handleExperience,
-}: Props) {
+export default function Experience({ text }: Props) {
+  const context = useContext(FilterFormContext);
+
+  if (!context) return null;
+
+  const { experience, handleExperience } = context;
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>

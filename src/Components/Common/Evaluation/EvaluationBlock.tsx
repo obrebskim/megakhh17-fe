@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import EvaluationUnit from "./EvaluationUnit";
+import FilterFormContext from "../../../utils/FilterFormContext";
 
 const Container = styled.div`
   display: flex;
@@ -20,24 +21,25 @@ const Title = styled.span`
 interface Props {
   text: string;
   row: number;
-  course: number;
-  activity: number;
-  code: number;
-  team: number;
   handleClick: (level: number) => void;
 }
 
 export default function EvaluationBlock({
   text,
   row,
-  course,
-  activity,
-  code,
-  team,
   handleClick,
 }: Props) {
   const levels = [5, 4, 3, 2, 1];
+  const context = useContext(FilterFormContext);
 
+  if (!context) return null;
+
+  const {
+    courseEvaluation,
+    activityEvaluation,
+    codeEvaluation,
+    teamEvaluation,
+  } = context;
   return (
     <>
       <Title>{text}</Title>
@@ -47,18 +49,18 @@ export default function EvaluationBlock({
             key={count}
             level={count}
             squareColor={
-              (row === 1 && course === count) ||
-              (row === 2 && activity === count) ||
-              (row === 3 && code === count) ||
-              (row === 4 && team === count)
+              (row === 1 && courseEvaluation === count) ||
+              (row === 2 && activityEvaluation === count) ||
+              (row === 3 && codeEvaluation === count) ||
+              (row === 4 && teamEvaluation === count)
                 ? "#E02735"
                 : "#292A2B"
             }
             className={
-              (row === 1 && course === count) ||
-              (row === 2 && activity === count) ||
-              (row === 3 && code === count) ||
-              (row === 4 && team === count)
+              (row === 1 && courseEvaluation === count) ||
+              (row === 2 && activityEvaluation === count) ||
+              (row === 3 && codeEvaluation === count) ||
+              (row === 4 && teamEvaluation === count)
                 ? "star-active"
                 : "star"
             }
