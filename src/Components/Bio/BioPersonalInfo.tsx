@@ -9,6 +9,8 @@ import mail from "../../Assets/img/mail.svg";
 const Container = styled.div`
   display: grid;
   width: 200px;
+  background-color: var(--secondaryDark);
+  padding: 15px;
   & Button {
     padding: 10px;
     margin-top: 10px;

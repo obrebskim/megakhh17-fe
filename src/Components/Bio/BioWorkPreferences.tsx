@@ -5,9 +5,6 @@ import DetailItem from "../StudentsList/DetailItem";
 const Container = styled.div`
   height: 110px;
   display: flex;
-  grid-template-columns: repeat(10, auto);
-  gap: 2px;
-  background-color: var(--secondaryDark);
 `;
 
 const Title = styled.h3`

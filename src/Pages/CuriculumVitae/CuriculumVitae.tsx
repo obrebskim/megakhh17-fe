@@ -4,9 +4,8 @@ import Bio from "../../Components/Bio/Bio";
 import Header from "../../Components/Header/Header";
 
 const Container = styled.section`
-  width: auto;
-  height: auto;
   display: grid;
+  background-color: var(--primaryDark);
 `;
 
 export default function CuriculumVitae() {
