@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import FileAttach from "../../Components/FileAttach/FileAttach";
 import HrCreator from "../../Components/HrCreator/HrCreator";
+import { selectUser } from "../../State/Store/store";
 
 const Container = styled.section`
   width: 100%;
@@ -20,6 +23,12 @@ const Wrapper = styled.div`
 `;
 
 function Admin() {
+  const user = useSelector(selectUser);
+
+  if (user.role !== 1) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <Container>
       <Wrapper>

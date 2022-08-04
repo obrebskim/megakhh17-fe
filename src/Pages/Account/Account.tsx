@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import AccountAside from "../../Components/AccountAside/AccountAside";
 import AccountMain from "../../Components/AccountMain/AccountMain";
 import Header from "../../Components/Header/Header";
 import UserAccountProvider from "../../Context/UserAccountContext";
+import { selectUser } from "../../State/Store/store";
 
 const Container = styled.div`
   width: 100%;
@@ -20,6 +23,12 @@ const Wrapper = styled.div`
 `;
 
 function Account() {
+  const user = useSelector(selectUser);
+
+  if (user.role !== 3) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <Container>
       <Header />

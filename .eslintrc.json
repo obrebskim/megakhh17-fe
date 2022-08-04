@@ -29,6 +29,12 @@
     "no-shadow": "off",
     "react/require-default-props": "off",
     "react/prop-types": "off",
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
