@@ -1,8 +1,8 @@
 import React, { ChangeEvent } from "react";
 
 interface Props {
-  value: string;
-  internship: string | null;
+  value: number;
+  internship: number | null;
   name: string;
   required?: boolean;
   text: string;

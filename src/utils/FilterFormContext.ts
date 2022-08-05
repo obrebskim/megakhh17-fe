@@ -9,7 +9,7 @@ interface FilterFormContextType {
   contractPreference: number;
   salaryMin: number | null;
   salaryMax: number | null;
-  internshipPreference: string | null;
+  internshipPreference: number | null;
   experience: number | null;
   setCourseEvaluation: (value: number) => void;
   setActivityEvaluation: (value: number) => void;

@@ -42,14 +42,14 @@ export default function InternshipPreference({ text }: Props) {
       <RadioInputPreference
         text="Tak"
         name="choice"
-        value="Yes"
+        value={1}
         handleInputChange={handleSetInternshipPreference}
         internship={internshipPreference}
       />
       <RadioInputPreference
         text="Nie"
         name="choice"
-        value="No"
+        value={0}
         handleInputChange={handleSetInternshipPreference}
         internship={internshipPreference}
       />

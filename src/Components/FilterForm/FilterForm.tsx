@@ -73,10 +73,9 @@ export default function FilterForm() {
   const [salaryMin, setSalaryMin] = useState<number | null>(null);
   const [salaryMax, setSalaryMax] = useState<number | null>(null);
   const [internshipPreference, setInternshipPreference] = useState<
-    string | null
-  >(null); // intiger 0 - NO, 1 -YES
+    number | null
+  >(null);
   const [experience, setExperience] = useState<number | null>(null);
-  // const [formData, setFormData] = useState<EvaluationType>(formDefaultData);
   const handleSetSalaryMin = (e: ChangeEvent<HTMLInputElement>) => {
     setSalaryMin(Number(e.target.value));
   };
@@ -84,7 +83,7 @@ export default function FilterForm() {
     setSalaryMax(Number(e.target.value));
   };
   const handleSetInternshipPreference = (e: ChangeEvent<HTMLInputElement>) => {
-    setInternshipPreference(e.target.value);
+    setInternshipPreference(Number(e.target.value));
   };
   const handleExperience = (e: ChangeEvent<HTMLInputElement>) => {
     setExperience(Number(e.target.value));
@@ -96,8 +95,8 @@ export default function FilterForm() {
     setActivityEvaluation(0);
     setCodeEvaluation(0);
     setTeamEvaluation(0);
-    setWorkplacePreference(4);
-    setContractPreference(5);
+    setWorkplacePreference(5);
+    setContractPreference(4);
     setSalaryMin(null);
     setSalaryMax(null);
     setExperience(null);
