@@ -2,14 +2,12 @@ import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
 import WorkplacePreference from "../Common/Preference/WorkplacePreference";
-import ContactPreference from "../Common/Preference/ContactPreference";
+import ContractPreference from "../Common/Preference/ContractPreference";
 import FinancialPreference from "../Common/Preference/FinancialPreference";
 import InternshipPreference from "../Common/Preference/InternshipPreference";
 import Experience from "../Common/Preference/Experience";
-import PreferenceButton from "../Common/Preference/PreferenceButton";
-// import EvaluationType from "../../types/EvaluationType";
-// import formDefaultData from "../../utils/formDefaultData";
 import FilterFormContext from "../../utils/FilterFormContext";
+import Button from "../Common/Preference/Button";
 
 const Container = styled.div`
   position: absolute;
@@ -70,23 +68,13 @@ export default function FilterForm() {
   const [activityEvaluation, setActivityEvaluation] = useState<number>(0);
   const [codeEvaluation, setCodeEvaluation] = useState<number>(0);
   const [teamEvaluation, setTeamEvaluation] = useState<number>(0);
-  const [workplacePreferenceRemote, setWorkplacePreferenceRemote] =
-    useState<boolean>(false); // zostawić jeden stan z wartościami liczbowymi np. 1 i 2 // opcja: dodać praca hybrydowa
-  const [workplacePreferenceOffice, setWorkplacePreferenceOffice] =
-    useState<boolean>(false); // usunąć
-  const [contractPreferencePermanent, setContractPreferencePermanent] =
-    useState<boolean>(false);
-  const [contractPreferenceB2B, setContractPreferenceB2B] =
-    useState<boolean>(false);
-  const [contractPreferenceMandate, setContractPreferenceMandate] =
-    useState<boolean>(false);
-  const [contractPreferenceContract, setContractPreferenceContract] =
-    useState<boolean>(false);
+  const [workplacePreference, setWorkplacePreference] = useState<number>(5);
+  const [contractPreference, setContractPreference] = useState<number>(4);
   const [salaryMin, setSalaryMin] = useState<number | null>(null);
   const [salaryMax, setSalaryMax] = useState<number | null>(null);
   const [internshipPreference, setInternshipPreference] = useState<
     string | null
-  >(null);
+  >(null); // intiger 0 - NO, 1 -YES
   const [experience, setExperience] = useState<number | null>(null);
   // const [formData, setFormData] = useState<EvaluationType>(formDefaultData);
   const handleSetSalaryMin = (e: ChangeEvent<HTMLInputElement>) => {
@@ -108,12 +96,8 @@ export default function FilterForm() {
     setActivityEvaluation(0);
     setCodeEvaluation(0);
     setTeamEvaluation(0);
-    setWorkplacePreferenceRemote(false);
-    setWorkplacePreferenceOffice(false);
-    setContractPreferencePermanent(false);
-    setContractPreferenceB2B(false);
-    setContractPreferenceMandate(false);
-    setContractPreferenceContract(false);
+    setWorkplacePreference(4);
+    setContractPreference(5);
     setSalaryMin(null);
     setSalaryMax(null);
     setExperience(null);
@@ -125,16 +109,12 @@ export default function FilterForm() {
     activityEvaluation,
     codeEvaluation,
     teamEvaluation,
-    workplacePreferenceRemote,
-    workplacePreferenceOffice,
-    contractPreferencePermanent,
-    contractPreferenceB2B,
-    contractPreferenceMandate,
-    contractPreferenceContract,
+    workplacePreference,
+    contractPreference,
     salaryMin,
     salaryMax,
-    experience,
     internshipPreference,
+    experience,
   );
 
   return (
@@ -152,12 +132,8 @@ export default function FilterForm() {
           activityEvaluation,
           codeEvaluation,
           teamEvaluation,
-          workplacePreferenceRemote,
-          workplacePreferenceOffice,
-          contractPreferencePermanent,
-          contractPreferenceB2B,
-          contractPreferenceMandate,
-          contractPreferenceContract,
+          workplacePreference,
+          contractPreference,
           salaryMin,
           salaryMax,
           internshipPreference,
@@ -166,12 +142,8 @@ export default function FilterForm() {
           setActivityEvaluation,
           setCodeEvaluation,
           setTeamEvaluation,
-          setWorkplacePreferenceRemote,
-          setWorkplacePreferenceOffice,
-          setContractPreferencePermanent,
-          setContractPreferenceB2B,
-          setContractPreferenceMandate,
-          setContractPreferenceContract,
+          setWorkplacePreference,
+          setContractPreference,
           handleSetSalaryMin,
           handleSetSalaryMax,
           handleSetInternshipPreference,
@@ -200,17 +172,17 @@ export default function FilterForm() {
             handleClick={setTeamEvaluation}
           />
           <WorkplacePreference text="Preferowane miejsce pracy" />
-          <ContactPreference text="Oczekiwany typ kontaktu" />
+          <ContractPreference text="Oczekiwany typ kontraktu" />
           <FinancialPreference text="Oczekiwane wynagrodzenie miesięczne netto" />
           <InternshipPreference text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek" />
           <Experience text="Ilość miesięcy doświadczenia komercyjnego w programowaniu" />
-          <PreferenceButton
+          <Button
             text="Anuluj"
             color="#0a0a0a"
             className="cancel-btn"
             handleClick={handle}
           />
-          <PreferenceButton
+          <Button
             text="Pokaż wyniki"
             color="#E02735"
             className="submit-btn"

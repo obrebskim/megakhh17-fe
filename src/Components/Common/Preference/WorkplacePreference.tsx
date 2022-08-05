@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import PreferenceButton from "./PreferenceButton";
+import WorkplacePreferenceButton from "./WorkplacePreferenceButton";
 import FilterFormContext from "../../../utils/FilterFormContext";
 
 const Container = styled.div`
@@ -24,28 +24,34 @@ export default function WorkplacePreference({ text }: Props) {
 
   if (!context) return null;
 
-  const {
-    workplacePreferenceRemote,
-    workplacePreferenceOffice,
-    setWorkplacePreferenceRemote,
-    setWorkplacePreferenceOffice,
-  } = context;
+  const { workplacePreference } = context;
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
-      <PreferenceButton
-        text="Praca zdalna"
-        color="#292A2B"
-        value={workplacePreferenceRemote}
-        handleClick={setWorkplacePreferenceRemote}
-        disabled={workplacePreferenceOffice}
-      />
-      <PreferenceButton
+      <WorkplacePreferenceButton
         text="Praca w biurze"
-        color="#292A2B"
-        value={workplacePreferenceOffice}
-        handleClick={setWorkplacePreferenceOffice}
-        disabled={workplacePreferenceRemote}
+        color={workplacePreference !== 1 ? "#292A2B" : "#E02735"}
+        value={1}
+      />
+      <WorkplacePreferenceButton
+        text="Relokacja"
+        color={workplacePreference !== 2 ? "#292A2B" : "#E02735"}
+        value={2}
+      />
+      <WorkplacePreferenceButton
+        text="Praca zdalna"
+        color={workplacePreference !== 3 ? "#292A2B" : "#E02735"}
+        value={3}
+      />
+      <WorkplacePreferenceButton
+        text="Praca hybrydowa"
+        color={workplacePreference !== 4 ? "#292A2B" : "#E02735"}
+        value={4}
+      />
+      <WorkplacePreferenceButton
+        text="Brak preferencji"
+        color={workplacePreference !== 5 ? "#292A2B" : "#E02735"}
+        value={5}
       />
     </Container>
   );

@@ -20,7 +20,7 @@ const Container = styled.button`
   cursor: pointer;
 `;
 
-export default function PreferenceButton({
+export default function Button({
   text,
   value,
   color,
