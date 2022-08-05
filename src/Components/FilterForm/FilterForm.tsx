@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
 import WorkplacePreference from "../Common/Preference/WorkplacePreference";
@@ -64,6 +65,7 @@ const Header = styled.header``;
 const Form = styled.form``;
 
 export default function FilterForm() {
+  const navigate = useNavigate();
   const [courseEvaluation, setCourseEvaluation] = useState<number>(0);
   const [activityEvaluation, setActivityEvaluation] = useState<number>(0);
   const [codeEvaluation, setCodeEvaluation] = useState<number>(0);
@@ -88,7 +90,9 @@ export default function FilterForm() {
   const handleExperience = (e: ChangeEvent<HTMLInputElement>) => {
     setExperience(Number(e.target.value));
   };
-  const handle = () => {};
+  const handleCancel = () => {
+    navigate("/");
+  };
   const handleSubmitForm = () => {};
   const clearAll = () => {
     setCourseEvaluation(0);
@@ -125,29 +129,42 @@ export default function FilterForm() {
         </button>
       </Header>
       <FilterFormContext.Provider
-        // eslint-disable-next-line react/jsx-no-constructed-context-values
-        value={{
-          courseEvaluation,
-          activityEvaluation,
-          codeEvaluation,
-          teamEvaluation,
-          workplacePreference,
-          contractPreference,
-          salaryMin,
-          salaryMax,
-          internshipPreference,
-          experience,
-          setCourseEvaluation,
-          setActivityEvaluation,
-          setCodeEvaluation,
-          setTeamEvaluation,
-          setWorkplacePreference,
-          setContractPreference,
-          handleSetSalaryMin,
-          handleSetSalaryMax,
-          handleSetInternshipPreference,
-          handleExperience,
-        }}
+        value={useMemo(
+          () => ({
+            courseEvaluation,
+            activityEvaluation,
+            codeEvaluation,
+            teamEvaluation,
+            workplacePreference,
+            contractPreference,
+            salaryMin,
+            salaryMax,
+            internshipPreference,
+            experience,
+            setCourseEvaluation,
+            setActivityEvaluation,
+            setCodeEvaluation,
+            setTeamEvaluation,
+            setWorkplacePreference,
+            setContractPreference,
+            handleSetSalaryMin,
+            handleSetSalaryMax,
+            handleSetInternshipPreference,
+            handleExperience,
+          }),
+          [
+            courseEvaluation,
+            activityEvaluation,
+            codeEvaluation,
+            teamEvaluation,
+            workplacePreference,
+            contractPreference,
+            salaryMin,
+            salaryMax,
+            internshipPreference,
+            experience,
+          ],
+        )}
       >
         <Form onSubmit={handleSubmitForm}>
           <EvaluationBlock
@@ -179,13 +196,13 @@ export default function FilterForm() {
             text="Anuluj"
             color="#0a0a0a"
             className="cancel-btn"
-            handleClick={handle}
+            handleClick={handleCancel}
           />
           <Button
             text="Pokaż wyniki"
             color="#E02735"
             className="submit-btn"
-            handleClick={handle}
+            handleClick={() => console.log("submit")}
           />
         </Form>
       </FilterFormContext.Provider>

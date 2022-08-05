@@ -46,6 +46,7 @@ export default function FinancialPreference({ text }: Props) {
       <Input
         type="number"
         value={salaryMin ? salaryMin.toString() : ""}
+        // value={salaryMax ? salaryMax.toString() : ""}
         name="min"
         placeholder="np. 1000 zł"
         handleInputChange={handleSetSalaryMin}
@@ -57,7 +58,6 @@ export default function FinancialPreference({ text }: Props) {
       <Input
         type="number"
         value={salaryMax ? salaryMax.toString() : ""}
-        name="max"
         placeholder="np. 10000 zł"
         handleInputChange={handleSetSalaryMax}
         width="105px"
