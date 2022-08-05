@@ -1,9 +1,11 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import Header from "../../Components/Header/Header";
 import StudentsNav from "../../Components/StudentsNav/StudentsNav";
 import StudentsSearchAndFilter from "../../Components/StudentsSearchAndFilter/StudentsSearchAndFilter";
+import { selectUser } from "../../State/Store/store";
 
 const Container = styled.section`
   width: 100%;
@@ -23,6 +25,11 @@ const ListWrapper = styled.div`
 `;
 
 export default function Students() {
+  const user = useSelector(selectUser);
+
+  if (user.role !== 2) {
+    return <Navigate to="/" />;
+  }
   return (
     <Container>
       <Header />

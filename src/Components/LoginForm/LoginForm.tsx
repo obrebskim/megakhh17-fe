@@ -1,8 +1,11 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../Common/Button/Button";
 import Input from "../Common/Input/Input";
+import { selectUser } from "../../State/Store/store";
+import { login } from "../../State/Slices/userSlice";
 
 const Container = styled.form`
   display: grid;
@@ -32,14 +35,27 @@ interface LoginDataType {
 }
 
 export default function LoginForm() {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState<LoginDataType>({
     email: "",
     password: "",
   });
 
-  const handleSubmitLoginForm = (e: FormEvent) => {
+  useEffect(() => {
+    if (user.role === 1) {
+      navigate("/admin");
+    } else if (user.role === 2) {
+      navigate("/students");
+    } else if (user.role === 3) {
+      navigate("/account");
+    }
+  }, [user.role, navigate]);
+
+  const handleSubmitLoginForm = async (e: FormEvent) => {
     e.preventDefault();
-    // console.log("Logic for login to be defined");
+    await dispatch(login({ id: "123", logged: true, name: "Maciek", role: 3 }));
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
