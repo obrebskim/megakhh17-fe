@@ -24,11 +24,7 @@ interface Props {
   handleClick: (level: number) => void;
 }
 
-export default function EvaluationBlock({
-  text,
-  row,
-  handleClick,
-}: Props) {
+export default function EvaluationBlock({ text, row, handleClick }: Props) {
   const levels = [5, 4, 3, 2, 1];
   const context = useContext(FilterFormContext);
 

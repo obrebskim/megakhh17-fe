@@ -8,7 +8,8 @@ import FinancialPreference from "../Common/Preference/FinancialPreference";
 import InternshipPreference from "../Common/Preference/InternshipPreference";
 import Experience from "../Common/Preference/Experience";
 import FilterFormContext from "../../utils/FilterFormContext";
-import Button from "../Common/Preference/Button";
+import Button from "../Common/Button/Button";
+import PreferenceButton from "../Common/Preference/PreferenceButton";
 
 const Container = styled.div`
   position: absolute;
@@ -76,6 +77,8 @@ export default function FilterForm() {
   const [salaryMax, setSalaryMax] = useState<number>(0);
   const [internshipPreference, setInternshipPreference] = useState<number>(0);
   const [experience, setExperience] = useState<number>(0);
+  const [filterUrl, setFilterUrl] = useState<string>("");
+  const filterData = `${courseEvaluation}/${activityEvaluation}/${codeEvaluation}/${teamEvaluation}/${workplacePreference}/${contractPreference}/${salaryMin}/${salaryMax}/${internshipPreference}/${experience}`;
   const handleSetSalaryMin = (e: ChangeEvent<HTMLInputElement>) => {
     setSalaryMin(Number(e.target.value));
   };
@@ -88,12 +91,6 @@ export default function FilterForm() {
   const handleExperience = (e: ChangeEvent<HTMLInputElement>) => {
     setExperience(Number(e.target.value));
   };
-  const handleCancel = () => {
-    navigate("/");
-  };
-  const handleSubmitForm = (e: FormEvent) => {
-    e.preventDefault();
-  };
   const clearAll = () => {
     setCourseEvaluation(0);
     setActivityEvaluation(0);
@@ -105,6 +102,18 @@ export default function FilterForm() {
     setSalaryMax(0);
     setExperience(0);
     setInternshipPreference(0);
+  };
+  const handleCancel = () => {
+    navigate("/");
+  };
+  const handleClick = () => {
+    setFilterUrl(`http://localhost/3000/students/filter/${filterData}`);
+  };
+  const handleSubmitForm = async (e: FormEvent) => {
+    e.preventDefault();
+    // console.log(filterUrl);
+    await fetch(filterUrl);
+    clearAll();
   };
   return (
     <Container>
@@ -178,13 +187,18 @@ export default function FilterForm() {
           <FinancialPreference text="Oczekiwane wynagrodzenie miesięczne netto (pln)" />
           <InternshipPreference text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek" />
           <Experience text="Ilość miesięcy doświadczenia komercyjnego w programowaniu" />
-          <Button
+          <PreferenceButton
             text="Anuluj"
             color="#0a0a0a"
             className="cancel-btn"
             handleClick={handleCancel}
           />
-          <Button text="Pokaż wyniki" color="#E02735" className="submit-btn" />
+          <Button
+            text="Pokaż wyniki"
+            color="#E02735"
+            className="submit-btn"
+            onClick={handleClick}
+          />
         </Form>
       </FilterFormContext.Provider>
     </Container>
