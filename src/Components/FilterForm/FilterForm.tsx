@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useMemo, useState } from "react";
+import React, { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
@@ -72,12 +72,10 @@ export default function FilterForm() {
   const [teamEvaluation, setTeamEvaluation] = useState<number>(0);
   const [workplacePreference, setWorkplacePreference] = useState<number>(5);
   const [contractPreference, setContractPreference] = useState<number>(4);
-  const [salaryMin, setSalaryMin] = useState<number | null>(null);
-  const [salaryMax, setSalaryMax] = useState<number | null>(null);
-  const [internshipPreference, setInternshipPreference] = useState<
-    number | null
-  >(null);
-  const [experience, setExperience] = useState<number | null>(null);
+  const [salaryMin, setSalaryMin] = useState<number>(0);
+  const [salaryMax, setSalaryMax] = useState<number>(0);
+  const [internshipPreference, setInternshipPreference] = useState<number>(0);
+  const [experience, setExperience] = useState<number>(0);
   const handleSetSalaryMin = (e: ChangeEvent<HTMLInputElement>) => {
     setSalaryMin(Number(e.target.value));
   };
@@ -93,7 +91,9 @@ export default function FilterForm() {
   const handleCancel = () => {
     navigate("/");
   };
-  const handleSubmitForm = () => {};
+  const handleSubmitForm = (e: FormEvent) => {
+    e.preventDefault();
+  };
   const clearAll = () => {
     setCourseEvaluation(0);
     setActivityEvaluation(0);
@@ -101,25 +101,11 @@ export default function FilterForm() {
     setTeamEvaluation(0);
     setWorkplacePreference(5);
     setContractPreference(4);
-    setSalaryMin(null);
-    setSalaryMax(null);
-    setExperience(null);
-    setInternshipPreference(null);
+    setSalaryMin(0);
+    setSalaryMax(0);
+    setExperience(0);
+    setInternshipPreference(0);
   };
-
-  console.log(
-    courseEvaluation,
-    activityEvaluation,
-    codeEvaluation,
-    teamEvaluation,
-    workplacePreference,
-    contractPreference,
-    salaryMin,
-    salaryMax,
-    internshipPreference,
-    experience,
-  );
-
   return (
     <Container>
       <Header>
@@ -189,7 +175,7 @@ export default function FilterForm() {
           />
           <WorkplacePreference text="Preferowane miejsce pracy" />
           <ContractPreference text="Oczekiwany typ kontraktu" />
-          <FinancialPreference text="Oczekiwane wynagrodzenie miesięczne netto" />
+          <FinancialPreference text="Oczekiwane wynagrodzenie miesięczne netto (pln)" />
           <InternshipPreference text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek" />
           <Experience text="Ilość miesięcy doświadczenia komercyjnego w programowaniu" />
           <Button
@@ -198,12 +184,7 @@ export default function FilterForm() {
             className="cancel-btn"
             handleClick={handleCancel}
           />
-          <Button
-            text="Pokaż wyniki"
-            color="#E02735"
-            className="submit-btn"
-            handleClick={() => console.log("submit")}
-          />
+          <Button text="Pokaż wyniki" color="#E02735" className="submit-btn" />
         </Form>
       </FilterFormContext.Provider>
     </Container>

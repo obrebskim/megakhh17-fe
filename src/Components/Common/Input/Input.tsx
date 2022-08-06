@@ -22,7 +22,6 @@ interface Props {
   height?: string;
   required?: boolean;
   min?: number;
-  // ref?: MutableRefObject<null>;
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -35,7 +34,6 @@ export default function Input({
   height = "30px",
   required = false,
   min = 0,
-  // ref,
   handleInputChange,
 }: Props) {
   return (
@@ -48,7 +46,6 @@ export default function Input({
       required={required}
       onChange={handleInputChange}
       min={min}
-      // ref={ref}
     />
   );
 }

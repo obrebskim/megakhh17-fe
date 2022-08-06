@@ -7,10 +7,10 @@ interface FilterFormContextType {
   teamEvaluation: number;
   workplacePreference: number;
   contractPreference: number;
-  salaryMin: number | null;
-  salaryMax: number | null;
+  salaryMin: number;
+  salaryMax: number;
   internshipPreference: number | null;
-  experience: number | null;
+  experience: number;
   setCourseEvaluation: (value: number) => void;
   setActivityEvaluation: (value: number) => void;
   setCodeEvaluation: (value: number) => void;

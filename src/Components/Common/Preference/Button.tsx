@@ -6,7 +6,7 @@ interface PropsTypes {
   value?: boolean;
   color?: string;
   className?: string;
-  handleClick: (status: boolean) => void;
+  handleClick?: (status: boolean) => void;
   disabled?: boolean;
 }
 
@@ -29,10 +29,12 @@ export default function Button({
   disabled,
 }: PropsTypes) {
   const handleButtonClick = () => {
-    if (!value) {
-      handleClick(true);
-    } else {
-      handleClick(false);
+    if (handleClick) {
+      if (!value) {
+        handleClick(true);
+      } else {
+        handleClick(false);
+      }
     }
   };
   return (

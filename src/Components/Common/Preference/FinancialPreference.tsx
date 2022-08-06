@@ -31,40 +31,35 @@ export default function FinancialPreference({ text }: Props) {
 
   const { salaryMin, salaryMax, handleSetSalaryMin, handleSetSalaryMax } =
     context;
-  // const minSalaryRef = useRef(null);
-  // const maxSalaryRef = useRef(null);
-
-  /* useEffect(() => {
-    if (minSalaryRef.current) {
-      console.log(minSalaryRef.current);
-    }
-  }, [minSalaryRef]); */
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
       od
       <Input
         type="number"
-        value={salaryMin ? salaryMin.toString() : ""}
-        // value={salaryMax ? salaryMax.toString() : ""}
+        value={salaryMin ? salaryMin.toString() : "0"}
         name="min"
         placeholder="np. 1000 zł"
         handleInputChange={handleSetSalaryMin}
         width="95px"
         height="28px"
-        // ref={minSalaryRef}
       />
       do
-      <Input
-        type="number"
-        value={salaryMax ? salaryMax.toString() : ""}
-        placeholder="np. 10000 zł"
-        handleInputChange={handleSetSalaryMax}
-        width="105px"
-        height="28px"
-        // ref={maxSalaryRef}
-      />
-      {/* <input type="number" ref={minSalaryRef} /> */}
+      {salaryMin !== null && (
+        <Input
+          type="number"
+          value={
+            salaryMax // && salaryMax > salaryMin
+              ? salaryMax.toString()
+              : salaryMin.toString()
+          }
+          placeholder="np. 10000 zł"
+          handleInputChange={handleSetSalaryMax}
+          width="105px"
+          height="28px"
+          min={salaryMin}
+        />
+      )}
     </Container>
   );
 }
