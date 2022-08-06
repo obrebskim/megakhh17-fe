@@ -1,27 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import paperclip from "../../Assets/img/paperclip.svg";
+import EducationAndExperienceLink from "./EducationAndExperienceLink";
+import EducationAndExperienceDescription from "./EducationAndExperienceDecription";
 
 const Container = styled.div`
   height: 110px;
-  display: grid;
-  & h3 {
-    height: 60px;
-    text-align: left;
-    padding: 15px;
-  }
-  & img {
-    width: 30px;
-    height: 20px;
-  }
-  & p {
-    background-color: var(--primaryDark);
-    padding: 20px;
-  }
-  & a {
-    color: #0b8bd4;
-    text-decoration: none;
-  }
+  display: table-row;
 `;
 
 interface PropsTypes {
@@ -43,28 +27,27 @@ export default function BioEducationAndExperience({
 }: PropsTypes) {
   return (
     <Container>
-      <h3>Edukacja</h3>
-      <p>{education}</p>
-      <h3>Kursy</h3>
-      <p>{courses}</p>
-      <h3>Doświadczenie zawodowe</h3>
-      <p>{workExperience}</p>
-      <h3>Portfolio</h3>
-      <p>
-        <img src={paperclip} alt="" />
-        <a href={githubUsername}>{githubUsername}</a>
-      </p>
-      <h3>Projekt w zespole Scrumowym</h3>
-      <p>
-        <img src={paperclip} alt="" />
-        <a href={projectUrls}>{projectUrls}</a>
-      </p>
-
-      <h3>Projekt na zaliczenie</h3>
-      <p>
-        <img src={paperclip} alt="" />
-        <a href={portfolioUrls}>{portfolioUrls}</a>
-      </p>
+      <EducationAndExperienceDescription
+        name="Edukacja"
+        description={education}
+      />
+      <EducationAndExperienceDescription name="Kursy" description={courses} />
+      <EducationAndExperienceDescription
+        name="Doświadczenie zawodowe"
+        description={workExperience}
+      />
+      <EducationAndExperienceLink
+        name="Portfolio"
+        gitUserUrl={githubUsername}
+      />
+      <EducationAndExperienceLink
+        name="Projekt w zespole Scrumowym"
+        gitUserUrl={projectUrls}
+      />
+      <EducationAndExperienceLink
+        name="Projekt na zaliczenie"
+        gitUserUrl={portfolioUrls}
+      />
     </Container>
   );
 }

@@ -6,13 +6,11 @@ const Wrapper = styled.div`
   display: grid;
   height: 110px;
   grid-template-columns: repeat(10, auto);
-  background-color: var(--primaryDark);
 `;
 
 const Container = styled.div`
   margin: 30px;
   display: table-row;
-  background-color: var(--primaryDark);
 `;
 
 const Title = styled.h3`
@@ -28,20 +26,16 @@ export default function BioGrades() {
       <Title>Oceny</Title>
       <Wrapper>
         <Container>
-          <p>Ocena przejścia kursu</p>
-          <Stars grade={5} />
+          <Stars name="Ocena przejścia kursu" grade={5} />
         </Container>
         <Container>
-          <p>Ocena aktywności i zaangażowania na kursie</p>
-          <Stars grade={4} />
+          <Stars name="Ocena aktywności i zaangażowania na kursie" grade={4} />
         </Container>
         <Container>
-          <p>Ocena kodu w projekcie własnym</p>
-          <Stars grade={2} />
+          <Stars name="Ocena kodu w projekcie własnym" grade={2} />
         </Container>
         <Container>
-          <p>Ocena pracy w zespole w Scrum</p>
-          <Stars grade={0} />
+          <Stars name="Ocena pracy w zespole w Scrum" grade={0} />
         </Container>
       </Wrapper>
     </>

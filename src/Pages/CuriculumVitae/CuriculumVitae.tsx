@@ -7,9 +7,8 @@ import Header from "../../Components/Header/Header";
 import { selectUser } from "../../State/Store/store";
 
 const Container = styled.section`
-  width: auto;
-  height: auto;
   display: grid;
+  background-color: var(--primaryDark);
 `;
 
 export default function CuriculumVitae() {

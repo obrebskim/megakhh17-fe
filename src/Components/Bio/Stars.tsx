@@ -10,17 +10,18 @@ const Container = styled.div`
     width: 20px;
     height: 20px;
   }
-  & p {
+  & .grade {
     display: inline-flex;
     font-weight: bold;
   }
 `;
 
 interface PropsTypes {
+  name: string;
   grade: number;
 }
 
-export default function Stars({ grade }: PropsTypes) {
+export default function Stars({ name, grade }: PropsTypes) {
   const starsRed: JSX.Element[] = [];
   for (let i = 0; i < grade; i += 1) {
     starsRed.push(<img src={starRed} alt="" />);
@@ -32,7 +33,8 @@ export default function Stars({ grade }: PropsTypes) {
   }
   return (
     <Container>
-      <p>
+      <p>{name}</p>
+      <p className="grade">
         {grade}/5 {starsRed}
         {stars}
       </p>
