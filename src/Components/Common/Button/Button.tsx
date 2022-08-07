@@ -5,6 +5,7 @@ interface PropsTypes {
   text: string;
   onClick?: () => void;
   color: string;
+  className?: string;
 }
 
 const Container = styled.button`
@@ -13,9 +14,19 @@ const Container = styled.button`
   color: var(--fontColor);
 `;
 
-export default function Button({ text, onClick, color }: PropsTypes) {
+export default function Button({
+  text,
+  onClick,
+  color,
+  className,
+}: PropsTypes) {
   return (
-    <Container color={color} type="submit" onClick={onClick}>
+    <Container
+      color={color}
+      type="submit"
+      onClick={onClick}
+      className={className}
+    >
       {text}
     </Container>
   );
