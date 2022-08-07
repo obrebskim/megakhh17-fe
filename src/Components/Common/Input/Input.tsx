@@ -23,6 +23,7 @@ interface Props {
   required?: boolean;
   min?: number;
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Input({
@@ -35,6 +36,7 @@ export default function Input({
   required = false,
   min = 0,
   handleInputChange,
+  onChange,
 }: Props) {
   return (
     <StyledInput
@@ -44,8 +46,8 @@ export default function Input({
       style={{ width, height }}
       placeholder={placeholder}
       required={required}
-      onChange={handleInputChange}
       min={min}
+      onChange={handleInputChange || onChange}
     />
   );
 }

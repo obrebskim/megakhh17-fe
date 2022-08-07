@@ -6,6 +6,10 @@ const Container = styled.span`
   cursor: pointer;
 `;
 
-export default function DownArrow() {
-  return <Container>▾</Container>;
+interface PropsTypes {
+  onclick: () => void;
+}
+
+export default function DownArrow({ onclick }: PropsTypes) {
+  return <Container onClick={onclick}>▾</Container>;
 }

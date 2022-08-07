@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px;
   background-color: var(--tirnaryDark);
   font-size: 1.2rem;
   & .content {
