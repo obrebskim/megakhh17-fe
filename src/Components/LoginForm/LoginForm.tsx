@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import Button from "../Common/Button/Button";
 import Input from "../Common/Input/Input";
 import { selectUser } from "../../State/Store/store";
@@ -55,7 +56,26 @@ export default function LoginForm() {
 
   const handleSubmitLoginForm = async (e: FormEvent) => {
     e.preventDefault();
-    await dispatch(login({ id: "123", logged: true, name: "Maciek", role: 3 }));
+    const response = await fetch(`http://localhost:3000/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: loginData.email,
+        pwd: loginData.password,
+      }),
+    });
+
+    const respData = await response.json();
+    console.log(respData, loginData);
+
+    await dispatch(
+      login({
+        id: respData.id,
+        logged: true,
+        name: respData.name,
+        role: Number(respData.role),
+      }),
+    );
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
