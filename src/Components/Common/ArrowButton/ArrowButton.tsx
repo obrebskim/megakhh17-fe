@@ -9,6 +9,7 @@ const Container = styled.button<StyledProps>`
   place-items: center;
   background-color: transparent;
   border: none;
+  cursor: pointer;
   & img {
     transform: rotate(${(props) => (!props.open ? "180deg" : "0")});
   }
