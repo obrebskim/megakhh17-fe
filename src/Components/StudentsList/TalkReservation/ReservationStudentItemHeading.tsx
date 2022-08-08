@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import ArrowButton from "../../Common/ArrowButton/ArrowButton";
 import Avatar from "../../Common/Avatar/Avatar";
 import PlaceholderDiv from "../../Common/PlaceholderDiv/PlaceholderDiv";
@@ -26,6 +27,7 @@ const Container = styled.div<StyledProps>`
     font-size: 1.4rem;
     font-weight: normal;
     color: var(--fontColor);
+    cursor: pointer;
   }
 `;
 
@@ -35,12 +37,16 @@ interface PropsTypes {
 }
 
 function AvailableStudentItemHeading({ open, onclick }: PropsTypes) {
+  const navigate = useNavigate();
+  const handleShowCv = () => {
+    navigate("/curiculum-vitae/:id");
+  };
   return (
     <Container open={open}>
       <ReservationDate />
       <Avatar name="Name Surname" />
       <PlaceholderDiv />
-      <button type="button" className="button">
+      <button type="button" className="button" onClick={handleShowCv}>
         Pokaż CV
       </button>
       <button type="button" className="button">
