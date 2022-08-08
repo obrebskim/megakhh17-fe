@@ -58,7 +58,7 @@ export default function RecoveryForm() {
         width="350px"
         height="40px"
         required
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+        handleInputChange={(e: ChangeEvent<HTMLInputElement>) =>
           setEmail(e.target.value)
         }
       />
