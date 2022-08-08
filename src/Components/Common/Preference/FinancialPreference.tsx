@@ -25,10 +25,19 @@ interface Props {
 }
 
 export default function FinancialPreference({ text }: Props) {
+  /* const salaryMinRef = useRef<HTMLInputElement | null>(null);
+  const salaryMaxRef = useRef<HTMLInputElement | null>(null);
+  useEffect(() => {
+    if (salaryMinRef.current?.value && salaryMaxRef.current?.value) {
+      if (salaryMinRef.current?.value > salaryMaxRef.current?.value) {
+        // @ts-ignore
+        salaryMinRef.current.validity.valid = false;
+        // console.log(salaryMinRef.current?.validity);
+      }
+    }
+  }, [salaryMinRef.current?.value, salaryMaxRef.current?.value]); */
   const context = useContext(FilterFormContext);
-
   if (!context) return null;
-
   const { salaryMin, salaryMax, handleSetSalaryMin, handleSetSalaryMax } =
     context;
   return (
@@ -48,11 +57,7 @@ export default function FinancialPreference({ text }: Props) {
       {salaryMin !== null && (
         <Input
           type="number"
-          value={
-            salaryMax // && salaryMax > salaryMin
-              ? salaryMax.toString()
-              : salaryMin.toString()
-          }
+          value={salaryMax ? salaryMax.toString() : salaryMin.toString()}
           placeholder="np. 10000 zł"
           handleInputChange={handleSetSalaryMax}
           width="105px"
@@ -60,6 +65,8 @@ export default function FinancialPreference({ text }: Props) {
           min={salaryMin}
         />
       )}
+      {/* <input type="number" ref={salaryMinRef} />
+      <input type="number" ref={salaryMaxRef} /> */}
     </Container>
   );
 }

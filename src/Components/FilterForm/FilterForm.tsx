@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
 import WorkplacePreference from "../Common/Preference/WorkplacePreference";
@@ -11,14 +10,25 @@ import FilterFormContext from "../../utils/FilterFormContext";
 import Button from "../Common/Button/Button";
 import PreferenceButton from "../Common/Preference/PreferenceButton";
 
-const Container = styled.div`
+interface PropsTypes {
+  searchString: string;
+  visibility: string;
+  handleVisibility: (value: string) => void;
+}
+
+interface StyledPropsTypes {
+  visibility: string;
+}
+
+const Container = styled.div<StyledPropsTypes>`
   position: absolute;
-  top: 137px;
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
   width: 520px;
   height: 806px;
   background-color: var(--filterBackground);
+  visibility: ${(props) => props.visibility};
 
   & .title {
     display: block;
@@ -65,8 +75,11 @@ const Header = styled.header``;
 
 const Form = styled.form``;
 
-export default function FilterForm() {
-  const navigate = useNavigate();
+export default function FilterForm({
+  searchString,
+  visibility,
+  handleVisibility,
+}: PropsTypes) {
   const [courseEvaluation, setCourseEvaluation] = useState<number>(0);
   const [activityEvaluation, setActivityEvaluation] = useState<number>(0);
   const [codeEvaluation, setCodeEvaluation] = useState<number>(0);
@@ -78,7 +91,6 @@ export default function FilterForm() {
   const [internshipPreference, setInternshipPreference] = useState<number>(0);
   const [experience, setExperience] = useState<number>(0);
   const [filterUrl, setFilterUrl] = useState<string>("");
-  const filterData = `${courseEvaluation}/${activityEvaluation}/${codeEvaluation}/${teamEvaluation}/${workplacePreference}/${contractPreference}/${salaryMin}/${salaryMax}/${internshipPreference}/${experience}`;
   const handleSetSalaryMin = (e: ChangeEvent<HTMLInputElement>) => {
     setSalaryMin(Number(e.target.value));
   };
@@ -104,19 +116,18 @@ export default function FilterForm() {
     setInternshipPreference(0);
   };
   const handleCancel = () => {
-    navigate("/");
+    handleVisibility("hidden");
   };
-  const handleClick = () => {
-    setFilterUrl(`http://localhost/3000/students/filter/${filterData}`);
-  };
-  const handleSubmitForm = async (e: FormEvent) => {
+  const handleSubmitForm = (e: FormEvent) => {
     e.preventDefault();
-    // console.log(filterUrl);
-    await fetch(filterUrl);
-    clearAll();
+    setFilterUrl(
+      `http://localhost/3000/students/filter/1/5/${searchString}/${courseEvaluation}/${activityEvaluation}/${codeEvaluation}/${teamEvaluation}/${workplacePreference}/${contractPreference}/${salaryMin}/${salaryMax}/${internshipPreference}/${experience}`,
+    );
+    handleVisibility("hidden");
   };
+  console.log(filterUrl);
   return (
-    <Container>
+    <Container visibility={visibility}>
       <Header>
         <span className="title">Filtrowanie</span>
         <button className="clear-all" type="button" onClick={clearAll}>
@@ -193,12 +204,7 @@ export default function FilterForm() {
             className="cancel-btn"
             handleClick={handleCancel}
           />
-          <Button
-            text="Pokaż wyniki"
-            color="#E02735"
-            className="submit-btn"
-            onClick={handleClick}
-          />
+          <Button text="Pokaż wyniki" color="#E02735" className="submit-btn" />
         </Form>
       </FilterFormContext.Provider>
     </Container>

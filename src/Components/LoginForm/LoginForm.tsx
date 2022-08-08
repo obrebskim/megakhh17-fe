@@ -55,7 +55,7 @@ export default function LoginForm() {
 
   const handleSubmitLoginForm = async (e: FormEvent) => {
     e.preventDefault();
-    await dispatch(login({ id: "123", logged: true, name: "Maciek", role: 3 }));
+    await dispatch(login({ id: "123", logged: true, name: "Maciek", role: 2 }));
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
