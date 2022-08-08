@@ -4,7 +4,7 @@ import imgPlaceholder from "../../../Assets/img/Group 2708.svg";
 import githubIco from "../../../Assets/img/github.svg";
 
 interface PropsTypes {
-  name: string;
+  name: string | null;
   imgUrl?: string;
   vertical?: boolean;
 }

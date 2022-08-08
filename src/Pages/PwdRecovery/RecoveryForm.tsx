@@ -48,6 +48,11 @@ export default function RecoveryForm() {
   if (resp) {
     return <div> {resp}</div>;
   }
+
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+    setEmail(e.target.value);
+  }
+
   return (
     <Container onSubmit={handleSubmitLoginForm}>
       <Input
@@ -58,9 +63,7 @@ export default function RecoveryForm() {
         width="350px"
         height="40px"
         required
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setEmail(e.target.value)
-        }
+        handleInputChange={(e) => handleInputChange(e)}
       />
 
       <Button text="Wyślij" color="#E02735" />

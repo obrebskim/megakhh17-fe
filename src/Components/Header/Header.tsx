@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Avatar from "../Common/Avatar/Avatar";
 import Logo from "../Common/Logo/Logo";
 import PlaceholderDiv from "../Common/PlaceholderDiv/PlaceholderDiv";
 import DownArrow from "./DownArrow";
 import Logout from "./Logout";
+import { selectUser } from "../../State/Store/store";
 
 const Container = styled.header`
   height: 80px;
@@ -24,6 +26,7 @@ const Wrapper = styled.div`
 `;
 
 export default function Header() {
+  const user = useSelector(selectUser);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleIsOpenChange = () => {
     setIsOpen((prev) => !prev);
@@ -33,7 +36,7 @@ export default function Header() {
       <Wrapper>
         <Logo width="90px" />
         <PlaceholderDiv />
-        <Avatar name="Name Surname" />
+        <Avatar name={user.name} />
         <DownArrow onclick={handleIsOpenChange} />
         {isOpen && <Logout />}
       </Wrapper>
