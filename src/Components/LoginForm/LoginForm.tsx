@@ -63,6 +63,7 @@ export default function LoginForm() {
         email: loginData.email,
         pwd: loginData.password,
       }),
+      credentials: "include",
     });
 
     const respData = await response.json();
