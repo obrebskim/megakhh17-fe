@@ -12,6 +12,7 @@ const Container = styled.button`
   background-color: ${(props) => props.color};
   border: none;
   color: var(--fontColor);
+  cursor: pointer;
 `;
 
 export default function Button({

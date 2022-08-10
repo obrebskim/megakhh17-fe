@@ -19,6 +19,7 @@ const Container = styled.div`
     text-align: left;
     color: var(--fontColor);
     font-size: 1.8rem;
+    cursor: pointer;
   }
 `;
 
