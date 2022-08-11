@@ -37,12 +37,17 @@ function AccountAside() {
         await fetch("http://localhost:3000/students-profile", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...state, registerToken: token }),
+          body: JSON.stringify({
+            ...state,
+            registerToken: token,
+            portfolioUrls: `https://github.com/${state.githubUsername}`,
+            githubPhotoUrl: `https://github.com/${state.githubUsername}.png`,
+          }),
         });
         dispatch(
           open({
             isOpen: true,
-            message: "Rejestracja przebieła pomyślnie",
+            message: "Rejestracja przebieła pomyślnie.",
           }),
         );
         setTimeout(() => {
@@ -51,7 +56,12 @@ function AccountAside() {
         }, 2000);
         navigate("/");
       } catch (e) {
-        console.log(e);
+        dispatch(
+          open({
+            isOpen: true,
+            message: "Coś poszło nie tak! Spróbuj jeszcze raz.",
+          }),
+        );
       }
     }
   };

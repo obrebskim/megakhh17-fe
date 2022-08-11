@@ -40,6 +40,12 @@ export default function userRegisterReducer(
       return { ...state, workExperience: action.payload };
     case "SET_COURSES":
       return { ...state, courses: action.payload };
+    case "SET_PASSWORD":
+      return { ...state, password: action.payload };
+    case "SET_EXPECTED_TYPE_WORK":
+      return { ...state, expectedTypeWorkID: action.payload };
+    case "SET_EXPECTED_CONTRACT_TYPE":
+      return { ...state, expectedContractType: action.payload };
     default:
       throw new Error();
   }

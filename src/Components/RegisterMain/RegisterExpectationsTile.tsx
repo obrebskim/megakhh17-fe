@@ -41,6 +41,7 @@ interface PropsTypes {
   postfix?: string;
   title: string;
   actionName: string;
+  options?: { value: number; label: string }[];
 }
 
 function RegisterExpectationsTile({
@@ -50,6 +51,7 @@ function RegisterExpectationsTile({
   onchange,
   title,
   actionName,
+  options = [],
 }: PropsTypes) {
   return (
     <Container>
@@ -63,8 +65,11 @@ function RegisterExpectationsTile({
             name="select"
             id="select"
           >
-            <option value="">Biuro</option>
-            <option value="1">zdalnie</option>
+            {options.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
           </select>
         </label>
       )}

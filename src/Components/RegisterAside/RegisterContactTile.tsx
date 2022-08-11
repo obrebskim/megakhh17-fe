@@ -78,6 +78,14 @@ function ContactTile() {
           dispatch({ type: "SET_EMAIL", payload: e.target.value })
         }
       />
+      <input
+        type="password"
+        placeholder="Hasło"
+        value={state.password}
+        onChange={(e) =>
+          dispatch({ type: "SET_PASSWORD", payload: e.target.value })
+        }
+      />
     </Container>
   );
 }
