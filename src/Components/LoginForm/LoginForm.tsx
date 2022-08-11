@@ -7,6 +7,7 @@ import Button from "../Common/Button/Button";
 import Input from "../Common/Input/Input";
 import { selectUser } from "../../State/Store/store";
 import { login } from "../../State/Slices/userSlice";
+import { open } from "../../State/Slices/modalSlice";
 
 const Container = styled.form`
   display: grid;
@@ -56,27 +57,38 @@ export default function LoginForm() {
 
   const handleSubmitLoginForm = async (e: FormEvent) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:3000/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: loginData.email,
-        pwd: loginData.password,
-      }),
-      credentials: "include",
-    });
+    try {
+      const response = await fetch(`http://localhost:3000/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: loginData.email,
+          pwd: loginData.password,
+        }),
+        credentials: "include",
+      });
 
-    const respData = await response.json();
-    console.log(respData, loginData);
+      const respData = await response.json();
+      if (respData.error) {
+        dispatch(open({ isOpen: true, message: respData.error }));
+      }
 
-    dispatch(
-      login({
-        id: respData.id,
-        logged: true,
-        fullName: respData.fullName,
-        role: Number(respData.role),
-      }),
-    );
+      dispatch(
+        login({
+          id: respData.id,
+          logged: true,
+          fullName: respData.fullName,
+          role: Number(respData.role),
+        }),
+      );
+    } catch (err) {
+      dispatch(
+        open({
+          isOpen: true,
+          message: "Coś poszło nie tak! Spróbuj ponownie.",
+        }),
+      );
+    }
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

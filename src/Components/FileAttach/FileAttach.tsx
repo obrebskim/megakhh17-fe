@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as FolderIco } from "../../Assets/img/folder.svg";
+import { open } from "../../State/Slices/modalSlice";
 
 const Container = styled.form`
   width: 100%;
@@ -53,13 +54,19 @@ function FileAttach() {
     try {
       const formData = new FormData();
       formData.append("file", files[0]);
-      const resp = await fetch("http://localhost:3001/file", {
+      await fetch("http://localhost:3001/file", {
         method: "POST",
         body: formData,
       });
-      return console.log(await resp.json());
+      return open({
+        isOpen: true,
+        message: "Dane zostały zapisane.",
+      });
     } catch (err) {
-      return console.log(err);
+      return open({
+        isOpen: true,
+        message: "Coś poszło nie tak! Spróbuj ponownie.",
+      });
     }
   };
 

@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import RegisterContactTile from "./RegisterContactTile";
 import RegisterAboutTile from "./RegisterAboutTile";
 import { UserRegisterContext } from "../../Context/UserRegisterContext";
+import { close, open } from "../../State/Slices/modalSlice";
 
 const Container = styled.aside`
   display: flex;
@@ -26,18 +28,27 @@ function AccountAside() {
   const { state } = useContext(UserRegisterContext);
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRegisterStudent = async () => {
     if (id) {
       const token = id || "";
       try {
-        const resp = await fetch("http://localhost:3000/students-profile", {
+        await fetch("http://localhost:3000/students-profile", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...state, registerToken: token }),
         });
-        const data = await resp.json();
-        console.log(data);
+        dispatch(
+          open({
+            isOpen: true,
+            message: "Rejestracja przebieła pomyślnie",
+          }),
+        );
+        setTimeout(() => {
+          dispatch(close());
+          navigate("/");
+        }, 2000);
         navigate("/");
       } catch (e) {
         console.log(e);
