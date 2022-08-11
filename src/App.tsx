@@ -12,6 +12,7 @@ import Admin from "./Pages/Admin/Admin";
 import Account from "./Pages/Account/Account";
 import ResetForm from "./Pages/PwdRecovery/ResetForm";
 import RecoveryForm from "./Pages/PwdRecovery/RecoveryForm";
+import Register from "./Pages/Register/Register";
 
 const Container = styled.main`
   width: 100%;
@@ -35,6 +36,7 @@ function App() {
           <Route path="account" element={<Account />} />
           <Route path="pwd-recovery" element={<RecoveryForm />} />
           <Route path="pwd-recovery/:id/:token" element={<ResetForm />} />
+          <Route path="register-student/:id" element={<Register />} />
         </Routes>
       </Container>
     </Provider>

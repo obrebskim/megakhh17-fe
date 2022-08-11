@@ -36,7 +36,7 @@ export default function Header() {
       <Wrapper>
         <Logo width="90px" />
         <PlaceholderDiv />
-        <Avatar name={user.name} />
+        <Avatar name={user.fullName} />
         <DownArrow onclick={handleIsOpenChange} />
         {isOpen && <Logout />}
       </Wrapper>

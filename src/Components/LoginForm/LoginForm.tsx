@@ -69,11 +69,11 @@ export default function LoginForm() {
     const respData = await response.json();
     console.log(respData, loginData);
 
-    await dispatch(
+    dispatch(
       login({
         id: respData.id,
         logged: true,
-        name: respData.name,
+        fullName: respData.fullName,
         role: Number(respData.role),
       }),
     );
