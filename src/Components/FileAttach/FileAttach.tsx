@@ -54,7 +54,7 @@ function FileAttach() {
     try {
       const formData = new FormData();
       formData.append("file", files[0]);
-      await fetch("http://localhost:3001/file", {
+      const resp = await fetch("http://localhost:3000/file", {
         method: "POST",
         body: formData,
       });

@@ -32,7 +32,7 @@ function RegisterExpectations() {
   return (
     <Container>
       <RegisterExpectationsTile
-        value={state.expectedTypeWorkID}
+        value={state.expectedTypeWork}
         type="select"
         onchange={dispatch}
         title="Preferowane miejsce pracy"

@@ -11,7 +11,7 @@ const initialState: UserRegisterContextStateInterface = {
   firstName: "",
   lastName: "",
   targetWorkCity: "",
-  expectedTypeWorkID: 5,
+  expectedTypeWork: 5,
   expectedContractType: 4,
   bio: "",
   githubUsername: "",

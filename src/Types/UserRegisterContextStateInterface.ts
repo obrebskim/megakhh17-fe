@@ -1,7 +1,7 @@
 export interface UserRegisterContextStateInterface {
   registerToken: string;
   password: string;
-  expectedTypeWorkID: number;
+  expectedTypeWork: number;
   expectedContractType: number;
   email: string;
   tel: string;
