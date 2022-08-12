@@ -49,7 +49,7 @@ export default function LoginForm() {
     if (user.role === 1) {
       navigate("/admin");
     } else if (user.role === 2) {
-      navigate("/students");
+      navigate("/students/list");
     } else if (user.role === 3) {
       navigate("/account");
     }
