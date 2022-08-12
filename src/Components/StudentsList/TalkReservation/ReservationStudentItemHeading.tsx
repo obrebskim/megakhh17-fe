@@ -4,6 +4,7 @@ import ArrowButton from "../../Common/ArrowButton/ArrowButton";
 import Avatar from "../../Common/Avatar/Avatar";
 import PlaceholderDiv from "../../Common/PlaceholderDiv/PlaceholderDiv";
 import ReservationDate from "./ReservationDate";
+import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
 
 type StyledProps = {
   open: boolean;
@@ -32,13 +33,14 @@ const Container = styled.div<StyledProps>`
 interface PropsTypes {
   onclick: () => void;
   open: boolean;
+  student: StudentsListItemInterface;
 }
 
-function AvailableStudentItemHeading({ open, onclick }: PropsTypes) {
+function AvailableStudentItemHeading({ open, onclick, student }: PropsTypes) {
   return (
     <Container open={open}>
       <ReservationDate />
-      <Avatar name="Name Surname" />
+      <Avatar name={`${student.firstName} ${student.lastName}`} />
       <PlaceholderDiv />
       <button type="button" className="button">
         Pokaż CV
