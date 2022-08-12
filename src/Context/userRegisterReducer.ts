@@ -43,7 +43,7 @@ export default function userRegisterReducer(
     case "SET_PASSWORD":
       return { ...state, password: action.payload };
     case "SET_EXPECTED_TYPE_WORK":
-      return { ...state, expectedTypeWorkID: action.payload };
+      return { ...state, expectedTypeWork: action.payload };
     case "SET_EXPECTED_CONTRACT_TYPE":
       return { ...state, expectedContractType: action.payload };
     default:
