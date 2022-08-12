@@ -7,7 +7,7 @@ export interface UserAccountContextStateInterface {
   expectedTypeWork: string;
   targetWorkCity: string;
   expectedContractType: string;
-  expectedSalary: string;
+  expectedSalary: number;
   canTakeApprenticeship: number;
   experienceMonths: number;
   education: string;

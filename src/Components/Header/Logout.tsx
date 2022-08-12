@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../State/Slices/userSlice";
+import { selectUser } from "../../State/Store/store";
 
 const Container = styled.div`
   width: 250px;
@@ -24,6 +25,7 @@ const Container = styled.div`
 `;
 
 function Logout() {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleRedirect = (path: string): void => {
@@ -53,9 +55,11 @@ function Logout() {
 
   return (
     <Container>
-      <button type="button" onClick={() => handleRedirect("/account")}>
-        Konto
-      </button>
+      {user.role === 3 && (
+        <button type="button" onClick={() => handleRedirect("/account")}>
+          Konto
+        </button>
+      )}
       <button type="button" onClick={handleLogout}>
         Wyloguj
       </button>

@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
-import EditButton from "../Common/EditButton/EditButton";
 import { UserAccountContextActionInterface } from "../../Types/UserAccountContextActionInterface";
 
 const Container = styled.div`
@@ -42,17 +41,18 @@ interface PropsTypes {
   postfix?: string;
   title: string;
   actionName: string;
+  options?: { value: number; label: string }[];
 }
 
-function ExpectationsTile({
+function RegisterExpectationsTile({
   value,
   type,
   postfix = "",
   onchange,
   title,
   actionName,
+  options = [],
 }: PropsTypes) {
-  const [editable, setEditable] = useState<boolean>(false);
   return (
     <Container>
       <p className="title">{title}</p>
@@ -64,36 +64,29 @@ function ExpectationsTile({
             }
             name="select"
             id="select"
-            disabled={!editable}
           >
-            <option value="">Biuro</option>
-            <option value="1">zdalnie</option>
+            {options.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
           </select>
-          <EditButton
-            value={editable}
-            onclick={() => setEditable((prev) => !prev)}
-          />
         </label>
       )}
       {type === "text" && (
         <label htmlFor="input">
           <input
             type="text"
-            disabled={!editable}
             value={value}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               onchange({ type: actionName, payload: e.target.value })
             }
           />
           {postfix !== "" && <span>{postfix}</span>}
-          <EditButton
-            value={editable}
-            onclick={() => setEditable((prev) => !prev)}
-          />
         </label>
       )}
     </Container>
   );
 }
 
-export default ExpectationsTile;
+export default RegisterExpectationsTile;

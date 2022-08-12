@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import { Provider } from "react-redux";
-import store from "./State/Store/store";
+import { Provider, useSelector } from "react-redux";
+import store, { selectModal } from "./State/Store/store";
 import CuriculumVitae from "./Pages/CuriculumVitae/CuriculumVitae";
 import Login from "./Pages/Login/Login";
 import Students from "./Pages/Students/Students";
@@ -12,6 +12,8 @@ import Admin from "./Pages/Admin/Admin";
 import Account from "./Pages/Account/Account";
 import ResetForm from "./Pages/PwdRecovery/ResetForm";
 import RecoveryForm from "./Pages/PwdRecovery/RecoveryForm";
+import Register from "./Pages/Register/Register";
+import Modal from "./Components/Common/Modal/Modal";
 
 const Container = styled.main`
   width: 100%;
@@ -21,6 +23,7 @@ const Container = styled.main`
 `;
 
 function App() {
+  const modal = useSelector(selectModal);
   return (
     <Provider store={store}>
       <Container className="app">
@@ -35,7 +38,9 @@ function App() {
           <Route path="account" element={<Account />} />
           <Route path="pwd-recovery" element={<RecoveryForm />} />
           <Route path="pwd-recovery/:id/:token" element={<ResetForm />} />
+          <Route path="register-student/:id" element={<Register />} />
         </Routes>
+        {modal.isOpen && <Modal />}
       </Container>
     </Provider>
   );
