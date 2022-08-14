@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.form`
@@ -39,16 +39,78 @@ const Container = styled.form`
   }
 `;
 
+export interface SetHrsDataType {
+  email: string;
+  pwd: string;
+  fullName: string;
+  company: string;
+  maxReservedStudents: number;
+}
+
 function HrCreator() {
-  const handleSubmit = (e: FormEvent) => {
+  const [hrsData, setHrsData] = useState<SetHrsDataType>({
+    email: "",
+    pwd: "",
+    fullName: "",
+    company: "",
+    maxReservedStudents: 0,
+  });
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    console.log(hrsData);
+
+    const response = await fetch(`http://localhost:3000/hrs/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: hrsData.email,
+        pwd: hrsData.pwd,
+        fullName: hrsData.fullName,
+        company: hrsData.company,
+        maxReservedStudents: hrsData.maxReservedStudents,
+      }),
+      credentials: "include",
+    });
+
+    const respData = await response.json();
+    console.log(respData);
   };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setHrsData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <Container onSubmit={(e: FormEvent) => handleSubmit(e)}>
       <h3>Dodaj konto HR:</h3>
       <label htmlFor="email">
         <p>E-mail</p>
-        <input type="email" id="email" required placeholder="Wpisz e-mail" />
+        <input
+          type="email"
+          id="email"
+          required
+          name="email"
+          placeholder="Wpisz e-mail"
+          value={hrsData.email}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label htmlFor="password">
+        <p>Hasło:</p>
+        <input
+          type="password"
+          id="password"
+          required
+          name="pwd"
+          placeholder="Wpisz hasło"
+          value={hrsData.pwd}
+          onChange={handleInputChange}
+        />
       </label>
       <label htmlFor="name">
         <p>Imię i nazwisko</p>
@@ -56,7 +118,10 @@ function HrCreator() {
           type="text"
           id="name"
           required
+          name="fullName"
           placeholder="Wpisz imię i nazwisko"
+          value={hrsData.fullName}
+          onChange={handleInputChange}
         />
       </label>
       <label htmlFor="company">
@@ -65,7 +130,10 @@ function HrCreator() {
           type="text"
           id="company"
           required
+          name="company"
           placeholder="Wpisz nazwę firmy"
+          value={hrsData.company}
+          onChange={handleInputChange}
         />
       </label>
       <label htmlFor="limit">
@@ -75,8 +143,11 @@ function HrCreator() {
           id="limit"
           required
           placeholder="Wpisz limit studentów"
+          value={hrsData.maxReservedStudents}
           min={1}
+          name="maxReservedStudents"
           max={999}
+          onChange={handleInputChange}
         />
       </label>
       <button className="send" type="submit">
