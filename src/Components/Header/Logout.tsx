@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+// import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../State/Slices/userSlice";
 
 const Container = styled.div`
   width: 250px;
@@ -21,12 +24,32 @@ const Container = styled.div`
 `;
 
 function Logout() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleRedirect = (path: string): void => {
     navigate(path);
   };
-  const handleLogout = () => {
-    // logout logic
+  const handleLogout = async () => {
+    // const response = await fetch(`http://localhost:3000/auth/logout`);
+    // const resp = await response.json();
+    // if (resp.ok) {
+    //   dispatch(logout());
+    //   navigate("/");
+    // }
+    // axios
+    //   .get(`http://localhost:3000/auth/logout`, {
+    //     withCredentials: true,
+    //     headers: {
+    //       "Access-Control-Allow-Origin": "*",
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Credentials": true,
+    //         "Set-Cookie"
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
+    dispatch(logout());
     navigate("/");
   };
 
