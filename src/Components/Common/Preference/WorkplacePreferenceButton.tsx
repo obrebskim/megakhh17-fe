@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import FilterFormContext from "../../../utils/FilterFormContext";
+import { FilterFormContext } from "../../../Context/FilterFormContext";
 
 interface PropsTypes {
   text: string;
-  value?: number;
+  value?: string;
   color?: string;
   className?: string;
 }
@@ -25,25 +25,21 @@ export default function WorkplacePreferenceButton({
   color,
   className,
 }: PropsTypes) {
-  const context = useContext(FilterFormContext);
-
-  if (!context) return null;
-
-  const { setWorkplacePreference } = context;
+  const { dispatch } = useContext(FilterFormContext);
   const handleButtonClick = () => {
     switch (value) {
-      case 1:
-        return setWorkplacePreference(1);
-      case 2:
-        return setWorkplacePreference(2);
-      case 3:
-        return setWorkplacePreference(3);
-      case 4:
-        return setWorkplacePreference(4);
-      case 5:
-        return setWorkplacePreference(5);
+      case "1":
+        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "1" });
+      case "2":
+        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "2" });
+      case "3":
+        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "3" });
+      case "4":
+        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "4" });
+      case "5":
+        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "5" });
       default:
-        return setWorkplacePreference(5);
+        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "5" });
     }
   };
   return (

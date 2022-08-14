@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { ChangeEvent, useContext } from "react";
 import styled from "styled-components";
 import RadioInputPreference from "./RadioInputPreference";
-import FilterFormContext from "../../../utils/FilterFormContext";
+import { FilterFormContext } from "../../../Context/FilterFormContext";
 
 const Container = styled.div`
   display: flex;
@@ -31,11 +31,7 @@ interface Props {
 }
 
 export default function InternshipPreference({ text }: Props) {
-  const context = useContext(FilterFormContext);
-
-  if (!context) return null;
-
-  const { internshipPreference, handleSetInternshipPreference } = context;
+  const { state, dispatch } = useContext(FilterFormContext);
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
@@ -43,15 +39,25 @@ export default function InternshipPreference({ text }: Props) {
         text="Tak"
         name="choice"
         value={1}
-        handleInputChange={handleSetInternshipPreference}
-        internship={internshipPreference}
+        handleInputChange={(e: ChangeEvent<HTMLInputElement>) => {
+          dispatch({
+            type: "SET_INTERNSHIP_PREFERENCE",
+            payload: Number(e.target.value),
+          });
+        }}
+        internship={state.internshipPreference}
       />
       <RadioInputPreference
         text="Nie"
         name="choice"
         value={0}
-        handleInputChange={handleSetInternshipPreference}
-        internship={internshipPreference}
+        handleInputChange={(e: ChangeEvent<HTMLInputElement>) => {
+          dispatch({
+            type: "SET_INTERNSHIP_PREFERENCE",
+            payload: Number(e.target.value),
+          });
+        }}
+        internship={state.internshipPreference}
       />
     </Container>
   );

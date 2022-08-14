@@ -51,10 +51,10 @@ const Container = styled.div`
 `;
 
 interface Props {
-  level: number;
+  level: string;
   squareColor: string;
   className: string;
-  handleClick: (level: number) => void;
+  handleClick: (level: string) => void;
 }
 
 export default function EvaluationUnit({

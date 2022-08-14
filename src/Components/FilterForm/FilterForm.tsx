@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useMemo, useState } from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import styled from "styled-components";
 import EvaluationBlock from "../Common/Evaluation/EvaluationBlock";
 import WorkplacePreference from "../Common/Preference/WorkplacePreference";
@@ -6,9 +6,9 @@ import ContractPreference from "../Common/Preference/ContractPreference";
 import FinancialPreference from "../Common/Preference/FinancialPreference";
 import InternshipPreference from "../Common/Preference/InternshipPreference";
 import Experience from "../Common/Preference/Experience";
-import FilterFormContext from "../../utils/FilterFormContext";
 import Button from "../Common/Button/Button";
 import PreferenceButton from "../Common/Preference/PreferenceButton";
+import { FilterFormContext } from "../../Context/FilterFormContext";
 
 interface PropsTypes {
   searchString: string;
@@ -80,40 +80,19 @@ export default function FilterForm({
   visibility,
   handleVisibility,
 }: PropsTypes) {
-  const [courseEvaluation, setCourseEvaluation] = useState<number>(0);
-  const [activityEvaluation, setActivityEvaluation] = useState<number>(0);
-  const [codeEvaluation, setCodeEvaluation] = useState<number>(0);
-  const [teamEvaluation, setTeamEvaluation] = useState<number>(0);
-  const [workplacePreference, setWorkplacePreference] = useState<number>(5);
-  const [contractPreference, setContractPreference] = useState<number>(4);
-  const [salaryMin, setSalaryMin] = useState<number>(0);
-  const [salaryMax, setSalaryMax] = useState<number>(0);
-  const [internshipPreference, setInternshipPreference] = useState<number>(0);
-  const [experience, setExperience] = useState<number>(0);
+  const { state, dispatch } = useContext(FilterFormContext);
   const [filterUrl, setFilterUrl] = useState<string>("");
-  const handleSetSalaryMin = (e: ChangeEvent<HTMLInputElement>) => {
-    setSalaryMin(Number(e.target.value));
-  };
-  const handleSetSalaryMax = (e: ChangeEvent<HTMLInputElement>) => {
-    setSalaryMax(Number(e.target.value));
-  };
-  const handleSetInternshipPreference = (e: ChangeEvent<HTMLInputElement>) => {
-    setInternshipPreference(Number(e.target.value));
-  };
-  const handleExperience = (e: ChangeEvent<HTMLInputElement>) => {
-    setExperience(Number(e.target.value));
-  };
   const clearAll = () => {
-    setCourseEvaluation(0);
-    setActivityEvaluation(0);
-    setCodeEvaluation(0);
-    setTeamEvaluation(0);
-    setWorkplacePreference(5);
-    setContractPreference(4);
-    setSalaryMin(0);
-    setSalaryMax(0);
-    setExperience(0);
-    setInternshipPreference(0);
+    dispatch({ type: "SET_COURSE_EVALUATION", payload: "0" });
+    dispatch({ type: "SET_ACTIVITY_EVALUATION", payload: "0" });
+    dispatch({ type: "SET_CODE_EVALUATION", payload: "0" });
+    dispatch({ type: "SET_TEAM_EVALUATION", payload: "0" });
+    dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "5" });
+    dispatch({ type: "SET_CONTRACT_PREFERENCE", payload: "4" });
+    dispatch({ type: "SET_SALARY_MIN", payload: 0 });
+    dispatch({ type: "SET_SALARY_MAX", payload: 0 });
+    dispatch({ type: "SET_INTERNSHIP_PREFERENCE", payload: 0 });
+    dispatch({ type: "SET_EXPERIENCE", payload: 0 });
   };
   const handleCancel = () => {
     handleVisibility("hidden");
@@ -121,11 +100,11 @@ export default function FilterForm({
   const handleSubmitForm = (e: FormEvent) => {
     e.preventDefault();
     setFilterUrl(
-      `http://localhost/3000/students/filter/1/5/${searchString}/${courseEvaluation}/${activityEvaluation}/${codeEvaluation}/${teamEvaluation}/${workplacePreference}/${contractPreference}/${salaryMin}/${salaryMax}/${internshipPreference}/${experience}`,
+      `http://localhost/3000/students/filter/1/5/${searchString}/${state.courseEvaluation}/${state.activityEvaluation}/${state.codeEvaluation}/${state.teamEvaluation}/${state.workplacePreference}/${state.contractPreference}/${state.salaryMin}/${state.salaryMax}/${state.internshipPreference}/${state.experience}`,
     );
     handleVisibility("hidden");
   };
-  console.log(filterUrl);
+  if (filterUrl.length > 0) console.log(filterUrl);
   return (
     <Container visibility={visibility}>
       <Header>
@@ -134,79 +113,48 @@ export default function FilterForm({
           Wyczyść wszystkie
         </button>
       </Header>
-      <FilterFormContext.Provider
-        value={useMemo(
-          () => ({
-            courseEvaluation,
-            activityEvaluation,
-            codeEvaluation,
-            teamEvaluation,
-            workplacePreference,
-            contractPreference,
-            salaryMin,
-            salaryMax,
-            internshipPreference,
-            experience,
-            setCourseEvaluation,
-            setActivityEvaluation,
-            setCodeEvaluation,
-            setTeamEvaluation,
-            setWorkplacePreference,
-            setContractPreference,
-            handleSetSalaryMin,
-            handleSetSalaryMax,
-            handleSetInternshipPreference,
-            handleExperience,
-          }),
-          [
-            courseEvaluation,
-            activityEvaluation,
-            codeEvaluation,
-            teamEvaluation,
-            workplacePreference,
-            contractPreference,
-            salaryMin,
-            salaryMax,
-            internshipPreference,
-            experience,
-          ],
-        )}
-      >
-        <Form onSubmit={handleSubmitForm}>
-          <EvaluationBlock
-            text="Ocena przejścia kursu"
-            row={1}
-            handleClick={setCourseEvaluation}
-          />
-          <EvaluationBlock
-            text="Ocena aktywności i zaangażowania na kursie"
-            row={2}
-            handleClick={setActivityEvaluation}
-          />
-          <EvaluationBlock
-            text="Ocena kodu w projekcie własnym"
-            row={3}
-            handleClick={setCodeEvaluation}
-          />
-          <EvaluationBlock
-            text="Ocena pracy w zespole Scrum"
-            row={4}
-            handleClick={setTeamEvaluation}
-          />
-          <WorkplacePreference text="Preferowane miejsce pracy" />
-          <ContractPreference text="Oczekiwany typ kontraktu" />
-          <FinancialPreference text="Oczekiwane wynagrodzenie miesięczne netto (pln)" />
-          <InternshipPreference text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek" />
-          <Experience text="Ilość miesięcy doświadczenia komercyjnego w programowaniu" />
-          <PreferenceButton
-            text="Anuluj"
-            color="#0a0a0a"
-            className="cancel-btn"
-            handleClick={handleCancel}
-          />
-          <Button text="Pokaż wyniki" color="#E02735" className="submit-btn" />
-        </Form>
-      </FilterFormContext.Provider>
+      <Form onSubmit={handleSubmitForm}>
+        <EvaluationBlock
+          text="Ocena przejścia kursu"
+          row="1"
+          handleClick={(level) =>
+            dispatch({ type: "SET_COURSE_EVALUATION", payload: level })
+          }
+        />
+        <EvaluationBlock
+          text="Ocena aktywności i zaangażowania na kursie"
+          row="2"
+          handleClick={(level) =>
+            dispatch({ type: "SET_ACTIVITY_EVALUATION", payload: level })
+          }
+        />
+        <EvaluationBlock
+          text="Ocena kodu w projekcie własnym"
+          row="3"
+          handleClick={(level) =>
+            dispatch({ type: "SET_CODE_EVALUATION", payload: level })
+          }
+        />
+        <EvaluationBlock
+          text="Ocena pracy w zespole Scrum"
+          row="4"
+          handleClick={(level) =>
+            dispatch({ type: "SET_TEAM_EVALUATION", payload: level })
+          }
+        />
+        <WorkplacePreference text="Preferowane miejsce pracy" />
+        <ContractPreference text="Oczekiwany typ kontraktu" />
+        <FinancialPreference text="Oczekiwane wynagrodzenie miesięczne netto (pln)" />
+        <InternshipPreference text="Zgodan na odbycie bezpłatnych praktyk/stażu na początek" />
+        <Experience text="Ilość miesięcy doświadczenia komercyjnego w programowaniu" />
+        <PreferenceButton
+          text="Anuluj"
+          color="#0a0a0a"
+          className="cancel-btn"
+          handleClick={handleCancel}
+        />
+        <Button text="Pokaż wyniki" color="#E02735" className="submit-btn" />
+      </Form>
     </Container>
   );
 }
