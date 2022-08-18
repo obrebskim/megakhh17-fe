@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <Container>
       <Wrapper>
-        <Logo width="90px" />
+        <Logo width="80px" />
         <PlaceholderDiv />
         <Avatar name={user.fullName} />
         <DownArrow onclick={handleIsOpenChange} />

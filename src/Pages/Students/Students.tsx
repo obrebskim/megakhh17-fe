@@ -1,11 +1,17 @@
-import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  Navigate,
+  Outlet,
+  useLocation,
+  useOutletContext,
+} from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Header from "../../Components/Header/Header";
 import StudentsNav from "../../Components/StudentsNav/StudentsNav";
 import StudentsSearchAndFilter from "../../Components/StudentsSearchAndFilter/StudentsSearchAndFilter";
 import { selectUser } from "../../State/Store/store";
+import Pagination from "../../Components/Common/Pagination/Pagination";
 
 const Container = styled.section`
   width: 100%;
@@ -21,15 +27,30 @@ const ListWrapper = styled.div`
   width: 100%;
   padding: 0 20px;
   background-color: var(--secondaryDark);
-  padding-bottom: 20px;
 `;
+
+interface ContextTypes {
+  pageNo: number;
+  perPageNo: number;
+  setAllPages: React.Dispatch<number>;
+}
 
 export default function Students() {
   const user = useSelector(selectUser);
+  const location = useLocation();
+  const [pageNo, setPageNo] = useState<number>(1);
+  const [allPages, setAllPages] = useState<number>(1);
+  const [perPageNo, setPerPageNo] = useState<number>(10);
+
+  useEffect(() => {
+    setPageNo(1);
+    setPerPageNo(10);
+  }, [location]);
 
   if (user.role !== 2) {
     return <Navigate to="/" />;
   }
+
   return (
     <Container>
       <Header />
@@ -37,9 +58,19 @@ export default function Students() {
         <StudentsNav />
         <ListWrapper>
           <StudentsSearchAndFilter />
-          <Outlet />
+          <Outlet context={{ pageNo, perPageNo, setAllPages }} />
         </ListWrapper>
+        <Pagination
+          pageNo={pageNo}
+          allPages={allPages}
+          changePage={setPageNo}
+          changePerPage={setPerPageNo}
+        />
       </Wrapper>
     </Container>
   );
+}
+
+export function usePagination() {
+  return useOutletContext<ContextTypes>();
 }

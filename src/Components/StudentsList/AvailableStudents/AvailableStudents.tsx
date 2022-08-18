@@ -4,26 +4,37 @@ import StudentsList from "../StudentsList";
 import AvailableStudentItem from "./AvailableStudentItem";
 import fetchData from "../../../utils/fetchData";
 import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
+import { usePagination } from "../../../Pages/Students/Students";
 
 const Container = styled.section``;
 
 function AvailableStudents() {
+  const { pageNo, setAllPages, perPageNo } = usePagination();
   const [students, setStudents] = useState<StudentsListItemInterface[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     (async () => {
-      const { allStudents } = await fetchData(
-        "http://localhost:3000/students/all/1/10",
+      setLoading(true);
+      const { allStudents, totalPages } = await fetchData(
+        `http://localhost:3000/students/all/${pageNo}/${perPageNo}`,
       );
       setStudents(allStudents);
+      setAllPages(totalPages);
+      setLoading(false);
     })();
-  }, []);
+  }, [pageNo, perPageNo, setAllPages]);
   return (
     <Container>
-      <StudentsList>
-        {students.map((s) => (
-          <AvailableStudentItem key={s.id} student={s} />
-        ))}
-      </StudentsList>
+      {!loading ? (
+        <StudentsList>
+          {students.map((s) => (
+            <AvailableStudentItem key={s.id} student={s} />
+          ))}
+        </StudentsList>
+      ) : (
+        <p>Wczytuję</p>
+      )}
     </Container>
   );
 }
