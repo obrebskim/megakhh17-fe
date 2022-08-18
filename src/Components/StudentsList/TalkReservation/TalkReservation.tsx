@@ -4,26 +4,38 @@ import StudentsList from "../StudentsList";
 import ReservationStudentItem from "./ReservationStudentItem";
 import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
 import fetchData from "../../../utils/fetchData";
+import { usePagination } from "../../../Pages/Students/Students";
 
 const Container = styled.section``;
 
 export default function TalkReservation() {
+  const { pageNo, setAllPages, perPageNo } = usePagination();
   const [students, setStudents] = useState<StudentsListItemInterface[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     (async () => {
-      const { allStudents } = await fetchData(
-        "http://localhost:3000/students/all/1/10",
+      setLoading(true);
+      const { allStudents, totalPages } = await fetchData(
+        `http://localhost:3000/students/all/${pageNo}/${perPageNo}`,
       );
       setStudents(allStudents);
+      setAllPages(totalPages);
+      setLoading(false);
+      setStudents(allStudents);
     })();
-  }, []);
+  }, [pageNo, perPageNo, setAllPages]);
   return (
     <Container>
-      <StudentsList>
-        {students.map((s) => (
-          <ReservationStudentItem key={s.id} student={s} />
-        ))}
-      </StudentsList>
+      {!loading ? (
+        <StudentsList>
+          {students.map((s) => (
+            <ReservationStudentItem key={s.id} student={s} />
+          ))}
+        </StudentsList>
+      ) : (
+        <p>wczytuję</p>
+      )}
     </Container>
   );
 }

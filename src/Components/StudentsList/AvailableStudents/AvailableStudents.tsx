@@ -4,27 +4,29 @@ import StudentsList from "../StudentsList";
 import AvailableStudentItem from "./AvailableStudentItem";
 import fetchData from "../../../utils/fetchData";
 import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
-import Pagination from "../../Common/Pagination/Pagination";
+import { usePagination } from "../../../Pages/Students/Students";
 
 const Container = styled.section``;
 
 function AvailableStudents() {
+  const { pageNo, setAllPages, perPageNo } = usePagination();
   const [students, setStudents] = useState<StudentsListItemInterface[]>([]);
-  const [pageNo, setPageNo] = useState<number>(1);
-  const [allPages, setAllPages] = useState<number>(1);
-  const [perPageNo, setPerPageNo] = useState<number>(10);
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const { allStudents, totalPages } = await fetchData(
         `http://localhost:3000/students/all/${pageNo}/${perPageNo}`,
       );
       setStudents(allStudents);
       setAllPages(totalPages);
+      setLoading(false);
     })();
-  }, [pageNo, perPageNo]);
+  }, [pageNo, perPageNo, setAllPages]);
   return (
     <Container>
-      {students.length > 0 ? (
+      {!loading ? (
         <StudentsList>
           {students.map((s) => (
             <AvailableStudentItem key={s.id} student={s} />
@@ -33,12 +35,6 @@ function AvailableStudents() {
       ) : (
         <p>Wczytuję</p>
       )}
-      <Pagination
-        pageNo={pageNo}
-        allPages={allPages}
-        changePage={setPageNo}
-        changePerPage={setPerPageNo}
-      />
     </Container>
   );
 }
