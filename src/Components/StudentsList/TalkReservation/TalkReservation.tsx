@@ -5,6 +5,7 @@ import ReservationStudentItem from "./ReservationStudentItem";
 import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
 import fetchData from "../../../utils/fetchData";
 import { usePagination } from "../../../Pages/Students/Students";
+import LoadingSpinner from "../../Common/LoadingSpinner/LoadingSpinner";
 
 const Container = styled.section``;
 
@@ -34,7 +35,7 @@ export default function TalkReservation() {
           ))}
         </StudentsList>
       ) : (
-        <p>wczytuję</p>
+        <LoadingSpinner />
       )}
     </Container>
   );

@@ -5,6 +5,7 @@ import AvailableStudentItem from "./AvailableStudentItem";
 import fetchData from "../../../utils/fetchData";
 import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
 import { usePagination } from "../../../Pages/Students/Students";
+import LoadingSpinner from "../../Common/LoadingSpinner/LoadingSpinner";
 
 const Container = styled.section``;
 
@@ -33,7 +34,7 @@ function AvailableStudents() {
           ))}
         </StudentsList>
       ) : (
-        <p>Wczytuję</p>
+        <LoadingSpinner />
       )}
     </Container>
   );
