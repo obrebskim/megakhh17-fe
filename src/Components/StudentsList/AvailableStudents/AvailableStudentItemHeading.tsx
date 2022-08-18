@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ArrowButton from "../../Common/ArrowButton/ArrowButton";
 import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
 import { selectUser } from "../../../State/Store/store";
+import { open as modalOpen } from "../../../State/Slices/modalSlice";
 
 type StyledProps = {
   open: boolean;
@@ -36,12 +37,19 @@ interface PropsTypes {
 function AvailableStudentItemHeading({ open, onclick, student }: PropsTypes) {
   const { id } = useSelector(selectUser);
   const bookBookTheStudent = async () => {
-    const resp = await fetch("http://localhost:3000/students-hrs", {
-      method: "POST",
-      body: JSON.stringify({ hrId: id, studentID: student.id }),
-    });
-    const data = await resp.json();
-    console.log(data);
+    try {
+      const resp = await fetch("http://localhost:3000/students-hrs", {
+        method: "POST",
+        body: JSON.stringify({ hrId: id, studentID: student.id }),
+      });
+      const data = await resp.json();
+      modalOpen({
+        isOpen: true,
+        message: data.message,
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
