@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import ArrowButton from "../../Common/ArrowButton/ArrowButton";
 import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
+import { selectUser } from "../../../State/Store/store";
 
 type StyledProps = {
   open: boolean;
@@ -32,10 +34,24 @@ interface PropsTypes {
 }
 
 function AvailableStudentItemHeading({ open, onclick, student }: PropsTypes) {
+  const { id } = useSelector(selectUser);
+  const bookBookTheStudent = async () => {
+    const resp = await fetch("http://localhost:3000/students-hrs", {
+      method: "POST",
+      body: JSON.stringify({ hrId: id, studentID: student.id }),
+    });
+    const data = await resp.json();
+    console.log(data);
+  };
+
   return (
     <Container open={open}>
       <p>{`${student.firstName} ${student.lastName[0]}.`}</p>
-      <button className="reservation" type="button">
+      <button
+        className="reservation"
+        type="button"
+        onClick={bookBookTheStudent}
+      >
         Zarezerwuj rozmowę
       </button>
       <ArrowButton open={open} onclick={onclick} />
