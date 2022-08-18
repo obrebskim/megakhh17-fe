@@ -1,5 +1,10 @@
-import React, { useState } from "react";
-import { Navigate, Outlet, useOutletContext } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  Navigate,
+  Outlet,
+  useLocation,
+  useOutletContext,
+} from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Header from "../../Components/Header/Header";
@@ -22,7 +27,6 @@ const ListWrapper = styled.div`
   width: 100%;
   padding: 0 20px;
   background-color: var(--secondaryDark);
-  padding-bottom: 20px;
 `;
 
 interface ContextTypes {
@@ -33,9 +37,15 @@ interface ContextTypes {
 
 export default function Students() {
   const user = useSelector(selectUser);
+  const location = useLocation();
   const [pageNo, setPageNo] = useState<number>(1);
   const [allPages, setAllPages] = useState<number>(1);
   const [perPageNo, setPerPageNo] = useState<number>(10);
+
+  useEffect(() => {
+    setPageNo(1);
+    setPerPageNo(10);
+  }, [location]);
 
   if (user.role !== 2) {
     return <Navigate to="/" />;

@@ -38,7 +38,7 @@ function Pagination({
       >
         <option value={10}>10</option>
         <option value={20}>20</option>
-        <option value={30}>20</option>
+        <option value={30}>30</option>
       </select>
       <p>{`${pageNo} z ${allPages}`}</p>
       <button
