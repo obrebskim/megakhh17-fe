@@ -4,7 +4,7 @@ import { FilterFormContext } from "../../../Context/FilterFormContext";
 
 interface PropsTypes {
   text: string;
-  value?: string;
+  value: string;
   color?: string;
   className?: string;
 }
@@ -25,21 +25,31 @@ export default function ContractPreferenceButton({
   color,
   className,
 }: PropsTypes) {
-  const { dispatch } = useContext(FilterFormContext);
+  const { state, dispatch } = useContext(FilterFormContext);
   const handleButtonClick = () => {
-    switch (value) {
-      case "1":
-        return dispatch({ type: "SET_CONTRACT_PREFERENCE", payload: "1" });
-      case "2":
-        return dispatch({ type: "SET_CONTRACT_PREFERENCE", payload: "2" });
-      case "3":
-        return dispatch({ type: "SET_CONTRACT_PREFERENCE", payload: "3" });
-      case "4":
-        return dispatch({ type: "SET_CONTRACT_PREFERENCE", payload: "4" });
-      default:
-        return dispatch({ type: "SET_CONTRACT_PREFERENCE", payload: "4" });
+    if (state.contractPreference === "4") {
+      dispatch({ type: "SET_CONTRACT_PREFERENCE", payload: value });
+    } else {
+      const array = state.contractPreference.split(",");
+      if (array.includes(value)) {
+        dispatch({
+          type: "SET_CONTRACT_PREFERENCE",
+          payload: array.filter((el) => el !== value).join(),
+        });
+      } else if (value !== "4") {
+        dispatch({
+          type: "SET_CONTRACT_PREFERENCE",
+          payload: [...array, value].sort().join(),
+        });
+      }
     }
   };
+  if (state.contractPreference === "") {
+    dispatch({
+      type: "SET_CONTRACT_PREFERENCE",
+      payload: "4",
+    });
+  }
   return (
     <Container
       color={color}

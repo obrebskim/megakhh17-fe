@@ -4,7 +4,7 @@ import { FilterFormContext } from "../../../Context/FilterFormContext";
 
 interface PropsTypes {
   text: string;
-  value?: string;
+  value: string;
   color?: string;
   className?: string;
 }
@@ -25,23 +25,31 @@ export default function WorkplacePreferenceButton({
   color,
   className,
 }: PropsTypes) {
-  const { dispatch } = useContext(FilterFormContext);
+  const { state, dispatch } = useContext(FilterFormContext);
   const handleButtonClick = () => {
-    switch (value) {
-      case "1":
-        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "1" });
-      case "2":
-        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "2" });
-      case "3":
-        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "3" });
-      case "4":
-        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "4" });
-      case "5":
-        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "5" });
-      default:
-        return dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: "5" });
+    if (state.workplacePreference === "5") {
+      dispatch({ type: "SET_WORKPLACE_PREFERENCE", payload: value });
+    } else {
+      const array = state.workplacePreference.split(",");
+      if (array.includes(value)) {
+        dispatch({
+          type: "SET_WORKPLACE_PREFERENCE",
+          payload: array.filter((el) => el !== value).join(),
+        });
+      } else if (value !== "5") {
+        dispatch({
+          type: "SET_WORKPLACE_PREFERENCE",
+          payload: [...array, value].sort().join(),
+        });
+      }
     }
   };
+  if (state.workplacePreference === "") {
+    dispatch({
+      type: "SET_WORKPLACE_PREFERENCE",
+      payload: "5",
+    });
+  }
   return (
     <Container
       color={color}

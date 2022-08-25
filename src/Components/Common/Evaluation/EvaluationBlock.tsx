@@ -36,21 +36,22 @@ export default function EvaluationBlock({ text, row, handleClick }: Props) {
             key={count}
             level={count}
             squareColor={
-              (row === "1" && state.courseEvaluation === count) ||
-              (row === "2" && state.activityEvaluation === count) ||
-              (row === "3" && state.codeEvaluation === count) ||
-              (row === "4" && state.teamEvaluation === count)
+              (row === "1" && state.courseEvaluation.includes(count)) ||
+              (row === "2" && state.activityEvaluation.includes(count)) ||
+              (row === "3" && state.codeEvaluation.includes(count)) ||
+              (row === "4" && state.teamEvaluation.includes(count))
                 ? "#E02735"
                 : "#292A2B"
             }
             className={
-              (row === "1" && state.courseEvaluation === count) ||
-              (row === "2" && state.activityEvaluation === count) ||
-              (row === "3" && state.codeEvaluation === count) ||
-              (row === "4" && state.teamEvaluation === count)
+              (row === "1" && state.courseEvaluation.includes(count)) ||
+              (row === "2" && state.activityEvaluation.includes(count)) ||
+              (row === "3" && state.codeEvaluation.includes(count)) ||
+              (row === "4" && state.teamEvaluation.includes(count))
                 ? "star-active"
                 : "star"
             }
+            row={row}
             handleClick={handleClick}
           />
         ))}

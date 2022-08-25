@@ -26,22 +26,22 @@ export default function ContractPreference({ text }: Props) {
       <PreferenceTitle>{text}</PreferenceTitle>
       <ContractPreferenceButton
         text="Umowa o pracę"
-        color={state.contractPreference !== "1" ? "#292A2B" : "#E02735"}
+        color={state.contractPreference.includes("1") ? "#E02735" : "#292A2B"}
         value="1"
       />
       <ContractPreferenceButton
         text="B2B"
-        color={state.contractPreference !== "2" ? "#292A2B" : "#E02735"}
+        color={state.contractPreference.includes("2") ? "#E02735" : "#292A2B"}
         value="2"
       />
       <ContractPreferenceButton
         text="Umowa zlecenie / o dzieło"
-        color={state.contractPreference !== "3" ? "#292A2B" : "#E02735"}
+        color={state.contractPreference.includes("3") ? "#E02735" : "#292A2B"}
         value="3"
       />
       <ContractPreferenceButton
         text="Brak preferencji"
-        color={state.contractPreference !== "4" ? "#292A2B" : "#E02735"}
+        color={state.contractPreference.includes("4") ? "#E02735" : "#292A2B"}
         value="4"
       />
     </Container>

@@ -22,6 +22,7 @@ interface StyledPropsTypes {
 
 const Container = styled.div<StyledPropsTypes>`
   position: absolute;
+  z-index: 1;
   top: -50px;
   left: 50%;
   transform: translateX(-50%);
