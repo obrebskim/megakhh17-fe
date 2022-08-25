@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import FilterButton from "./FilterButton";
 import SearchInput from "./SearchInput";
+import FilterForm from "../FilterForm/FilterForm";
 
 const Container = styled.section`
   height: 72px;
@@ -26,10 +27,20 @@ const Container = styled.section`
 
 function StudentsSearchAndFilter() {
   const [searchString, setSearchString] = useState<string>("");
+  const [filterFormVisibility, setFilterFormVisibility] =
+    useState<string>("hidden");
+  const handleFilterFormVisibility = () => {
+    setFilterFormVisibility("visible");
+  };
   return (
     <Container>
       <SearchInput value={searchString} onchange={setSearchString} />
-      <FilterButton onclick={() => {}} />
+      <FilterButton onclick={handleFilterFormVisibility} />
+      <FilterForm
+        searchString={searchString}
+        visibility={filterFormVisibility}
+        handleVisibility={setFilterFormVisibility}
+      />
     </Container>
   );
 }

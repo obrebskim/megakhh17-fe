@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import EvaluationUnit from "./EvaluationUnit";
-import FilterFormContext from "../../../utils/FilterFormContext";
+import { FilterFormContext } from "../../../Context/FilterFormContext";
 
 const Container = styled.div`
   display: flex;
@@ -20,22 +20,13 @@ const Title = styled.span`
 
 interface Props {
   text: string;
-  row: number;
-  handleClick: (level: number) => void;
+  row: string;
+  handleClick: (level: string) => void;
 }
 
 export default function EvaluationBlock({ text, row, handleClick }: Props) {
-  const levels = [5, 4, 3, 2, 1];
-  const context = useContext(FilterFormContext);
-
-  if (!context) return null;
-
-  const {
-    courseEvaluation,
-    activityEvaluation,
-    codeEvaluation,
-    teamEvaluation,
-  } = context;
+  const levels = ["5", "4", "3", "2", "1"];
+  const { state } = useContext(FilterFormContext);
   return (
     <>
       <Title>{text}</Title>
@@ -45,21 +36,22 @@ export default function EvaluationBlock({ text, row, handleClick }: Props) {
             key={count}
             level={count}
             squareColor={
-              (row === 1 && courseEvaluation === count) ||
-              (row === 2 && activityEvaluation === count) ||
-              (row === 3 && codeEvaluation === count) ||
-              (row === 4 && teamEvaluation === count)
+              (row === "1" && state.courseEvaluation.includes(count)) ||
+              (row === "2" && state.activityEvaluation.includes(count)) ||
+              (row === "3" && state.codeEvaluation.includes(count)) ||
+              (row === "4" && state.teamEvaluation.includes(count))
                 ? "#E02735"
                 : "#292A2B"
             }
             className={
-              (row === 1 && courseEvaluation === count) ||
-              (row === 2 && activityEvaluation === count) ||
-              (row === 3 && codeEvaluation === count) ||
-              (row === 4 && teamEvaluation === count)
+              (row === "1" && state.courseEvaluation.includes(count)) ||
+              (row === "2" && state.activityEvaluation.includes(count)) ||
+              (row === "3" && state.codeEvaluation.includes(count)) ||
+              (row === "4" && state.teamEvaluation.includes(count))
                 ? "star-active"
                 : "star"
             }
+            row={row}
             handleClick={handleClick}
           />
         ))}

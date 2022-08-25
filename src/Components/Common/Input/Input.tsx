@@ -22,7 +22,7 @@ interface Props {
   height?: string;
   required?: boolean;
   min?: number;
-  handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Input({

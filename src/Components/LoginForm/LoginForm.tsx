@@ -57,6 +57,15 @@ export default function LoginForm() {
 
   const handleSubmitLoginForm = async (e: FormEvent) => {
     e.preventDefault();
+    // await dispatch(login({ id: "123", logged: true, name: "Maciek", role: 2 }));
+    // const response = await fetch(`http://localhost:3000/auth/login`, {
+    // method: "POST",
+    // headers: { "Content-Type": "application/json" },
+    // body: JSON.stringify({
+    // email: loginData.email,
+    // pwd: loginData.password,
+    // }),
+    // });
     try {
       const response = await fetch(`http://localhost:3000/auth/login`, {
         method: "POST",

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import WorkplacePreferenceButton from "./WorkplacePreferenceButton";
-import FilterFormContext from "../../../utils/FilterFormContext";
+import { FilterFormContext } from "../../../Context/FilterFormContext";
 
 const Container = styled.div`
   margin: 0 0 20px 18px;
@@ -20,38 +20,34 @@ interface Props {
 }
 
 export default function WorkplacePreference({ text }: Props) {
-  const context = useContext(FilterFormContext);
-
-  if (!context) return null;
-
-  const { workplacePreference } = context;
+  const { state } = useContext(FilterFormContext);
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
       <WorkplacePreferenceButton
         text="Praca w biurze"
-        color={workplacePreference !== 1 ? "#292A2B" : "#E02735"}
-        value={1}
+        color={state.workplacePreference.includes("1") ? "#E02735" : "#292A2B"}
+        value="1"
       />
       <WorkplacePreferenceButton
         text="Relokacja"
-        color={workplacePreference !== 2 ? "#292A2B" : "#E02735"}
-        value={2}
+        color={state.workplacePreference.includes("2") ? "#E02735" : "#292A2B"}
+        value="2"
       />
       <WorkplacePreferenceButton
         text="Praca zdalna"
-        color={workplacePreference !== 3 ? "#292A2B" : "#E02735"}
-        value={3}
+        color={state.workplacePreference.includes("3") ? "#E02735" : "#292A2B"}
+        value="3"
       />
       <WorkplacePreferenceButton
         text="Praca hybrydowa"
-        color={workplacePreference !== 4 ? "#292A2B" : "#E02735"}
-        value={4}
+        color={state.workplacePreference.includes("4") ? "#E02735" : "#292A2B"}
+        value="4"
       />
       <WorkplacePreferenceButton
         text="Brak preferencji"
-        color={workplacePreference !== 5 ? "#292A2B" : "#E02735"}
-        value={5}
+        color={state.workplacePreference.includes("5") ? "#E02735" : "#292A2B"}
+        value="5"
       />
     </Container>
   );

@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { ChangeEvent, useContext } from "react";
 import styled from "styled-components";
 import Input from "../Input/Input";
-import FilterFormContext from "../../../utils/FilterFormContext";
+import { FilterFormContext } from "../../../Context/FilterFormContext";
 
 const Container = styled.div`
   margin: 0 0 20px 18px;
@@ -25,41 +25,59 @@ interface Props {
 }
 
 export default function FinancialPreference({ text }: Props) {
-  const context = useContext(FilterFormContext);
-
-  if (!context) return null;
-
-  const { salaryMin, salaryMax, handleSetSalaryMin, handleSetSalaryMax } =
-    context;
+  /* const salaryMinRef = useRef<HTMLInputElement | null>(null);
+  const salaryMaxRef = useRef<HTMLInputElement | null>(null);
+  useEffect(() => {
+    if (salaryMinRef.current?.value && salaryMaxRef.current?.value) {
+      if (salaryMinRef.current?.value > salaryMaxRef.current?.value) {
+        // @ts-ignore
+        salaryMinRef.current.validity.valid = false;
+        // console.log(salaryMinRef.current?.validity);
+      }
+    }
+  }, [salaryMinRef.current?.value, salaryMaxRef.current?.value]); */
+  const { state, dispatch } = useContext(FilterFormContext);
   return (
     <Container>
       <PreferenceTitle>{text}</PreferenceTitle>
       od
       <Input
         type="number"
-        value={salaryMin ? salaryMin.toString() : "0"}
+        value={state.salaryMin ? state.salaryMin.toString() : "0"}
         name="min"
         placeholder="np. 1000 zł"
-        handleInputChange={handleSetSalaryMin}
+        handleInputChange={(e: ChangeEvent<HTMLInputElement>) => {
+          dispatch({
+            type: "SET_SALARY_MIN",
+            payload: Number(e.target.value),
+          });
+        }}
         width="95px"
         height="28px"
       />
       do
-      {salaryMin !== null && (
+      {state.salaryMin !== null && (
         <Input
           type="number"
           value={
-            salaryMax // && salaryMax > salaryMin
-              ? salaryMax.toString()
-              : salaryMin.toString()
+            state.salaryMax
+              ? state.salaryMax.toString()
+              : state.salaryMin.toString()
           }
           placeholder="np. 10000 zł"
-          handleInputChange={handleSetSalaryMax}
+          handleInputChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
+              type: "SET_SALARY_MAX",
+              payload: Number(e.target.value),
+            });
+          }}
           width="105px"
           height="28px"
-          min={salaryMin}
+          min={state.salaryMin}
         />
       )}
+      {/* <input type="number" ref={salaryMinRef} />
+      <input type="number" ref={salaryMaxRef} /> */}
     </Container>
   );
 }

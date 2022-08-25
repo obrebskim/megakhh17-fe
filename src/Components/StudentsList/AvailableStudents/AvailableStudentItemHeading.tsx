@@ -25,6 +25,7 @@ const Container = styled.div<StyledProps>`
     background-color: var(--buttonColor);
     border: none;
     color: var(--fontColor);
+    cursor: pointer;
   }
 `;
 
