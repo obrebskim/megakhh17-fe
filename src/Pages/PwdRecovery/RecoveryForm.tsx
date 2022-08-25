@@ -49,9 +49,9 @@ export default function RecoveryForm() {
     return <div> {resp}</div>;
   }
 
-  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+  /* function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
-  }
+  } */
 
   return (
     <Container onSubmit={handleSubmitLoginForm}>
