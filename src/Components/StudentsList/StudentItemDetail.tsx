@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import DetailItem from "./DetailItem";
+import { StudentsListItemInterface } from "../../Types/StudentsListItemInterface";
+import setMonthNumeral from "../../utils/setMonthNumeral";
 
 const Container = styled.div`
   height: 110px;
@@ -10,33 +12,54 @@ const Container = styled.div`
   background-color: var(--secondaryDark);
 `;
 
-function StudentItemDetail() {
+interface PropsTypes {
+  student: StudentsListItemInterface;
+}
+
+function StudentItemDetail({ student }: PropsTypes) {
   return (
     <Container>
-      <DetailItem title="Ocena przejścia kursu" content="5/5" />
+      <DetailItem
+        title="Ocena przejścia kursu"
+        content={`${student.courseCompletion}/5`}
+      />
       <DetailItem
         title="Ocena aktywności i zaangażowania na kursie"
-        content="5/5"
+        content={`${student.courseCompletion}/5`}
       />
-      <DetailItem title="Ocena kodu w projekcie własnym" content="5/5" />
-      <DetailItem title="Ocena pracy w zespole w Scrum" content="5/5" />
-      <DetailItem title="Preferowane miejsce pracy" content="Hybrydowo" />
+      <DetailItem
+        title="Ocena kodu w projekcie własnym"
+        content={`${student.courseCompletion}/5`}
+      />
+      <DetailItem
+        title="Ocena pracy w zespole w Scrum"
+        content={`${student.courseCompletion}/5`}
+      />
+      <DetailItem
+        title="Preferowane miejsce pracy"
+        content={`${student.courseCompletion}/5`}
+      />
       <DetailItem
         title="Docelowe Miasto gdzie chce pracować kandydat"
-        content="Gdańsk"
+        content={student.targetWorkCity}
       />
-      <DetailItem title="Oczekiwany typ kontraktu" content="umowa o pracę" />
+      <DetailItem
+        title="Oczekiwany typ kontraktu"
+        content={student.typeContract}
+      />
       <DetailItem
         title="Oczekiwane wynagrodzenie miesięczne netto"
-        content="6000 zł"
+        content={`${student.expectedSalary} zł`}
       />
       <DetailItem
         title="Zgoda na odbycie bezpłatnych praktyk/stażu na początek"
-        content="NIE"
+        content={student.canTakeApprenticeship}
       />
       <DetailItem
         title="Komercyjne doświadczenie w programowaniu"
-        content="24 misiące"
+        content={`${student.monthsOfCommercialExp} ${setMonthNumeral(
+          student.monthsOfCommercialExp,
+        )}`}
       />
     </Container>
   );

@@ -18,7 +18,7 @@ const Container = styled.div`
 
 interface PropsTypes {
   title: string;
-  content: string;
+  content: string | number;
 }
 
 function DetailItem({ title, content }: PropsTypes) {

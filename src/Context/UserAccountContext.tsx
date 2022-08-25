@@ -12,7 +12,7 @@ const initialState: UserAccountContextStateInterface = {
   expectedTypeWork: "",
   targetWorkCity: "",
   expectedContractType: "",
-  expectedSalary: "",
+  expectedSalary: 0,
   experienceMonths: 0,
   canTakeApprenticeship: 0,
   education: "",

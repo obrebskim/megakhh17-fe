@@ -1,12 +1,7 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as FolderIco } from "../../Assets/img/folder.svg";
+import { open } from "../../State/Slices/modalSlice";
 
 const Container = styled.form`
   width: 100%;
@@ -53,14 +48,26 @@ function FileAttach() {
   const [files, setFile] = useState<FileList | null>(null);
   const inputFile = useRef<HTMLInputElement | null>(null);
 
-  useEffect(() => {
-    console.log(files);
-  }, [files]);
-
-  const handleSendFile = (e: FormEvent) => {
+  const handleSendFile = async (e: FormEvent) => {
     e.preventDefault();
     if (!files) return console.log("Plik nie został wybrany.");
-    return console.log("wysyłam plik");
+    try {
+      const formData = new FormData();
+      formData.append("file", files[0]);
+      const resp = await fetch("http://localhost:3000/file", {
+        method: "POST",
+        body: formData,
+      });
+      return open({
+        isOpen: true,
+        message: "Dane zostały zapisane.",
+      });
+    } catch (err) {
+      return open({
+        isOpen: true,
+        message: "Coś poszło nie tak! Spróbuj ponownie.",
+      });
+    }
   };
 
   return (

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserInterface } from "../../Types/UserInterface";
 
 const initialState: UserInterface = {
-  name: null,
+  fullName: null,
   logged: false,
   id: null,
   role: null,
@@ -16,7 +16,7 @@ const userSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.id = action.payload.id;
       // eslint-disable-next-line no-param-reassign
-      state.name = action.payload.name;
+      state.fullName = action.payload.fullName;
       // eslint-disable-next-line no-param-reassign
       state.logged = true;
       // eslint-disable-next-line no-param-reassign
@@ -26,7 +26,7 @@ const userSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.id = "";
       // eslint-disable-next-line no-param-reassign
-      state.name = "";
+      state.fullName = "";
       // eslint-disable-next-line no-param-reassign
       state.logged = false;
       // eslint-disable-next-line no-param-reassign

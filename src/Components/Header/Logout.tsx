@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-// import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../State/Slices/userSlice";
+import { selectUser } from "../../State/Store/store";
 
 const Container = styled.div`
   width: 250px;
@@ -20,44 +20,46 @@ const Container = styled.div`
     text-align: left;
     color: var(--fontColor);
     font-size: 1.8rem;
+    cursor: pointer;
   }
 `;
 
 function Logout() {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleRedirect = (path: string): void => {
     navigate(path);
   };
   const handleLogout = async () => {
-    // const response = await fetch(`http://localhost:3000/auth/logout`);
-    // const resp = await response.json();
-    // if (resp.ok) {
-    //   dispatch(logout());
-    //   navigate("/");
-    // }
+    const response = await fetch(`http://localhost:3000/auth/logout`, {
+      method: "GET",
+      credentials: "include",
+    });
+    const resp = await response.json();
+    if (resp.ok) {
+      dispatch(logout());
+      navigate("/");
+    }
+    // console.log(resp);
     // axios
     //   .get(`http://localhost:3000/auth/logout`, {
     //     withCredentials: true,
-    //     headers: {
-    //       "Access-Control-Allow-Origin": "*",
-    //       "Content-Type": "application/json",
-    //       "Access-Control-Allow-Credentials": true,
-    //         "Set-Cookie"
-    //     },
     //   })
-    //   .then((res) => {
+    //   .then((res: any) => {
     //     console.log(res);
     //   });
-    dispatch(logout());
-    navigate("/");
+    // dispatch(logout());
+    // navigate("/");
   };
 
   return (
     <Container>
-      <button type="button" onClick={() => handleRedirect("/account")}>
-        Konto
-      </button>
+      {user.role === 3 && (
+        <button type="button" onClick={() => handleRedirect("/account")}>
+          Konto
+        </button>
+      )}
       <button type="button" onClick={handleLogout}>
         Wyloguj
       </button>

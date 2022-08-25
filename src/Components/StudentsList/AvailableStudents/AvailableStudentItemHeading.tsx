@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ArrowButton from "../../Common/ArrowButton/ArrowButton";
+import { StudentsListItemInterface } from "../../../Types/StudentsListItemInterface";
 
 type StyledProps = {
   open: boolean;
@@ -28,12 +29,13 @@ const Container = styled.div<StyledProps>`
 interface PropsTypes {
   onclick: () => void;
   open: boolean;
+  student: StudentsListItemInterface;
 }
 
-function AvailableStudentItemHeading({ open, onclick }: PropsTypes) {
+function AvailableStudentItemHeading({ open, onclick, student }: PropsTypes) {
   return (
     <Container open={open}>
-      <p>Name S.</p>
+      <p>{`${student.firstName} ${student.lastName[0]}.`}</p>
       <button className="reservation" type="button">
         Zarezerwuj rozmowę
       </button>
